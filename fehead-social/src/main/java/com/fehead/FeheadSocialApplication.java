@@ -4,7 +4,7 @@ package com.fehead;
  * Hello world!
  *
  */
-public class App 
+public class FeheadSocialApplication
 {
     public static void main( String[] args )
     {

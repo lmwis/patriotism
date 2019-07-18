@@ -9,5 +9,9 @@
         <module name="fehead-social" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fehead-social" target="1.8" />
+      <module name="patriotism-root" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

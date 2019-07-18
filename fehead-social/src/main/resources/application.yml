@@ -1,0 +1,15 @@
+
+spring:
+  datasource:
+    password: mysqladmin
+    username: root
+    url: jdbc:mysql://192.168.0.123:3306/test?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+fehead:
+  social:
+    qq:
+      app-id:
+      app-secret:
+server:
+  port: 8070

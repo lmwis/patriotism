@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fehead-social/fehead-social.iml" filepath="$PROJECT_DIR$/fehead-social/fehead-social.iml" />
+      <module fileurl="file://$PROJECT_DIR$/patriotism-root.iml" filepath="$PROJECT_DIR$/patriotism-root.iml" />
+    </modules>
+  </component>
+</project>

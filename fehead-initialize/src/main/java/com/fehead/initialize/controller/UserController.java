@@ -9,6 +9,7 @@ import com.fehead.initialize.service.model.UserModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Encoder;
@@ -40,7 +41,7 @@ import java.util.Random;
  *
  * @author Nightnessss 2019/7/8 14:50
  */
-@Controller("user")
+@RestController("user")
 @RequestMapping("/user")
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
@@ -49,38 +50,20 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private HttpServletRequest httpServletRequest;
 
-    // 用户登录接口
-    @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
-    @ResponseBody
-    public CommonReturnType login(@RequestParam(name = "telphone") String telphone,
-                                  @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
+    // 用户登录
+    @PostMapping(value = "/login")
+    public CommonReturnType login(HttpServletRequest)
 
-        // 入口校验
-        if (StringUtils.isEmpty(telphone) || StringUtils.isEmpty(password)) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
-        }
-
-        // 用户登录服务，校验用户登录是否合法
-        String encrptPassword = EncodeByMB5(password);
-        UserModel userModel = userService.validateLogin(telphone, encrptPassword);
-
-        // session 记录用户登录信息
-        this.httpServletRequest.getSession().setAttribute("IS_LOGIN", true);
-        this.httpServletRequest.getSession().setAttribute("LOGIN_USER", userModel);
-
-        return CommonReturnType.creat(null);
-    }
-
-    // 用户注册接口
-    @RequestMapping(value = "/register", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
-    @ResponseBody
+    // 用户手机注册接口
+    @RequestMapping(value = "/registerByTelphone", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     public CommonReturnType register(@RequestParam(name = "telphone") String telphone,
                                      @RequestParam(name = "otpCode") String otpCode,
                                      @RequestParam(name = "name") String name,
-                                     @RequestParam(name = "gender") Integer gender,
-                                     @RequestParam(name = "age") Integer age,
                                      @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
         // 验证手机号与对应的otp符合度
         String inSessionOtpCode = (String) this.httpServletRequest.getSession().getAttribute(telphone);
@@ -91,30 +74,44 @@ public class UserController extends BaseController {
         // 用户注册流程
         UserModel userModel = new UserModel();
         userModel.setName(name);
-        userModel.setGender(new Byte(String.valueOf(gender.intValue())));
-        userModel.setAge(age);
         userModel.setTelphone(telphone);
         userModel.setRegisterMode("byphone");
-        // 用md5加密密码
-        userModel.setEncrptPassword(EncodeByMB5(password));
+        // 加密密码
+        userModel.setEncrptPassword(passwordEncoder.encode(password));
+        userService.register(userModel);
+
+        return CommonReturnType.creat(null);
+    }
+    // 用户电子邮件注册接口
+    @RequestMapping(value = "/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    public CommonReturnType register(@RequestParam(name = "email") String email,
+                                     @RequestParam(name = "name") String name,
+                                     @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        // 用户注册流程
+        UserModel userModel = new UserModel();
+        userModel.setName(name);
+        userModel.setEmail(email);
+        userModel.setRegisterMode("byemail");
+        // 加密密码
+        userModel.setEncrptPassword(passwordEncoder.encode(password));
         userService.register(userModel);
 
         return CommonReturnType.creat(null);
     }
 
     // 加密密码
-    private String EncodeByMB5(String str) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        // 确定计算方法
-        MessageDigest md5 = MessageDigest.getInstance("MD5");
-        BASE64Encoder base64en = new BASE64Encoder();
-        // 加密字符串
-        String newstr = base64en.encode(md5.digest(str.getBytes("utf-8")));
-        return newstr;
-    }
+//    private String EncodeByMB5(String str) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+//        // 确定计算方法
+//        MessageDigest md5 = MessageDigest.getInstance("MD5");
+//        BASE64Encoder base64en = new BASE64Encoder();
+//        // 加密字符串
+//        String newstr = base64en.encode(md5.digest(str.getBytes("utf-8")));
+//        return newstr;
+//    }
 
     // 用户获取短信验证码接口
     @RequestMapping(value = "/getotp", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
-    @ResponseBody
     public CommonReturnType getotp(String telphone) throws BusinessExpection {
 
         // 需要按照一定的规则生成otp验证码
@@ -133,7 +130,6 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/get")
-    @ResponseBody
     public CommonReturnType getUser(@RequestParam(name = "id") Integer id) throws BusinessExpection {
         // 调用service服务获取相应id的用户对象并返回给前端
         UserModel userModel = userService.getUserById(id);

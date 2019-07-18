@@ -11,6 +11,9 @@
         <module>fehead-social</module>
     </modules>
 
+    <properties>
+        <securrty.version>1.0-SNAPSHOT</securrty.version>
+    </properties>
     <packaging>pom</packaging>
 
 

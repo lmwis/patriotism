@@ -27,6 +27,7 @@ public class UserModel {
     private Byte gender;
     private Integer age;
     private String telphone;
+    private String email;
     private String registerMode;
     private String thirdPartyId;
 
@@ -70,6 +71,14 @@ public class UserModel {
 
     public void setTelphone(String telphone) {
         this.telphone = telphone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRegisterMode() {

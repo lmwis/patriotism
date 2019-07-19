@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/fehead-social/fehead-social.iml" filepath="$PROJECT_DIR$/fehead-social/fehead-social.iml" />
-      <module fileurl="file://$PROJECT_DIR$/patriotism-root.iml" filepath="$PROJECT_DIR$/patriotism-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fehead-initialize/fehead-initialize.iml" filepath="$PROJECT_DIR$/fehead-initialize/fehead-initialize.iml" />
     </modules>
   </component>
 </project>

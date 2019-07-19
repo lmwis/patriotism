@@ -7,11 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fehead-social" />
+        <module name="fehead-browser" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="fehead-social" target="1.8" />
-      <module name="patriotism-root" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -21,6 +21,12 @@
     </properties>
 
     <dependencies>
+
+<!--        <dependency>-->
+<!--            <groupId>com.fehead</groupId>-->
+<!--            <artifactId>fehead-browser</artifactId>-->
+<!--            <version>${patriotism-version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>

@@ -56,8 +56,8 @@ public class UserController extends BaseController {
     private HttpServletRequest httpServletRequest;
 
     // 用户登录
-    @PostMapping(value = "/login")
-    public CommonReturnType login(HttpServletRequest)
+//    @PostMapping(value = "/login")
+//    public CommonReturnType login(HttpServletRequest)
 
     // 用户手机注册接口
     @RequestMapping(value = "/registerByTelphone", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})

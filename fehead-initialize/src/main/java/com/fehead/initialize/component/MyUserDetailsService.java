@@ -1,5 +1,7 @@
 package com.fehead.initialize.component;
 
+import com.fehead.initialize.dao.UserDOMapper;
+import com.fehead.initialize.dao.UserPasswordDOMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +40,19 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserPasswordDOMapper userPasswordDOMapper;
+
+    @Autowired
+    private UserDOMapper userDOMapper;
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
         logger.info("登录用户名：" + username);
 
+        String password = userPasswordDOMapper.selectByUserId(userDOMapper.selectByTelphone(username).getId()).getEncrptPassword();
 
         return new User(username, password,
                 true, true, true, true,

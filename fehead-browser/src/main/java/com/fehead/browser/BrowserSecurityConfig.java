@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SocialAuthenticationFilter;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -53,10 +55,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    SocialConfig socialConfig;
+    SpringSocialConfigurer socialConfig;
 
     @Autowired
     QQAutoConfig qqAutoConfig;
+
+//    @Autowired
+//    SocialAuthenticationFilter socialAuthenticationFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -80,6 +85,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.apply(socialConfig)
                 .and()
+//                .addFilter(socialAuthenticationFilter)
                 .formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
@@ -92,7 +98,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authentication/require","/code/*","/auth/*",
+                .antMatchers("/authentication/require","/code/*",
                         feheadProperties.getBrowser().getLoginPage()).permitAll()
                 .anyRequest()
                 .authenticated()

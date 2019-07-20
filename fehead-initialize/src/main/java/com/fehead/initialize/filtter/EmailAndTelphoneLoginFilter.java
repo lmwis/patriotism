@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 /**
  * 写代码 敲快乐
@@ -44,15 +45,15 @@ public class EmailAndTelphoneLoginFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         logger.info("requestURI:" + httpServletRequest.getRequestURI());
         logger.info("method:" + httpServletRequest.getMethod());
-        if (StringUtils.equals("/login", httpServletRequest.getRequestURI())
+        if (StringUtils.equals("/login/otp", httpServletRequest.getRequestURI())
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
 
-            try {
-                validate(new ServletWebRequest(httpServletRequest));
-            } catch (ValidateCodeException e) {
-                authenticationFailureHandler.onAuthenticationFailure(httpServletRequest, httpServletResponse, e);
-            }
 
+        } else if (StringUtils.equals("/login/email", httpServletRequest.getRequestURI())
+                && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
+
+        } else if (StringUtils.equals("/login/telphone", httpServletRequest.getRequestURI())
+                && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
 
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);

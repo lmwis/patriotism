@@ -90,19 +90,23 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "imageCode");
 
         if (StringUtils.isBlank(codeInRequest)) {
+            logger.info("验证码不能为空");
             throw new ValidateCodeException("验证码不能为空");
         }
 
         if (otp == null) {
+            logger.info("验证码不存在");
             throw new ValidateCodeException("验证码不存在");
         }
 
         if (otp.isExpried()) {
+            logger.info("验证码已过期");
             sessionStrategy.removeAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY);
             throw new ValidateCodeException("验证码已过期");
         }
 
         if (!StringUtils.equals(otp.getCode(), codeInRequest)) {
+            logger.info("验证码不匹配");
             throw new ValidateCodeException("验证码不匹配");
         }
 

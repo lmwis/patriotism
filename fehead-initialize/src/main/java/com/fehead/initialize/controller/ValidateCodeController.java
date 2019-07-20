@@ -34,7 +34,7 @@ import java.util.Random;
  * @author Nightnessss 2019/7/17 17:23
  */
 @RestController
-public class ValidateCodeController {
+public class ValidateCodeController extends BaseController {
 
     public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
 

@@ -6,15 +6,18 @@ import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.social.connect.web.HttpSessionSessionStrategy;
+import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.ServletWebRequest;
 import sun.misc.BASE64Encoder;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -55,6 +58,9 @@ public class UserController extends BaseController {
     @Autowired
     private HttpServletRequest httpServletRequest;
 
+    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+
+
     // 用户登录
 //    @PostMapping(value = "/login")
 //    public CommonReturnType login(HttpServletRequest)
@@ -65,11 +71,6 @@ public class UserController extends BaseController {
                                      @RequestParam(name = "otpCode") String otpCode,
                                      @RequestParam(name = "name") String name,
                                      @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
-        // 验证手机号与对应的otp符合度
-        String inSessionOtpCode = (String) this.httpServletRequest.getSession().getAttribute(telphone);
-        if (!com.alibaba.druid.util.StringUtils.equals(inSessionOtpCode, otpCode)) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "验证码错误");
-        }
 
         // 用户注册流程
         UserModel userModel = new UserModel();
@@ -121,7 +122,7 @@ public class UserController extends BaseController {
         String otpCode = String.valueOf(randomInt);
 
         // 将opt验证码与对应的手机号关联
-        this.httpServletRequest.getSession().setAttribute(telphone, otpCode);
+        sessionStrategy.setAttribute(new ServletWebRequest(httpServletRequest), ValidateCodeController.SESSION_KEY, otpCode);
         System.out.println("telphone=" + telphone + "&otp=" + otpCode);
 
 

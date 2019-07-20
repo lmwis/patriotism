@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8092
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
@@ -7,12 +7,14 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/miaosha?useUnicode=yes&characterEncoding=UTF-8
-    data-username: root
-    data-password: 1948730080
-    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.0.123:3306/test?useSSL=false
+    username: root
+    password: mysqladmin
 
 security:
   basic:
     enabled: true
+
+fehead:
+  initialize:
 

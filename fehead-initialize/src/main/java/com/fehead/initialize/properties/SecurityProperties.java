@@ -1,7 +1,8 @@
 package com.fehead.initialize.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+
 
 /**
  * 写代码 敲快乐
@@ -24,7 +25,6 @@ import org.springframework.stereotype.Component;
  *
  * @author Nightnessss 2019/7/18 20:11
  */
-@Component
 @ConfigurationProperties(prefix = "fehead.initialize")
 public class SecurityProperties {
 

@@ -40,10 +40,10 @@ public class ValidateCodeController extends BaseController {
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
-    @GetMapping("/code/image")
+    @GetMapping("/code/sms")
     public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        ValidateCode otp = createImageCode(request);
+        ValidateCode otp = createCode(request);
         sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, otp);
     }
 
@@ -52,7 +52,7 @@ public class ValidateCodeController extends BaseController {
      * @param request
      * @return
      */
-    private ValidateCode createImageCode(HttpServletRequest request) {
+    private ValidateCode createCode(HttpServletRequest request) {
 
         Random random = new Random();
 

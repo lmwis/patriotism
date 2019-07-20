@@ -1,5 +1,7 @@
 package com.fehead.initialize.filtter;
 
+import com.fehead.initialize.controller.ValidateCodeController;
+import com.fehead.initialize.service.model.ValidateCode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -49,7 +51,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
         logger.info("requestURI:" + httpServletRequest.getRequestURI());
         logger.info("method:" + httpServletRequest.getMethod());
-        if (StringUtils.equals("/login", httpServletRequest.getRequestURI())
+        if (StringUtils.equals("/loginByOtp", httpServletRequest.getRequestURI())
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
 
             try {
@@ -82,25 +84,29 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
     private void validate(ServletWebRequest servletWebRequest) throws ValidateCodeException, ServletRequestBindingException {
 
-        String otp = (String) sessionStrategy.getAttribute(servletWebRequest,
+        ValidateCode otp = (ValidateCode) sessionStrategy.getAttribute(servletWebRequest,
                 ValidateCodeController.SESSION_KEY);
 
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "imageCode");
 
         if (StringUtils.isBlank(codeInRequest)) {
+            logger.info("验证码不能为空");
             throw new ValidateCodeException("验证码不能为空");
         }
 
-        if (codeInSession == null) {
+        if (otp == null) {
+            logger.info("验证码不存在");
             throw new ValidateCodeException("验证码不存在");
         }
 
-        if (codeInSession.isExpried()) {
+        if (otp.isExpried()) {
+            logger.info("验证码已过期");
             sessionStrategy.removeAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY);
             throw new ValidateCodeException("验证码已过期");
         }
 
-        if (!StringUtils.equals(codeInSession.getCode(), codeInRequest)) {
+        if (!StringUtils.equals(otp.getCode(), codeInRequest)) {
+            logger.info("验证码不匹配");
             throw new ValidateCodeException("验证码不匹配");
         }
 

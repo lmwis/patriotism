@@ -42,7 +42,7 @@ import java.io.IOException;
  * @author Nightnessss 2019/7/16 18:23
  */
 @RestController
-public class BrowserSecurityController {
+public class BrowserSecurityController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 

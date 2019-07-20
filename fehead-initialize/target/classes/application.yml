@@ -1,0 +1,20 @@
+server:
+  port: 8092
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.123:3306/test?useSSL=false
+    username: root
+    password: mysqladmin
+
+security:
+  basic:
+    enabled: true
+
+fehead:
+  initialize:
+

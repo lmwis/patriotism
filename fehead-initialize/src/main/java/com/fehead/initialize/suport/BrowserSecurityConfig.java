@@ -1,10 +1,12 @@
 package com.fehead.initialize.suport;
 
 import com.fehead.initialize.filtter.ValidateCodeFilter;
+import com.fehead.initialize.login.TelValidateCodeFilter;
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,27 +53,41 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    AuthenticationDetailsSource authenticationDetailsSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        TelValidateCodeFilter filter = new TelValidateCodeFilter();
 
         ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
         validateCodeFilter.setAuthenticationFailureHandler(feheadAuthenticationFailureHandler);
 
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .loginPage("/authentication/require")
-                .loginProcessingUrl("/authentication/form")
-                .successHandler(feheadAuthenticationSuccessHandler)
-                .failureHandler(feheadAuthenticationFailureHandler)
-                .and()
+        http
+                .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getLoginPage(),
                         "/loginByOtp").permitAll()
-                .anyRequest()
-                .authenticated()
                 .and()
-                .csrf().disable();
+                .formLogin()
+
+                .loginPage("/authentication/require")
+                .loginProcessingUrl("/authentication/form")
+                .successHandler(feheadAuthenticationSuccessHandler)
+                .failureHandler(feheadAuthenticationFailureHandler)
+                .authenticationDetailsSource(authenticationDetailsSource)
+                .and();
+//                .authorizeRequests()
+//                .antMatchers("/authentication/require",
+//                        securityProperties.getBrowser().getLoginPage(),
+//                        "/loginByOtp").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .csrf().disable();
 
 
     }

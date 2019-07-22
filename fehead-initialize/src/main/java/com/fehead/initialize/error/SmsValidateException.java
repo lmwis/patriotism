@@ -25,12 +25,20 @@ import org.springframework.security.core.AuthenticationException;
  */
 public class SmsValidateException extends AuthenticationException implements CommonError {
 
+    private CommonError commonError;
+
     public SmsValidateException(String msg, Throwable t) {
         super(msg, t);
     }
 
     public SmsValidateException(String msg) {
         super(msg);
+    }
+
+    // 直接接受EmBusinessError的传参用于构造业务异常
+    public SmsValidateException(CommonError commonError) {
+        super(commonError.getErrorMsg());
+        this.commonError = commonError;
     }
 
     @Override

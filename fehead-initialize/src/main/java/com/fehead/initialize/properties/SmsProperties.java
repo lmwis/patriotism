@@ -27,12 +27,30 @@ import java.util.List;
  */
 public class SmsProperties {
 
+    private String loginPreKeyInRedis="fehead-patriotism-sms-login-";
+    private String registerPreKeyInRedis="fehead-patriotism-sms-register-";
     private String appKey;
     private String secret;
     private String regionId;
     private String signName;
     private List<SmsModel> smsModel;
     private Integer smsNumber;
+
+    public String getLoginPreKeyInRedis() {
+        return loginPreKeyInRedis;
+    }
+
+    public void setLoginPreKeyInRedis(String loginPreKeyInRedis) {
+        this.loginPreKeyInRedis = loginPreKeyInRedis;
+    }
+
+    public String getRegisterPreKeyInRedis() {
+        return registerPreKeyInRedis;
+    }
+
+    public void setRegisterPreKeyInRedis(String registerPreKeyInRedis) {
+        this.registerPreKeyInRedis = registerPreKeyInRedis;
+    }
 
     public String getAppKey() {
         return appKey;

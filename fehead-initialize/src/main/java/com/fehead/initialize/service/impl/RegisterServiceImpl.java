@@ -81,7 +81,7 @@ public class RegisterServiceImpl implements RegisterService {
         paramMap.put("code", smsCode.getCode());
         String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
 
-        redisService.set(smsCode.getTelphone(), smsCode, new Long(300));
+        redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
         logger.info(smsCode.getCode());
         smsUtil.sendSms(modelName, paramMap, telphone);
     }

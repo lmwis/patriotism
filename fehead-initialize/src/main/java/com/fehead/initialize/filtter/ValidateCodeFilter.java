@@ -99,7 +99,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             throw new ValidateCodeException("验证码不存在");
         }
 
-        if (otp.isExpried()) {
+        if (otp.isExpired(60)) {
             logger.info("验证码已过期");
             sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
             throw new ValidateCodeException("验证码已过期");

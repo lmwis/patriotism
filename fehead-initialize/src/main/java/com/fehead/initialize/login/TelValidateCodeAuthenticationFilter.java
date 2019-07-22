@@ -1,16 +1,13 @@
 package com.fehead.initialize.login;
 
-import com.fehead.initialize.error.BusinessExpection;
-import com.fehead.initialize.error.EmBusinessError;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.*;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +16,8 @@ import java.io.IOException;
 /**
  * @author lmwis on 2019-07-21 10:01
  */
-//@Component("telValidateCodeAuthenticationFilter")
-public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class TelValidateCodeAuthenticationFilter
+        extends AbstractAuthenticationProcessingFilter {
 
     public static final String SPRING_SECURITY_FORM_TEL_KEY = "tel";
     public static final String SPRING_SECURITY_FORM_CODE_KEY = "code";
@@ -29,6 +26,9 @@ public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationP
     private String telParameter = SPRING_SECURITY_FORM_TEL_KEY;
     private String codeParameter = SPRING_SECURITY_FORM_CODE_KEY;
     private String typeParameter = SPRING_SECURITY_FORM_TYPE_KEY;
+
+    private AuthenticationSuccessHandler successHandler ;
+    private AuthenticationFailureHandler failureHandler ;
 
     private boolean postOnly = true;
 
@@ -109,5 +109,35 @@ public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationP
 
     public void setCodeParameter(String codeParameter) {
         this.codeParameter = codeParameter;
+    }
+
+    @Override
+    public AuthenticationSuccessHandler getSuccessHandler() {
+        return successHandler;
+    }
+
+    public void setSuccessHandler(AuthenticationSuccessHandler successHandler) {
+        this.successHandler = successHandler;
+    }
+
+    @Override
+    public AuthenticationFailureHandler getFailureHandler() {
+        return failureHandler;
+    }
+
+    public void setFailureHandler(AuthenticationFailureHandler failureHandler) {
+        this.failureHandler = failureHandler;
+    }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        super.successfulAuthentication(request, response, chain, authResult);
+        successHandler.onAuthenticationSuccess(request, response, authResult);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        super.unsuccessfulAuthentication(request, response, failed);
+        failureHandler.onAuthenticationFailure(request, response, failed);
     }
 }

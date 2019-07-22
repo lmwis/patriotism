@@ -1,44 +1,32 @@
 package com.fehead.initialize.login;
 
-import com.fehead.initialize.dataobject.UserDO;
-import com.fehead.initialize.service.UserService;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.reflection.ArrayUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.*;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper;
-import org.springframework.security.core.userdetails.*;
+import org.springframework.security.core.userdetails.UserCache;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsChecker;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
-
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author lmwis on 2019-07-21 10:47
  */
-//@Component("telValidateCodeAuthenticationProvider")
 public class TelValidateCodeAuthenticationProvider implements
         AuthenticationProvider, InitializingBean, MessageSourceAware {
-
-    @Autowired
-    UserService userService;
 
     private UserCache userCache = new NullUserCache();
     protected boolean hideUserNotFoundExceptions = true;
@@ -250,58 +238,6 @@ public class TelValidateCodeAuthenticationProvider implements
             principalToReturn = user.getUsername();
         }
         return createSuccessAuthentication(principalToReturn, authentication, user);
-
-        /**
-         *
-         *
-         */
-
-
-//        ValidateCodeType validateCodeType = (ValidateCodeType) authentication.getCredentials();
-//        String code = validateCodeType.getCode();
-//        String type = validateCodeType.getType();
-//        String tel = authentication.getName();
-//
-//
-//        UserDO user = userService.getUserByTel(tel);
-//
-//        List<SimpleGrantedAuthority> auths = new ArrayList<>();
-//
-//        //用户不存在
-//        if (user == null) {
-//            auths.add(new SimpleGrantedAuthority("tourist"));
-//            auths.add(new SimpleGrantedAuthority(tel));
-//
-//            auths.add(new SimpleGrantedAuthority(code));
-//
-//            return new UsernamePasswordAuthenticationToken(new UserDO(), code, auths);
-//        }
-//
-//        //用户存在 进行验证码校验
-//
-//        if (StringUtils.equals(type, String.valueOf(LoginType.BY_MOBILE_CODE.getCode()))) {//手机号验证码登陆
-//            logger.info("手机号验证码登陆");
-//
-//            //模拟校验
-//            String codeInRedis = "123456";
-//
-//            if (StringUtils.equals(codeInRedis, code)) {// 校验成功 返回用户权限
-//                auths.add(new SimpleGrantedAuthority("admin"));
-//            } else {
-//                auths.add(new SimpleGrantedAuthority("wrong_code"));
-//                auths.add(new SimpleGrantedAuthority(tel));
-//                auths.add(new SimpleGrantedAuthority(code));
-//            }
-//
-//        } else if (StringUtils.equals(type, String.valueOf(LoginType.BY_MOBILE_PASSWORD.getCode()))) {//手机号密码登陆
-//            logger.info("手机号密码登陆");
-//
-//        } else if (StringUtils.equals(type, String.valueOf(LoginType.BY_EMAIL_PASSWORD.getCode()))) {//邮箱密码登陆
-//            logger.info("邮箱密码登陆");
-//        }
-//
-//
-//        return new UsernamePasswordAuthenticationToken(user, code, auths);
     }
 
 

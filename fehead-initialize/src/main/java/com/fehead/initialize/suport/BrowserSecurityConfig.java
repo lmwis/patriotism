@@ -5,18 +5,15 @@ import com.fehead.initialize.login.TelUserDetailService;
 import com.fehead.initialize.login.TelValidateCodeAuthenticationFilter;
 import com.fehead.initialize.login.TelValidateCodeAuthenticationProvider;
 import com.fehead.initialize.login.TelValidateCodeFilter;
-import com.fehead.initialize.login.config.FeheadWebSecurityConfig;
+import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.config.annotation.SecurityConfigurer;
-import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.authentication.AuthenticationManagerFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,24 +80,16 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    AuthenticationManager authenticationManager;
 
+//    @Autowired
+//    SecurityConfigurerAdapter feheadWebSecurityConfig;
+
     @Autowired
-    SecurityConfigurerAdapter feheadWebSecurityConfig;
+    FeheadLoginSecurityConfig feheadLoginSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        TelValidateCodeAuthenticationProvider provider = new TelValidateCodeAuthenticationProvider();
 
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setTelUserDetailService(getApplicationContext().getBean(TelUserDetailService.class));
-
-//        AuthenticationManagerBuilder authenticationManagerBuilder = new AuthenticationManagerBuilder(postProcessor);
-//        authenticationManagerBuilder.authenticationProvider()
-
-        List<AuthenticationProvider> lists = new ArrayList<>();
-        lists.add(provider);
-
-        ProviderManager providerManager = new ProviderManager(lists);
 
 
         TelValidateCodeFilter filter = new TelValidateCodeFilter();
@@ -108,17 +97,14 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
         validateCodeFilter.setAuthenticationFailureHandler(feheadAuthenticationFailureHandler);
 
-        TelValidateCodeAuthenticationFilter validateCodeAuthenticationFilter = new TelValidateCodeAuthenticationFilter();
-
-        validateCodeAuthenticationFilter.setAuthenticationManager(providerManager);
 
 
         http
-
+                .apply(feheadLoginSecurityConfig)
+                .and()
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(validateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
 //                .apply(feheadWebSecurityConfig)
 //                .and()
@@ -131,8 +117,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage(),
-                        "/loginByOtp").permitAll()
+                        securityProperties.getBrowser().getLoginPage()).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

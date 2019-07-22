@@ -1,5 +1,7 @@
 package com.fehead.initialize.service.model;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -34,16 +36,15 @@ public class ValidateCode implements Serializable {
     public ValidateCode() {
     }
 
-    public ValidateCode(String telphone, String code, Integer expireIn) {
+
+    public ValidateCode(String telphone, String code) {
         this.telphone = telphone;
         this.code = code;
-        this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
+        this.expireTime = LocalDateTime.now();
     }
 
-
-    public ValidateCode(String telphone, String code, LocalDateTime expireTime) {
-        this.code = code;
-        this.expireTime = expireTime;
+    public boolean isExpired(Integer seconds) {
+        return LocalDateTime.now().isAfter(this.getExpireTime().plusSeconds(seconds));
     }
 
     public String getTelphone() {
@@ -70,8 +71,4 @@ public class ValidateCode implements Serializable {
         this.expireTime = expireTime;
     }
 
-    // 判断时间是不是过去的
-    public boolean isExpried() {
-        return LocalDateTime.now().isAfter(expireTime);
-    }
 }

@@ -2,14 +2,12 @@ package com.fehead.initialize.controller;
 
 import com.fehead.initialize.Utils.CheckEmailAndTelphoneUtil;
 import com.fehead.initialize.Utils.SmsUtil;
-import com.fehead.initialize.dao.UserDOMapper;
-import com.fehead.initialize.dao.UserPasswordDOMapper;
-import com.fehead.initialize.dataobject.UserPasswordDO;
-import com.fehead.initialize.error.BusinessExpection;
+import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.RedisService;
+import com.fehead.initialize.service.RegisterService;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
 import com.fehead.initialize.service.model.ValidateCode;
@@ -61,7 +59,6 @@ public class RegisterController extends BaseController {
 
     public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
 
-//    public static final Long EXPIRETIME = new Long(300);
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
@@ -80,6 +77,9 @@ public class RegisterController extends BaseController {
     @Autowired
     private RedisService redisService;
 
+    @Autowired
+    private RegisterService registerService;
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
@@ -87,36 +87,30 @@ public class RegisterController extends BaseController {
      * @param request
      * @param response
      * @throws IOException
-     * @throws BusinessExpection
+     * @throws BusinessException
      */
     @PostMapping("/sendSms")
-    public CommonReturnType sendOtp(HttpServletRequest request, HttpServletResponse response) throws IOException, BusinessExpection {
+    public CommonReturnType sendOtp(HttpServletRequest request, HttpServletResponse response) throws IOException, BusinessException {
         String telphone = request.getParameter("telphone");
+
         // 检查手机号是否合法
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
         }
 
         // 检查验证码在60秒内是否已经发送
-        if (redisService.exists(telphone)) {
+        if (registerService.check(telphone)) {
             ValidateCode code = (ValidateCode) redisService.get(telphone);
-            if (!code.isExpried()) {
+            if (!code.isExpired(60)) {
                 logger.info("验证码已发送");
-//            sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
-                throw new BusinessExpection(EmBusinessError.SMS_ALREADY_SEND);
+                throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
             } else {
                 redisService.remove(telphone);
             }
         }
-        Map<String, String> paramMap = new HashMap<>();
-        ValidateCode smsCode = createCode(telphone);
-        paramMap.put("code", smsCode.getCode());
-        String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
 
-        redisService.set(smsCode.getTelphone(), smsCode, new Long(300));
-//        sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, smsCode);
-        logger.info(smsCode.getCode());
-        smsUtil.sendSms(modelName, paramMap, telphone);
+        registerService.send(telphone);
+
 
         return CommonReturnType.creat(telphone);
     }
@@ -127,83 +121,24 @@ public class RegisterController extends BaseController {
      * @param response
      * @return
      * @throws ServletRequestBindingException
-     * @throws BusinessExpection
+     * @throws BusinessException
      */
     @PostMapping("/register")
-    public CommonReturnType register(HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessExpection {
-        String telphone = request.getParameter("telphone");
-        if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
-        }
+    public CommonReturnType register(HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessException {
+        String telphoneInRequest = request.getParameter("telphone");
+        String codeInRequest = request.getParameter("smsCode");
         String password = request.getParameter("password");
-        if (password.isEmpty()) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码为空");
+        if (!CheckEmailAndTelphoneUtil.checkTelphone(telphoneInRequest)) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
         }
-        if (validate(new ServletWebRequest(request))) {
-            UserModel userModel = new UserModel();
-            userModel.setTelphone(telphone);
-            userModel.setRegisterMode("byTelphone");
-            userModel.setEncrptPassword(passwordEncoder.encode(password));
-            userService.register(userModel);
+        if (password.isEmpty()) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码为空");
+        }
+        if (registerService.validate(telphoneInRequest, codeInRequest)) {
+            registerService.registerByTelphone(telphoneInRequest, password);
         }
 
         return CommonReturnType.creat(null);
     }
 
-    /**
-     * 生成随机验证码
-     *
-     * @return
-     */
-    private ValidateCode createCode(String telphone) {
-
-        Random random = new Random();
-
-        String sRand = "";
-        for (int i = 0; i < securityProperties.getSmsProperties().getSmsNumber(); i++) {
-            String rand = String.valueOf(random.nextInt(10));
-            sRand += rand;
-        }
-
-        return new ValidateCode(telphone, sRand, 60);
-    }
-
-    private boolean validate(ServletWebRequest servletWebRequest) throws BusinessExpection, ServletRequestBindingException {
-
-        String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "smsCode");
-
-        String telphoneInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "telphone");
-        ValidateCode smsCode = new ValidateCode();
-
-        // 检查redis中是否存有该手机号验证码
-        if (!redisService.exists(telphoneInRequest)) {
-            logger.info("验证码不存在");
-            throw new BusinessExpection(EmBusinessError.SMS_ISNULL);
-        }
-        smsCode = (ValidateCode)redisService.get(telphoneInRequest);
-        logger.info("smsCode:" + smsCode.getCode());
-//        ValidateCode smsCode = (ValidateCode) sessionStrategy.getAttribute(servletWebRequest,
-//                RegisterController.SESSION_KEY);
-
-        if (StringUtils.isBlank(codeInRequest)) {
-            logger.info("验证码不能为空");
-            throw new BusinessExpection(EmBusinessError.SMS_ISBLANK);
-        }
-
-        if (smsCode == null) {
-            logger.info("验证码不存在");
-            throw new BusinessExpection(EmBusinessError.SMS_ISNULL);
-        }
-
-
-        if (!StringUtils.equals(smsCode.getCode(), codeInRequest)) {
-            logger.info("验证码不匹配");
-            throw new BusinessExpection(EmBusinessError.SMS_ISILLEGAL);
-        }
-
-        redisService.remove(telphoneInRequest);
-
-
-        return true;
-    }
 }

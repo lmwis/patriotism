@@ -1,6 +1,6 @@
 package com.fehead.initialize.controller;
 
-import com.fehead.initialize.error.BusinessExpection;
+import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.response.CommonReturnType;
 import org.springframework.http.HttpStatus;
@@ -43,14 +43,14 @@ public class BaseController {
     @ResponseBody
     public Object handlerExcepetion(HttpServletRequest request, Exception ex) {
         Map<String, Object> responseData = new HashMap<>();
-        if (ex instanceof BusinessExpection) {
-            BusinessExpection businessExpection = (BusinessExpection)ex;
-            responseData.put("errorCode", businessExpection.getErrorCode());
-            responseData.put("errorMsg", businessExpection.getErrorMsg());
+        if (ex instanceof BusinessException) {
+            BusinessException businessException = (BusinessException)ex;
+            responseData.put("errorCode", businessException.getErrorCode());
+            responseData.put("errorMsg", businessException.getErrorMsg());
             System.out.println(responseData);
         } else {
-            responseData.put("errorCode", EmBusinessError.UNKNOW_ERROR.getErrorCode());
-            responseData.put("errorMsg", EmBusinessError.UNKNOW_ERROR.getErrorMsg());
+            responseData.put("errorCode", EmBusinessError.UNKNOWN_ERROR.getErrorCode());
+            responseData.put("errorMsg", EmBusinessError.UNKNOWN_ERROR.getErrorMsg());
             System.out.println(responseData);
         }
 

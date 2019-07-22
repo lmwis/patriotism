@@ -1,7 +1,6 @@
 package com.fehead.initialize.service;
 
 import com.fehead.initialize.error.BusinessException;
-import com.fehead.initialize.service.model.UserModel;
 
 /**
  * 写代码 敲快乐
@@ -22,14 +21,15 @@ import com.fehead.initialize.service.model.UserModel;
  * 　　 █▏　　█▙
  * 　　 █
  *
- * @author Nightnessss 2019/7/8 14:53
+ * @author Nightnessss 2019/7/22 12:42
  */
-public interface UserService {
+public interface RegisterService {
 
-    public UserModel getUserById(Integer id);
+    public boolean check(String telphone) throws BusinessException;
 
-    // 用户注册
-    public void register(UserModel userModel) throws BusinessException;
+    public void send(String telphone);
 
-    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException;
+    public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException;
+
+    public boolean validate(String telphoneInRequest, String codeInRequest) throws BusinessException;
 }

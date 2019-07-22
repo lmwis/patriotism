@@ -1,7 +1,7 @@
 package com.fehead.initialize.controller;
 
 import com.fehead.initialize.controller.viewobject.UserVO;
-import com.fehead.initialize.error.BusinessExpection;
+import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.UserService;
@@ -66,7 +66,7 @@ public class UserController extends BaseController {
     public CommonReturnType register(@RequestParam(name = "telphone") String telphone,
                                      @RequestParam(name = "otpCode") String otpCode,
                                      @RequestParam(name = "name") String name,
-                                     @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         // 用户注册流程
         UserModel userModel = new UserModel();
@@ -82,7 +82,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     public CommonReturnType register(@RequestParam(name = "email") String email,
                                      @RequestParam(name = "name") String name,
-                                     @RequestParam(name = "password") String password) throws BusinessExpection, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         // 用户注册流程
         UserModel userModel = new UserModel();
@@ -107,7 +107,7 @@ public class UserController extends BaseController {
 
     // 用户获取短信验证码接口
     @RequestMapping(value = "/getotp", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
-    public CommonReturnType getotp(String telphone) throws BusinessExpection {
+    public CommonReturnType getotp(String telphone) throws BusinessException {
 
         // 需要按照一定的规则生成otp验证码
         Random random = new Random();
@@ -125,13 +125,13 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/get")
-    public CommonReturnType getUser(@RequestParam(name = "id") Integer id) throws BusinessExpection {
+    public CommonReturnType getUser(@RequestParam(name = "id") Integer id) throws BusinessException {
         // 调用service服务获取相应id的用户对象并返回给前端
         UserModel userModel = userService.getUserById(id);
 
         // 若获取用户不存在
         if (userModel == null) {
-            throw new BusinessExpection(EmBusinessError.USER_NOT_EXIST);
+            throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
         }
 
         // 将核心模型转化为供UI使用的viewobject

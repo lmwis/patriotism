@@ -5,7 +5,7 @@ import com.fehead.initialize.dao.UserDOMapper;
 import com.fehead.initialize.dao.UserPasswordDOMapper;
 import com.fehead.initialize.dataobject.UserDO;
 import com.fehead.initialize.dataobject.UserPasswordDO;
-import com.fehead.initialize.error.BusinessExpection;
+import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
@@ -62,23 +62,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void register(UserModel userModel) throws BusinessExpection {
+    public void register(UserModel userModel) throws BusinessException {
         // 将userModel转为dataobject存入数据库
         if (userModel == null) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
         if (StringUtils.isEmpty(userModel.getTelphone())) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
         if (StringUtils.isEmpty(userModel.getEncrptPassword())) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
         }
         // userModel -> userDO
         UserDO userDO = convertFromModel(userModel);
         try {
             userDOMapper.insertSelective(userDO);
         } catch (DuplicateKeyException ex) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号已被注册");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号已被注册");
         }
 
         userModel.setId(userDO.getId());
@@ -91,19 +91,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessExpection {
+    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException {
         // 判空
         if (StringUtils.isEmpty(telphone) || StringUtils.isEmpty(encrptPassword)) {
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
         // 用户校验
         UserDO userDO = userDOMapper.selectByTelphone(telphone);
         if (userDO == null) {
-            throw new BusinessExpection(EmBusinessError.USER_LOGIN_FAIL);
+            throw new BusinessException(EmBusinessError.USER_LOGIN_FAIL);
         }
         UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(userDO.getId());
         if (!StringUtils.equals(encrptPassword, userPasswordDO.getEncrptPassword())) {
-            throw new BusinessExpection(EmBusinessError.USER_LOGIN_FAIL);
+            throw new BusinessException(EmBusinessError.USER_LOGIN_FAIL);
         }
 
         UserModel userModel =  convertFromDO(userDO,userPasswordDO);

@@ -13,8 +13,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.SecurityConfigurer;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.authentication.AuthenticationManagerFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -82,7 +84,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //    AuthenticationManager authenticationManager;
 
     @Autowired
-    FeheadWebSecurityConfig feheadWebSecurityConfig;
+    SecurityConfigurerAdapter feheadWebSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -112,15 +114,14 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http
-//                .apply(feheadWebSecurityConfig)
-//                .failureHandler(feheadAuthenticationFailureHandler)
-//                .successHandler(feheadAuthenticationSuccessHandler)
-//                .and()
+
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(validateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+//                .apply(feheadWebSecurityConfig)
+//                .and()
                 .formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")

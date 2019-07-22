@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 /**
  * @author lmwis on 2019-07-22 10:26
  */
-@Configuration
+@Configuration("feheadWebSecurityConfig")
 public class FeheadWebSecurityConfig<H extends HttpSecurityBuilder<H>>
         extends AbstractAuthenticationFilterConfigurer<H, FeheadWebSecurityConfig<H>, TelValidateCodeAuthenticationFilter> {
 

@@ -22,11 +22,11 @@ import java.io.IOException;
 //@Component("telValidateCodeAuthenticationFilter")
 public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    public static final String SPRING_SECURITY_FORM_PRINCIPAL_KEY = "tel";
+    public static final String SPRING_SECURITY_FORM_TEL_KEY = "tel";
     public static final String SPRING_SECURITY_FORM_CODE_KEY = "code";
     public static final String SPRING_SECURITY_FORM_TYPE_KEY = "type";
 
-    private String principalParameter = SPRING_SECURITY_FORM_PRINCIPAL_KEY;
+    private String telParameter = SPRING_SECURITY_FORM_TEL_KEY;
     private String codeParameter = SPRING_SECURITY_FORM_CODE_KEY;
     private String typeParameter = SPRING_SECURITY_FORM_TYPE_KEY;
 
@@ -46,7 +46,7 @@ public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationP
         }
 
         //获取请求中的参数
-        String tel = obtainPrincipal(request);
+        String tel = obtainTel(request);
         String code = obtainCode(request);
 
         if (tel == null) {
@@ -82,17 +82,10 @@ public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationP
         return request.getParameter(codeParameter);
     }
 
-    private String obtainPrincipal(HttpServletRequest request) {
-        return request.getParameter(principalParameter);
+    private String obtainTel(HttpServletRequest request) {
+        return request.getParameter(telParameter);
     }
 
-    public String getTelParameter() {
-        return principalParameter;
-    }
-
-    public String getCodeParameter() {
-        return codeParameter;
-    }
 
     public boolean isPostOnly() {
         return postOnly;
@@ -102,4 +95,19 @@ public class TelValidateCodeAuthenticationFilter extends AbstractAuthenticationP
         this.postOnly = postOnly;
     }
 
+    public String getTelParameter() {
+        return telParameter;
+    }
+
+    public void setTelParameter(String telParameter) {
+        this.telParameter = telParameter;
+    }
+
+    public String getCodeParameter() {
+        return codeParameter;
+    }
+
+    public void setCodeParameter(String codeParameter) {
+        this.codeParameter = codeParameter;
+    }
 }

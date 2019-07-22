@@ -5,12 +5,14 @@ import com.fehead.initialize.login.TelUserDetailService;
 import com.fehead.initialize.login.TelValidateCodeAuthenticationFilter;
 import com.fehead.initialize.login.TelValidateCodeAuthenticationProvider;
 import com.fehead.initialize.login.TelValidateCodeFilter;
+import com.fehead.initialize.login.config.FeheadWebSecurityConfig;
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.config.annotation.SecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.authentication.AuthenticationManagerFactoryBean;
@@ -79,6 +81,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    AuthenticationManager authenticationManager;
 
+    @Autowired
+    FeheadWebSecurityConfig feheadWebSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -107,7 +112,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http
-
+//                .apply(feheadWebSecurityConfig)
+//                .failureHandler(feheadAuthenticationFailureHandler)
+//                .successHandler(feheadAuthenticationSuccessHandler)
+//                .and()
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)

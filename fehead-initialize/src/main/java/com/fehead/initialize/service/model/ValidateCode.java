@@ -24,19 +24,30 @@ import java.time.LocalDateTime;
  * @author Nightnessss 2019/7/19 17:21
  */
 public class ValidateCode {
+    private String telphone;
+
     private String code;
 
     private LocalDateTime expireTime;
 
-    public ValidateCode(String code, Integer expireIn) {
+    public ValidateCode(String telphone, String code, Integer expireIn) {
+        this.telphone = telphone;
         this.code = code;
         this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
     }
 
 
-    public ValidateCode(String code, LocalDateTime expireTime) {
+    public ValidateCode(String telphone, String code, LocalDateTime expireTime) {
         this.code = code;
         this.expireTime = expireTime;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
     }
 
     public String getCode() {

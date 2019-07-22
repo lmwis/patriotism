@@ -47,9 +47,11 @@ public class BaseController {
             BusinessExpection businessExpection = (BusinessExpection)ex;
             responseData.put("errorCode", businessExpection.getErrorCode());
             responseData.put("errorMsg", businessExpection.getErrorMsg());
+            System.out.println(responseData);
         } else {
             responseData.put("errorCode", EmBusinessError.UNKNOW_ERROR.getErrorCode());
             responseData.put("errorMsg", EmBusinessError.UNKNOW_ERROR.getErrorMsg());
+            System.out.println(responseData);
         }
 
         return CommonReturnType.creat(responseData,"fail");

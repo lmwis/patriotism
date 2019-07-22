@@ -7,19 +7,15 @@ import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
-import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
@@ -74,7 +70,6 @@ public class UserController extends BaseController {
 
         // 用户注册流程
         UserModel userModel = new UserModel();
-        userModel.setName(name);
         userModel.setTelphone(telphone);
         userModel.setRegisterMode("byphone");
         // 加密密码
@@ -91,7 +86,6 @@ public class UserController extends BaseController {
 
         // 用户注册流程
         UserModel userModel = new UserModel();
-        userModel.setName(name);
         userModel.setEmail(email);
         userModel.setRegisterMode("byemail");
         // 加密密码
@@ -122,7 +116,7 @@ public class UserController extends BaseController {
         String otpCode = String.valueOf(randomInt);
 
         // 将opt验证码与对应的手机号关联
-        sessionStrategy.setAttribute(new ServletWebRequest(httpServletRequest), ValidateCodeController.SESSION_KEY, otpCode);
+        sessionStrategy.setAttribute(new ServletWebRequest(httpServletRequest), RegisterController.SESSION_KEY, otpCode);
         System.out.println("telphone=" + telphone + "&otp=" + otpCode);
 
 

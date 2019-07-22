@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8090
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
@@ -7,9 +7,20 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.0.123:3306/test?useSSL=false
+    url: jdbc:mysql://localhost:3306/patriotism?useSSL=false
     username: root
-    password: mysqladmin
+    password: 1948730080
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: 1948730080
+    pool:
+      max-active: 8   # 最大连接数
+      max-wait: 1     # 最大阻塞等待时间
+      max-idle: 8     # 最大空闲连接
+      min-idle: 0     # 最小空闲连接
+    timeout: 0        # 连接超时时间
 
 security:
   basic:
@@ -17,4 +28,15 @@ security:
 
 fehead:
   initialize:
+    smsProperties:
+      appKey: LTAIqwxU8y65KvAg
+      secret: 8UwBxCvhl9vpTR1IEv4LNiHrxvNTo5
+      regionId: cn-hangzhou
+      signName: 堆栈科技
+      smsModel:
+        - {name: SMS_171112301, des: 注册}
+        - {name: SMS_171117329, des: 登录}
 
+      smsNumber: 6
+
+# redis配置

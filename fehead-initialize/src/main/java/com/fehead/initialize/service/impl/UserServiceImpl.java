@@ -67,10 +67,7 @@ public class UserServiceImpl implements UserService {
         if (userModel == null) {
             throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
-        if (StringUtils.isEmpty(userModel.getName()) ||
-                userModel.getGender() == null ||
-                userModel.getAge() == null ||
-                StringUtils.isEmpty(userModel.getTelphone())) {
+        if (StringUtils.isEmpty(userModel.getTelphone())) {
             throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
         if (StringUtils.isEmpty(userModel.getEncrptPassword())) {

@@ -1,6 +1,6 @@
 package com.fehead.initialize.filtter;
 
-import com.fehead.initialize.controller.ValidateCodeController;
+import com.fehead.initialize.controller.RegisterController;
 import com.fehead.initialize.service.model.ValidateCode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +85,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     private void validate(ServletWebRequest servletWebRequest) throws ValidateCodeException, ServletRequestBindingException {
 
         ValidateCode otp = (ValidateCode) sessionStrategy.getAttribute(servletWebRequest,
-                ValidateCodeController.SESSION_KEY);
+                RegisterController.SESSION_KEY);
 
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "imageCode");
 
@@ -101,7 +101,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
         if (otp.isExpried()) {
             logger.info("验证码已过期");
-            sessionStrategy.removeAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY);
+            sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
             throw new ValidateCodeException("验证码已过期");
         }
 
@@ -110,7 +110,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             throw new ValidateCodeException("验证码不匹配");
         }
 
-        sessionStrategy.removeAttribute(servletWebRequest, ValidateCodeController.SESSION_KEY);
+        sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
 
 
     }

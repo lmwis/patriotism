@@ -30,6 +30,16 @@ public class SecurityProperties {
 
     private BrowserProperties browser = new BrowserProperties();
 
+    private SmsProperties smsProperties = new SmsProperties();
+
+    public SmsProperties getSmsProperties() {
+        return smsProperties;
+    }
+
+    public void setSmsProperties(SmsProperties smsProperties) {
+        this.smsProperties = smsProperties;
+    }
+
     public BrowserProperties getBrowser() {
         return browser;
     }

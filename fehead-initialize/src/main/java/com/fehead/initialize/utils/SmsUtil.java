@@ -1,4 +1,4 @@
-package com.fehead.initialize.Utils;
+package com.fehead.initialize.utils;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.aliyuncs.CommonRequest;

@@ -112,6 +112,16 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public UserDO getUserByTel(String tel) {
+
+        if(org.apache.commons.lang3.StringUtils.equals(tel,"123")){
+            return new UserDO();
+        }
+
+        return null;
+    }
+
     private UserPasswordDO convertPasswordFromModel(UserModel userModel) {
         if (userModel == null) {
             return null;

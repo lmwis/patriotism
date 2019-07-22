@@ -1,6 +1,7 @@
 package com.fehead.initialize.service.model;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -45,6 +46,10 @@ public class ValidateCode implements Serializable {
 
     public boolean isExpired(Integer seconds) {
         return LocalDateTime.now().isAfter(this.getExpireTime().plusSeconds(seconds));
+    }
+
+    public void encode(PasswordEncoder passwordEncoder) {
+        this.code = passwordEncoder.encode(this.getCode());
     }
 
     public String getTelphone() {

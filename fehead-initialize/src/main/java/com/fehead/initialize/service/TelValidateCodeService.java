@@ -1,7 +1,5 @@
 package com.fehead.initialize.service;
 
-import com.fehead.initialize.error.BusinessException;
-
 /**
  * 写代码 敲快乐
  * だからよ...止まるんじゃねぇぞ
@@ -21,15 +19,11 @@ import com.fehead.initialize.error.BusinessException;
  * 　　 █▏　　█▙
  * 　　 █
  *
- * @author Nightnessss 2019/7/22 12:42
+ * @author Nightnessss 2019/7/22 18:52
  */
-public interface RegisterService {
-
-    public boolean check(String telphone) throws BusinessException;
+public interface TelValidateCodeService {
 
     public void send(String telphone);
 
-    public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException;
-
-    public boolean registerValidate(String telphoneInRequest, String codeInRequest) throws BusinessException;
+    public boolean loginValidate(String telphoneInRequest, String codeInRequest);
 }

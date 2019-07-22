@@ -1,7 +1,7 @@
 package com.fehead.initialize.service.impl;
 
-import com.fehead.initialize.Utils.CheckEmailAndTelphoneUtil;
-import com.fehead.initialize.Utils.SmsUtil;
+import com.fehead.initialize.utils.CreateCodeUtil;
+import com.fehead.initialize.utils.SmsUtil;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 写代码 敲快乐
@@ -77,13 +76,15 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public void send(String telphone) {
         Map<String, String> paramMap = new HashMap<>();
-        ValidateCode smsCode = createCode(telphone);
+        ValidateCode smsCode = CreateCodeUtil.createCode(telphone, 6);
         paramMap.put("code", smsCode.getCode());
         String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
-
+        logger.info("验证码：" + smsCode.getCode());
+        smsCode.encode(passwordEncoder);
+        logger.info("encode:" + smsCode.getCode());
         redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
         logger.info(smsCode.getCode());
-        smsUtil.sendSms(modelName, paramMap, telphone);
+//        smsUtil.sendSms(modelName, paramMap, telphone);
     }
 
     @Override
@@ -95,36 +96,19 @@ public class RegisterServiceImpl implements RegisterService {
         userService.register(userModel);
     }
 
-    /**
-     * 生成随机验证码
-     *
-     * @return
-     */
-    private ValidateCode createCode(String telphone) {
 
-        Random random = new Random();
 
-        String sRand = "";
-        for (int i = 0; i < securityProperties.getSmsProperties().getSmsNumber(); i++) {
-            String rand = String.valueOf(random.nextInt(10));
-            sRand += rand;
-        }
-
-        return new ValidateCode(telphone, sRand);
-    }
-
-    public boolean validate(String telphoneInRequest, String codeInRequest) throws BusinessException {
+    public boolean registerValidate(String telphoneInRequest, String codeInRequest) throws BusinessException {
 
 
         ValidateCode smsCode = new ValidateCode();
 
         // 检查redis中是否存有该手机号验证码
-        if (!redisService.exists(telphoneInRequest)) {
+        if (!redisService.exists(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphoneInRequest)) {
             logger.info("验证码不存在");
             throw new BusinessException(EmBusinessError.SMS_ISNULL);
         }
-        smsCode = (ValidateCode)redisService.get(telphoneInRequest);
-        logger.info("smsCode:" + smsCode.getCode());
+        smsCode = (ValidateCode)redisService.get(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphoneInRequest);
 
         if (StringUtils.isBlank(codeInRequest)) {
             logger.info("验证码不能为空");
@@ -137,7 +121,7 @@ public class RegisterServiceImpl implements RegisterService {
         }
 
 
-        if (!StringUtils.equals(smsCode.getCode(), codeInRequest)) {
+        if (!passwordEncoder.matches(codeInRequest, smsCode.getCode())) {
             logger.info("验证码不匹配");
             throw new BusinessException(EmBusinessError.SMS_ILLEGAL);
         }

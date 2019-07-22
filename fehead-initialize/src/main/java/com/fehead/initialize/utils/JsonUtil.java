@@ -1,4 +1,4 @@
-package com.fehead.initialize.Utils;
+package com.fehead.initialize.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;

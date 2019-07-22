@@ -1,4 +1,4 @@
-package com.fehead.initialize.Utils;
+package com.fehead.initialize.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

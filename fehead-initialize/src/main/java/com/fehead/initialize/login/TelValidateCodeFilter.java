@@ -27,6 +27,12 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 
         String url = request.getRequestURI();
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        logger.info("username:"+username);
+        logger.info("password:"+password);
+
         logger.info("请求的URL："+url);
 
         if(StringUtils.equals(url,"/loginByOtp")){

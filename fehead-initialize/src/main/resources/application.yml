@@ -18,3 +18,5 @@ security:
 fehead:
   initialize:
 
+logging:
+  level: debug

@@ -1,5 +1,6 @@
 package com.fehead.initialize.service;
 
+import com.fehead.initialize.dataobject.UserDO;
 import com.fehead.initialize.error.BusinessExpection;
 import com.fehead.initialize.service.model.UserModel;
 
@@ -32,4 +33,6 @@ public interface UserService {
     public void register(UserModel userModel) throws BusinessExpection;
 
     public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessExpection;
+
+    UserDO getUserByTel(String tel);
 }

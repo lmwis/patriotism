@@ -1,48 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a643387d-cd3e-4358-aee7-e1e18da5af81" name="Default Changelist" comment="fehead-social module root">
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/META-INF/fehead-initialize.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/InitializeApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/authentication/feheadAuthenticationFailureHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/authentication/feheadAuthenticationSuccessHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/component/MyUserDetailsService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/controller/BaseController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/controller/BrowserSecurityController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/controller/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/controller/ValidateCodeController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/controller/viewobject/UserVO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/dao/UserDOMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/dao/UserPasswordDOMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/dataobject/UserDO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/dataobject/UserPasswordDO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/error/BusinessExpection.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/error/CommonError.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/error/EmBusinessError.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/filtter/EmailAndTelphoneLoginFilter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/filtter/ValidateCodeException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/filtter/ValidateCodeFilter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/properties/BrowserProperties.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/properties/LoginType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/properties/SecurityProperties.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/response/CommonReturnType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/UserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/model/UserModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/model/ValidateCode.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/suport/BrowserSecurityConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/suport/SecurityCoreStaterConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/mapping/UserDOMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/mapping/UserPasswordDOMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/mybatis-generator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/lmwis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/lmwis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a643387d-cd3e-4358-aee7-e1e18da5af81" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fehead-initialize/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/ValidateCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/ValidateCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/component/MyUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/component/MyUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/login/TelValidateCodeFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/login/TelValidateCodeFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/suport/BrowserSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/fehead-initialize/target/classes/com/fehead/initialize/suport/BrowserSecurityConfig.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,61 +33,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="71" column="22" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
+            <state relative-caret-position="-285">
+              <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeAuthenticationProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#569#570#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="93" selection-start-line="11" selection-start-column="93" selection-end-line="11" selection-end-column="93" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/core/Authentication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-252">
-              <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/AbstractAuthenticationToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-213">
-              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-              <folding>
-                <element signature="e#3262#3263#0" expanded="true" />
-                <element signature="e#3283#3284#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,48 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/builders/HttpSecurity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="647" column="93" selection-start-line="647" selection-start-column="93" selection-end-line="647" selection-end-column="93" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/SecurityConfigurerAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
-              <folding>
-                <element signature="e#1909#1910#0" expanded="true" />
-                <element signature="e#1935#1936#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/SecurityBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/FormLoginConfigurer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/filtter/EmailAndTelphoneLoginFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+            <state relative-caret-position="1048">
+              <caret line="968" column="46" lean-forward="true" selection-start-line="968" selection-start-column="46" selection-end-line="968" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,6 +72,12 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>miaosha</find>
+      <find>userDetailsService</find>
+      <find>force</find>
+      <find>passwordEn</find>
+      <find>authManager</find>
+      <find>Usernamepassword</find>
+      <find>formLogin</find>
     </findStrings>
     <replaceStrings>
       <replace>initialize</replace>
@@ -204,15 +96,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fehead-social/src/main/java/com/fehead/App.java" />
-        <option value="$PROJECT_DIR$/fehead-social/src/main/java/com/fehead/FeheadSocialApplication.java" />
-        <option value="$PROJECT_DIR$/fehead-social/src/main/java/com/fehead/social/qq/QQ.java" />
-        <option value="$PROJECT_DIR$/fehead-social/src/main/java/com/fehead/social/qq/impl/QQImpl.java" />
-        <option value="$PROJECT_DIR$/fehead-social/pom.xml" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/dataobject/UserPasswordDO.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/UserService.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/BaseController.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/dao/UserDOMapper.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/dao/UserPasswordDOMapper.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/resources/mapping/UserDOMapper.xml" />
@@ -224,7 +108,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/error/EmBusinessError.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/model/validateCode.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/BrowserSecurityController.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/UserController.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/filtter/ValidateCodeFilter.java" />
@@ -240,18 +123,30 @@
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/lmwisAuthenticationFailureHandler.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationSuccessHandler.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationFailureHandler.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/util/ValidateUtil.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/ValidateCodeController.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeFilter.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeUserDetailService.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeWebAuthenticationDetails.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/pom.xml" />
         <option value="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java" />
         <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeAuthenticationProvider.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/UserService.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeFilter.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginType.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationToken.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/ValidateCodeType.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelUserDetailService.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/compoment/TelValidateCodeAuthenticationMangerFactoryBean.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/compoment/TelValidateCodePostProcessor.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/config/FeheadWebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationProvider.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java" />
+        <option value="$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml" />
       </list>
     </option>
   </component>
@@ -295,8 +190,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="860" />
-    <option name="y" value="23" />
+    <option name="x" value="631" />
+    <option name="y" value="24" />
     <option name="width" value="1669" />
     <option name="height" value="1344" />
   </component>
@@ -309,6 +204,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -381,13 +277,109 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="fehead" type="462c0819:PsiDirectoryNode" />
               <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="authentication" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="dataobject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="properties" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead" type="462c0819:PsiDirectoryNode" />
+              <item name="initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="suport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patriotism-root" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patriotism-root" type="462c0819:PsiDirectoryNode" />
+              <item name="fehead-initialize" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,7 +398,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -503,7 +495,13 @@
       <workItem from="1563586764487" duration="6665000" />
       <workItem from="1563619749398" duration="3509000" />
       <workItem from="1563623340054" duration="148000" />
-      <workItem from="1563623511743" duration="3115000" />
+      <workItem from="1563623511743" duration="3270000" />
+      <workItem from="1563669301335" duration="16519000" />
+      <workItem from="1563701702936" duration="4823000" />
+      <workItem from="1563706619772" duration="682000" />
+      <workItem from="1563755382256" duration="4827000" />
+      <workItem from="1563761025902" duration="1257000" />
+      <workItem from="1563764101126" duration="4107000" />
     </task>
     <task id="LOCAL-00001" summary="patriotism files root">
       <created>1563416138389</created>
@@ -561,11 +559,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563616008212</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fehead-initialize login by code 20%">
+      <created>1563626947469</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1563626947469</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45834000" />
+    <option name="totallyTimeSpent" value="78204000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -577,36 +582,36 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="860" y="23" width="1669" height="1344" extended-state="0" />
+    <frame x="631" y="24" width="1669" height="1344" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49920127" visible="true" weight="0.27350953" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49920127" visible="true" weight="0.23724647" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Web" order="5" sideWeight="0.5007987" side_tool="true" weight="0.22737819" />
       <window_info id="Image Layers" order="6" />
-      <window_info id="Structure" order="7" weight="0.24948025" />
+      <window_info id="Structure" order="7" weight="0.2489244" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32933652" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290735" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4980665" weight="0.36102235" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4980665" visible="true" weight="0.25958467" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6754763" visible="true" weight="0.25958467" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290735" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3298722" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3298722" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5019335" side_tool="true" weight="0.36102235" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.32452366" side_tool="true" weight="0.25958467" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.3298722" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.32942432" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.3290735" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.17086662" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.19053473" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.17086662" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -642,379 +647,523 @@
     <MESSAGE value="fehead-initialize 1.0.1" />
     <MESSAGE value="fehead-initialize 1.0.2" />
     <MESSAGE value="fehead-initialize run successful" />
-    <option name="LAST_COMMIT_MESSAGE" value="fehead-initialize run successful" />
+    <MESSAGE value="fehead-initialize login by code 20%" />
+    <option name="LAST_COMMIT_MESSAGE" value="fehead-initialize login by code 20%" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeAuthenticationProvider.java</url>
+          <line>16</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/AnonymousAuthenticationProvider.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/ProviderManager.java</url>
+          <line>173</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/dao/DaoAuthenticationProvider.java</url>
+          <line>113</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/social/spring-social-security/1.1.6.RELEASE/spring-social-security-1.1.6.RELEASE-sources.jar!/org/springframework/social/security/SocialAuthenticationFilter.java</url>
+          <line>324</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationFilter.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationProvider.java</url>
+          <line>313</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.java</url>
+          <line>195</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationFailureHandler.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/ProviderManager.java</url>
+          <line>190</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.java</url>
+          <line>351</line>
+          <properties />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/filtter/ValidateCodeException.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.23.RELEASE/spring-beans-4.3.23.RELEASE-sources.jar!/org/springframework/beans/factory/config/BeanReference.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="285">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.23.RELEASE/spring-web-4.3.23.RELEASE-sources.jar!/org/springframework/web/filter/GenericFilterBean.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.23.RELEASE/spring-beans-4.3.23.RELEASE-sources.jar!/org/springframework/beans/factory/support/RootBeanDefinition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3640">
-          <caret line="250" column="47" selection-start-line="250" selection-start-column="47" selection-end-line="250" selection-end-column="47" />
+        <state relative-caret-position="1691">
+          <caret line="116" column="11" selection-start-line="116" selection-start-column="11" selection-end-line="116" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.23.RELEASE/spring-web-4.3.23.RELEASE-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/authentication/builders/AuthenticationManagerBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+        <state relative-caret-position="589">
+          <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-625">
-          <caret line="110" column="60" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/BrowserSecurityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="55" column="11" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
+        <state relative-caret-position="5149">
+          <caret line="303" column="45" selection-start-line="303" selection-start-column="45" selection-end-line="303" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#5908#5909#0" expanded="true" />
+            <element signature="e#5960#5961#0" expanded="true" />
+            <element signature="e#10283#10284#0" expanded="true" />
+            <element signature="e#10341#10342#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/resources/resources/lmwis-signIn.html">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/ObjectPostProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" column="11" selection-start-line="7" selection-start-column="4" selection-end-line="35" selection-end-column="11" />
+        <state relative-caret-position="456">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/configuration/AutowireBeanFactoryObjectPostProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="60" column="37" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="71" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/WebSecurityConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="87" column="21" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+          <folding>
+            <element signature="e#14216#14217#0" expanded="true" />
+            <element signature="e#14242#14243#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-actuator/1.5.20.RELEASE/spring-boot-actuator-1.5.20.RELEASE.jar!/org/springframework/boot/actuate/autoconfigure/ManagementWebSecurityAutoConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3876">
+          <caret line="266" column="40" selection-start-line="266" selection-start-column="31" selection-end-line="266" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/error/BusinessExpection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.20.RELEASE/spring-boot-autoconfigure-1.5.20.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/security/AuthenticationManagerConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/config/FeheadWebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/properties/BrowserProperties.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="2" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        <state relative-caret-position="421">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AuthenticationSuccessHandler.java">
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/compoment/TelValidateCodePostProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="209">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationSuccessHandler.java">
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/compoment/TelValidateCodeAuthenticationMangerFactoryBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="515">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/response/CommonReturnType.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/builders/FilterComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="771">
+          <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/header/HeaderWriterFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.23.RELEASE/spring-web-4.3.23.RELEASE-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/context/SecurityContextPersistenceFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.23.RELEASE/spring-context-4.3.23.RELEASE-sources.jar!/org/springframework/context/MessageSourceAware.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/encoding/PasswordEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="89" column="12" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.23.RELEASE/spring-beans-4.3.23.RELEASE-sources.jar!/org/springframework/beans/factory/InitializingBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/dao/AbstractUserDetailsAuthenticationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="230" column="19" selection-start-line="230" selection-start-column="19" selection-end-line="230" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelUserDetailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/core/userdetails/UserDetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/authentication/AuthenticationManagerFactoryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="53" column="47" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AuthenticationFailureHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#2652#2653#0" expanded="true" />
+            <element signature="e#4804#4805#0" expanded="true" />
+            <element signature="e#4857#4858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/dao/DaoAuthenticationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+          <folding>
+            <element signature="e#2779#2780#0" expanded="true" />
+            <element signature="e#2836#2837#0" expanded="true" />
+            <element signature="e#2964#2996#0" expanded="true" />
+            <element signature="e#8021#8022#0" expanded="true" />
+            <element signature="e#8053#8054#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationFailureHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="32" column="42" lean-forward="true" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+        <state relative-caret-position="437">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1428#1429#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/resources/mapping/UserDOMapper.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.23.RELEASE/spring-context-4.3.23.RELEASE-sources.jar!/org/springframework/context/i18n/LocaleContextHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2166">
-          <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+        <state relative-caret-position="328">
+          <caret line="199" selection-start-line="199" selection-end-line="199" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/service/model/ValidateCode.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.23.RELEASE/spring-context-4.3.23.RELEASE-sources.jar!/org/springframework/context/support/MessageSourceAccessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="260">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/filtter/ValidateCodeFilter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/BadCredentialsException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        <state relative-caret-position="437">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1325#1326#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/properties/SecurityProperties.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/NullRememberMeServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="456">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE.jar!/org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/SimpleUrlAuthenticationFailureHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        <state relative-caret-position="640">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/InitializeApplication.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/FilterChainProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/controller/ValidateCodeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/util/ValidateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeUserDetailService.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/WebAuthenticationDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="56" column="7" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/preauth/PreAuthenticatedGrantedAuthoritiesWebAuthenticationDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/SecurityCoreStaterConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="399">
+          <caret line="332" selection-start-line="332" selection-end-line="332" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="10" selection-start-line="22" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="680">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/dictionaries/lmwis.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1746" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2313" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/patriotism-root.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/pom.xml">
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/authentication/feheadAuthenticationSuccessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="117" column="35" selection-start-line="117" selection-start-column="35" selection-end-line="117" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadAuthenticationDetailsSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadWebAuthenticationDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/filtter/EmailAndTelphoneLoginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="361">
+          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/FormLoginConfigurer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="836">
           <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/SecurityConfigurerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+        <state relative-caret-position="525">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
-            <element signature="e#1909#1910#0" expanded="true" />
-            <element signature="e#1935#1936#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/TelValidateCodeAuthenticationProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="313" selection-start-line="313" selection-end-line="313" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4981#4982#0" expanded="true" />
+            <element signature="e#5024#5025#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/component/MyUserDetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/ProviderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+          <folding>
+            <element signature="e#5191#5192#0" expanded="true" />
+            <element signature="e#5219#5220#0" expanded="true" />
+            <element signature="e#10207#10208#0" expanded="true" />
+            <element signature="e#10230#10231#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.12.RELEASE/spring-security-web-4.2.12.RELEASE-sources.jar!/org/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#7777#7778#0" expanded="true" />
+            <element signature="e#7864#7865#0" expanded="true" />
+            <element signature="e#15262#15263#0" expanded="true" />
+            <element signature="e#15297#15298#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/builders/HttpSecurity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="647" column="93" selection-start-line="647" selection-start-column="93" selection-end-line="647" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/AbstractAuthenticationFilterConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/4.2.12.RELEASE/spring-security-config-4.2.12.RELEASE-sources.jar!/org/springframework/security/config/annotation/SecurityBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        <state relative-caret-position="1048">
+          <caret line="968" column="46" lean-forward="true" selection-start-line="968" selection-start-column="46" selection-end-line="968" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/suport/BrowserSecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="71" column="22" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
+        <state relative-caret-position="-285">
+          <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE.jar!/org/springframework/security/core/Authentication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/core/Authentication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.12.RELEASE/spring-security-core-4.2.12.RELEASE-sources.jar!/org/springframework/security/authentication/AbstractAuthenticationToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-213">
-          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-          <folding>
-            <element signature="e#3262#3263#0" expanded="true" />
-            <element signature="e#3283#3284#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/FeheadUserDetialService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="93" selection-start-line="11" selection-start-column="93" selection-end-line="11" selection-end-column="93" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fehead-initialize/src/main/java/com/fehead/initialize/login/LoginByCodeAuthenticationProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
           </folding>
         </state>
       </provider>

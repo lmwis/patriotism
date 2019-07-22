@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author lmwis on 2019-07-20 19:42
  */
 
-@Component("authenticationDetailsSource")
+//@Component("authenticationDetailsSource")
 public class FeheadAuthenticationDetailsSource implements AuthenticationDetailsSource {
     @Override
     public Object buildDetails(Object o) {

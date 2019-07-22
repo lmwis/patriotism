@@ -9,6 +9,7 @@ import com.fehead.initialize.error.BusinessExpection;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.response.CommonReturnType;
+import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
 import com.fehead.initialize.service.model.ValidateCode;
@@ -60,6 +61,8 @@ public class RegisterController extends BaseController {
 
     public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
 
+//    public static final Long EXPIRETIME = new Long(300);
+
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @Autowired
@@ -74,6 +77,9 @@ public class RegisterController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RedisService redisService;
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
@@ -86,20 +92,43 @@ public class RegisterController extends BaseController {
     @PostMapping("/sendSms")
     public CommonReturnType sendOtp(HttpServletRequest request, HttpServletResponse response) throws IOException, BusinessExpection {
         String telphone = request.getParameter("telphone");
+        // 检查手机号是否合法
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
             throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
+        }
+
+        // 检查验证码在60秒内是否已经发送
+        if (redisService.exists(telphone)) {
+            ValidateCode code = (ValidateCode) redisService.get(telphone);
+            if (!code.isExpried()) {
+                logger.info("验证码已发送");
+//            sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
+                throw new BusinessExpection(EmBusinessError.SMS_ALREADY_SEND);
+            } else {
+                redisService.remove(telphone);
+            }
         }
         Map<String, String> paramMap = new HashMap<>();
         ValidateCode smsCode = createCode(telphone);
         paramMap.put("code", smsCode.getCode());
         String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
-        sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, smsCode);
+
+        redisService.set(smsCode.getTelphone(), smsCode, new Long(300));
+//        sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, smsCode);
         logger.info(smsCode.getCode());
         smsUtil.sendSms(modelName, paramMap, telphone);
 
         return CommonReturnType.creat(telphone);
     }
 
+    /**
+     * 用户注册
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletRequestBindingException
+     * @throws BusinessExpection
+     */
     @PostMapping("/register")
     public CommonReturnType register(HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessExpection {
         String telphone = request.getParameter("telphone");
@@ -141,16 +170,20 @@ public class RegisterController extends BaseController {
 
     private boolean validate(ServletWebRequest servletWebRequest) throws BusinessExpection, ServletRequestBindingException {
 
-        ValidateCode smsCode = (ValidateCode) sessionStrategy.getAttribute(servletWebRequest,
-                RegisterController.SESSION_KEY);
-
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "smsCode");
 
         String telphoneInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "telphone");
-        if (!StringUtils.equals(telphoneInRequest, smsCode.getTelphone())) {
-            logger.info(telphoneInRequest + "手机号错误" + smsCode.getTelphone());
-            throw new BusinessExpection(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号错误");
+        ValidateCode smsCode = new ValidateCode();
+
+        // 检查redis中是否存有该手机号验证码
+        if (!redisService.exists(telphoneInRequest)) {
+            logger.info("验证码不存在");
+            throw new BusinessExpection(EmBusinessError.SMS_ISNULL);
         }
+        smsCode = (ValidateCode)redisService.get(telphoneInRequest);
+        logger.info("smsCode:" + smsCode.getCode());
+//        ValidateCode smsCode = (ValidateCode) sessionStrategy.getAttribute(servletWebRequest,
+//                RegisterController.SESSION_KEY);
 
         if (StringUtils.isBlank(codeInRequest)) {
             logger.info("验证码不能为空");
@@ -162,18 +195,13 @@ public class RegisterController extends BaseController {
             throw new BusinessExpection(EmBusinessError.SMS_ISNULL);
         }
 
-        if (smsCode.isExpried()) {
-            logger.info("验证码已过期");
-            sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
-            throw new BusinessExpection(EmBusinessError.SMS_ISEXPRIED);
-        }
 
         if (!StringUtils.equals(smsCode.getCode(), codeInRequest)) {
             logger.info("验证码不匹配");
             throw new BusinessExpection(EmBusinessError.SMS_ISILLEGAL);
         }
 
-        sessionStrategy.removeAttribute(servletWebRequest, RegisterController.SESSION_KEY);
+        redisService.remove(telphoneInRequest);
 
 
         return true;

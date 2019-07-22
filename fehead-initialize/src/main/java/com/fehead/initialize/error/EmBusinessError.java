@@ -34,7 +34,7 @@ public enum EmBusinessError implements CommonError {
     // 30000 开头为验证码相关错误
     SMS_ISBLANK(30001, "验证码为空"),
     SMS_ISNULL(30002, "验证码不存在"),
-    SMS_ISEXPRIED(30003, "验证码已过期"),
+    SMS_ALREADY_SEND(30003, "验证码已发送"),
     SMS_ISILLEGAL(30004, "验证码不匹配"),
     ;
 

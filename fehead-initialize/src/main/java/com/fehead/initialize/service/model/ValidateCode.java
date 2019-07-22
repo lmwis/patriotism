@@ -1,5 +1,6 @@
 package com.fehead.initialize.service.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -23,12 +24,15 @@ import java.time.LocalDateTime;
  *
  * @author Nightnessss 2019/7/19 17:21
  */
-public class ValidateCode {
+public class ValidateCode implements Serializable {
     private String telphone;
 
     private String code;
 
     private LocalDateTime expireTime;
+
+    public ValidateCode() {
+    }
 
     public ValidateCode(String telphone, String code, Integer expireIn) {
         this.telphone = telphone;

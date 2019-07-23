@@ -36,6 +36,13 @@ public enum EmBusinessError implements CommonError {
     SMS_ISNULL(30002, "验证码不存在"),
     SMS_ALREADY_SEND(30003, "验证码已发送"),
     SMS_ILLEGAL(30004, "验证码不匹配"),
+
+    // 40000 开头为邮件相关错误
+    EMAIL_FROM_EMPTY(40001, "发件人为空"),
+    EMAIL_TO_EMPTY(40002, "收件人为空"),
+    EMAIL_TITLE_EMPTY(40003, "邮件标题为空"),
+    EMAIL_TEMPLATE_NOT_EXIST(40004, "HTML邮件不存在"),
+    EMAIL_SEND_FAILURE(40005, "发送失败");
     ;
 
     private EmBusinessError(int errCode, String errMsg) {

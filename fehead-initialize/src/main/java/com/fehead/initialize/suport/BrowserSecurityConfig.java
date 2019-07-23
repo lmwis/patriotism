@@ -110,7 +110,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getLoginPage(),
-                        "/register/sendSms", "/register/register").permitAll()
+                        "/register/sendSms", "/register/register", "/email/send").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

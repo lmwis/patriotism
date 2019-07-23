@@ -32,6 +32,8 @@ public class SecurityProperties {
 
     private SmsProperties smsProperties = new SmsProperties();
 
+    private SendEmailProperties sendEmailProperties = new SendEmailProperties();
+
     public SmsProperties getSmsProperties() {
         return smsProperties;
     }
@@ -46,5 +48,13 @@ public class SecurityProperties {
 
     public void setBrowser(BrowserProperties browser) {
         this.browser = browser;
+    }
+
+    public SendEmailProperties getSendEmailProperties() {
+        return sendEmailProperties;
+    }
+
+    public void setSendEmailProperties(SendEmailProperties sendEmailProperties) {
+        this.sendEmailProperties = sendEmailProperties;
     }
 }

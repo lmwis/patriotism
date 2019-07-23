@@ -26,7 +26,10 @@ spring:
     username: nightnessss@163.com
     password: W1948730080
     default-encoding: UTF-8
-
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
 
 security:
   basic:
@@ -42,7 +45,9 @@ fehead:
       smsModel:
         - {name: SMS_171112301, des: 注册}
         - {name: SMS_171117329, des: 登录}
-
       smsNumber: 6
+    sendEmailProperties:
+      fromAddress: nightnessss@163.com
+
 
 # redis配置

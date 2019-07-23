@@ -22,7 +22,7 @@ spring:
       min-idle: 0     # 最小空闲连接
     timeout: 0        # 连接超时时间
   mail:
-    host: smt.163.com
+    host: smtp.163.com
     username: nightnessss@163.com
     password: W1948730080
     default-encoding: UTF-8

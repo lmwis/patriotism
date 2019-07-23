@@ -89,8 +89,6 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         TelValidateCodeFilter filter = new TelValidateCodeFilter();
 
         filter.setTelValidateCodeService(getApplicationContext().getBean(TelValidateCodeService.class));
-        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
-        validateCodeFilter.setAuthenticationFailureHandler(feheadAuthenticationFailureHandler);
 
 
 
@@ -100,7 +98,6 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
 //                .apply(feheadWebSecurityConfig)
 //                .and()
                 .formLogin()

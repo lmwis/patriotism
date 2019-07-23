@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("/email")
-public class mailController {
+public class MailController {
 
     public static String FROM_MAIL_ADDRESS = "nightnessss@163.com";
 

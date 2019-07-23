@@ -1,10 +1,16 @@
 package com.fehead.initialize.login;
 
-import com.fehead.initialize.error.BusinessException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fehead.initialize.error.SmsValidateException;
+import com.fehead.initialize.properties.SecurityProperties;
+import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.TelValidateCodeService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,6 +26,14 @@ import java.io.IOException;
 public class TelValidateCodeFilter extends OncePerRequestFilter {
 
     private TelValidateCodeService telValidateCodeService;
+
+    private AuthenticationFailureHandler feheadAuthenticationFailureHandler;
+
+    private SecurityProperties securityProperties;
+
+    private AuthenticationSuccessHandler feheadAuthenticationSuccessHandler;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public TelValidateCodeService getTelValidateCodeService() {
         return telValidateCodeService;
@@ -38,11 +52,12 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 
         logger.info("请求的URL："+url);
 
-        if(StringUtils.equals(url,"/loginByOtp")){
+        if(StringUtils.equals(url,securityProperties.getBrowser().getSendOtpCode())){
 
             ServletWebRequest servletWebRequest = new ServletWebRequest(request);
 
-            String tel =servletWebRequest.getParameter("tel");
+            String tel =servletWebRequest.getParameter(securityProperties.getBrowser().getTelParameter());
+
 
             logger.info("请求的手机号为："+tel);
 
@@ -50,16 +65,32 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
                 if (telValidateCodeService.check(tel)) {
                     telValidateCodeService.send(tel);
                 }
-            } catch (BusinessException e) {
-                e.printStackTrace();
+            } catch (SmsValidateException e) {
+                feheadAuthenticationFailureHandler.onAuthenticationFailure(request,response,e);
+                return;
             }
 
+            //发送成功
 
-            return;
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(objectMapper.writeValueAsString( CommonReturnType.creat("发送成功")));
 
         }
 
 
         filterChain.doFilter(request,response);
+    }
+
+    public void setFeheadAuthenticationFailureHandler(AuthenticationFailureHandler feheadAuthenticationFailureHandler) {
+        this.feheadAuthenticationFailureHandler = feheadAuthenticationFailureHandler;
+    }
+
+    public void setFeheadAuthenticationSuccessHandler(AuthenticationSuccessHandler feheadAuthenticationSuccessHandler) {
+        this.feheadAuthenticationSuccessHandler = feheadAuthenticationSuccessHandler;
+    }
+
+    public void setSecurityProperties(SecurityProperties securityProperties) {
+        this.securityProperties = securityProperties;
     }
 }

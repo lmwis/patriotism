@@ -22,9 +22,9 @@ import java.io.IOException;
  * @author lmwis on 2019-07-16 11:03
  */
 @Component("lmwisAuthenticationFailureHandler")
-public class feheadAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class FeheadAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private Logger logger = LoggerFactory.getLogger(feheadAuthenticationFailureHandler.class);
+    private Logger logger = LoggerFactory.getLogger(FeheadAuthenticationFailureHandler.class);
 
     @Autowired
     ObjectMapper objectMapper ;
@@ -36,6 +36,8 @@ public class feheadAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
+
+        logger.info(exception.getMessage());
 
         logger.info("登陆失败");
 

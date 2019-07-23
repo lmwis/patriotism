@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8092
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
@@ -7,14 +7,26 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/patriotism?useSSL=false
+    url: jdbc:mysql://192.168.0.123:3306/patriotism?useSSL=false
     username: root
-    password: 1948730080
+    password: mysqladmin
+    name: patriotism
+    #连接池配置
+    type: org.apache.commons.dbcp2.BasicDataSource
+
+#    druid:
+#      max-active: 20
+#      initial-size: 1
+#      max-wait: 60000
+#      min-idle: 1
+#      time-between-enviction-runs-millis: 60000
+
+    #redis配置
   redis:
-    database: 0
-    host: localhost
+    database: 1
+    host: 192.168.0.122
     port: 6379
-    password: 1948730080
+    password: redis
     pool:
       max-active: 8   # 最大连接数
       max-wait: 1     # 最大阻塞等待时间
@@ -37,6 +49,11 @@ security:
 
 fehead:
   initialize:
+    browser:
+      telParameter: tel
+      sendOtpCode: /send/otpCode
+      formLoginUrl: /loginByForm
+      otpLoginUrl: /loginByOtp
     smsProperties:
       appKey: LTAIqwxU8y65KvAg
       secret: 8UwBxCvhl9vpTR1IEv4LNiHrxvNTo5
@@ -50,4 +67,4 @@ fehead:
       fromAddress: nightnessss@163.com
 
 
-# redis配置
+

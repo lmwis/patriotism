@@ -41,6 +41,12 @@ public class SmsValidateException extends AuthenticationException implements Com
         this.commonError = commonError;
     }
 
+    public SmsValidateException(CommonError commonError,String errorMsg) {
+        super(commonError.getErrorMsg());
+        this.commonError = commonError;
+        this.commonError.setErrMsg(errorMsg);
+    }
+
     @Override
     public int getErrorCode() {
         return 0;

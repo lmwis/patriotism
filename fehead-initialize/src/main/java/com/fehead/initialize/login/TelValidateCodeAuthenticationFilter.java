@@ -35,7 +35,11 @@ public class TelValidateCodeAuthenticationFilter
 
 
     public TelValidateCodeAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/loginByCode", "POST"));
+        super(new AntPathRequestMatcher("/loginByOtp", "POST"));
+    }
+
+    public TelValidateCodeAuthenticationFilter(String url) {
+        super(new AntPathRequestMatcher(url, "POST"));
     }
 
     @Override

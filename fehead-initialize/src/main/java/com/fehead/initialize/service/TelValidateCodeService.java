@@ -1,6 +1,6 @@
 package com.fehead.initialize.service;
 
-import com.fehead.initialize.error.BusinessException;
+import com.fehead.initialize.error.SmsValidateException;
 
 /**
  * 写代码 敲快乐
@@ -29,5 +29,5 @@ public interface TelValidateCodeService {
 
     public boolean loginValidate(String telphoneInRequest, String codeInRequest);
 
-    boolean check(String tel) throws BusinessException;
+    boolean check(String tel) throws SmsValidateException;
 }

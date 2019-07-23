@@ -1,9 +1,8 @@
 package com.fehead.initialize.service.impl;
 
 import com.fehead.initialize.dao.UserDOMapper;
-import com.fehead.initialize.dataobject.UserPasswordDO;
-import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
+import com.fehead.initialize.error.SmsValidateException;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.TelValidateCodeService;
@@ -11,6 +10,7 @@ import com.fehead.initialize.service.model.ValidateCode;
 import com.fehead.initialize.utils.CheckEmailAndTelphoneUtil;
 import com.fehead.initialize.utils.CreateCodeUtil;
 import com.fehead.initialize.utils.SmsUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +73,9 @@ public class TelValidateCodeServiceImpl implements TelValidateCodeService {
 
         smsCode.encode(passwordEncoder);
         redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
-        logger.info(smsCode.getCode());
+//        logger.info(smsCode.getCode());
+
+        //发送短信
 //        smsUtil.sendSms(modelName, paramMap, telphone);
     }
 
@@ -83,12 +85,17 @@ public class TelValidateCodeServiceImpl implements TelValidateCodeService {
     }
 
     @Override
-    public boolean check(String telphone) throws BusinessException {
+    public boolean check(String telphone) throws SmsValidateException {
+
+        if(StringUtils.isEmpty(telphone)){
+            throw new SmsValidateException(EmBusinessError.TEL_NOT_BE_NULL, "手机号不能为空");
+        }
 
         boolean result = true;
         // 检查手机号是否合法
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
+            logger.info("手机号<"+telphone+">: "+"手机号不合法");
+            throw new SmsValidateException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
         }
 
         if (userDOMapper.selectByTelphone(telphone) == null) {
@@ -102,9 +109,9 @@ public class TelValidateCodeServiceImpl implements TelValidateCodeService {
             if (!code.isExpired(60)) {
                 result = false;
                 logger.info("验证码已发送");
-                throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
+                throw new SmsValidateException(EmBusinessError.SMS_ALREADY_SEND);
             } else {
-                redisService.remove(telphone);
+                redisService.remove(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + telphone);
             }
         }
 

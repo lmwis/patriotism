@@ -24,6 +24,46 @@ package com.fehead.initialize.properties;
 public class BrowserProperties {
     private String loginPage = "/signIn.html";
 
+    private String formLoginUrl = "/loginByForm";
+
+    private String otpLoginUrl = "/loginByOtp";
+
+    private String sendOtpCode = "/send/otpCode";
+
+    private String telParameter = "tel";
+
+    public String getTelParameter() {
+        return telParameter;
+    }
+
+    public void setTelParameter(String telParameter) {
+        this.telParameter = telParameter;
+    }
+
+    public String getSendOtpCode() {
+        return sendOtpCode;
+    }
+
+    public void setSendOtpCode(String sendOtpCode) {
+        this.sendOtpCode = sendOtpCode;
+    }
+
+    public String getFormLoginUrl() {
+        return formLoginUrl;
+    }
+
+    public void setFormLoginUrl(String formLoginUrl) {
+        this.formLoginUrl = formLoginUrl;
+    }
+
+    public String getOtpLoginUrl() {
+        return otpLoginUrl;
+    }
+
+    public void setOtpLoginUrl(String otpLoginUrl) {
+        this.otpLoginUrl = otpLoginUrl;
+    }
+
     private LoginType loginType = LoginType.JSON;
 
     public String getLoginPage() {

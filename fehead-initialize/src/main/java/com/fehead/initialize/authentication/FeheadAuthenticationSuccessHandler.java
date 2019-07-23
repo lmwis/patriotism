@@ -22,9 +22,9 @@ import java.io.IOException;
  * @author lmwis on 2019-07-16 10:52
  */
 @Component("lmwisAuthenticationSuccessHandler")
-public class feheadAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class FeheadAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private Logger logger = LoggerFactory.getLogger(feheadAuthenticationSuccessHandler.class);
+    private Logger logger = LoggerFactory.getLogger(FeheadAuthenticationSuccessHandler.class);
 
     @Autowired
     ObjectMapper objectMapper ;

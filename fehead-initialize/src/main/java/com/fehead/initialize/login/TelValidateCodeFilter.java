@@ -1,13 +1,10 @@
 package com.fehead.initialize.login;
 
+import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.service.TelValidateCodeService;
-import com.fehead.initialize.utils.CreateCodeUtil;
-import com.fehead.initialize.service.model.ValidateCode;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -49,7 +46,14 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 
             logger.info("请求的手机号为："+tel);
 
-            telValidateCodeService.send(tel);
+            try {
+                if (telValidateCodeService.check(tel)) {
+                    telValidateCodeService.send(tel);
+                }
+            } catch (BusinessException e) {
+                e.printStackTrace();
+            }
+
 
             return;
 

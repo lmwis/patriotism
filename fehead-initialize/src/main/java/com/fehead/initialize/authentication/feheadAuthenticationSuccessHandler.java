@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fehead.initialize.properties.LoginType;
 import com.fehead.initialize.properties.SecurityProperties;
 
+import com.fehead.initialize.service.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -30,14 +32,19 @@ public class feheadAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     @Autowired
     SecurityProperties securityProperties;
 
+    @Autowired
+    RedisService redisService;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication)
             throws IOException, ServletException {
 
-        logger.info("登陆成功");
+        logger.info("登陆成功:" + ((UserDetails)authentication.getPrincipal()).getUsername());
 
+        redisService.remove(securityProperties.getSmsProperties().getLoginPreKeyInRedis() +
+                ((UserDetails)authentication.getPrincipal()).getUsername());
         //如果为JSON模式，则返回JSON
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
             response.setContentType("application/json;charset=UTF-8");
@@ -45,7 +52,6 @@ public class feheadAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         }else{//否则为页面模式，进行页面跳转
             super.onAuthenticationSuccess(request,response,authentication);
         }
-
 
     }
 }

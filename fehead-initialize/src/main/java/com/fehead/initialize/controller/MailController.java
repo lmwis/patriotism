@@ -59,7 +59,7 @@ public class MailController {
 
         sendEmailUtil.sendEmail(toAddress, uri, subject, templateName);
 
-        return CommonReturnType.creat(null);
+        return CommonReturnType.create(null);
     }
 }
 

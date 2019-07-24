@@ -3,7 +3,7 @@ package com.fehead.initialize.login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fehead.initialize.error.SmsValidateException;
 import com.fehead.initialize.properties.SecurityProperties;
-import com.fehead.initialize.response.CommonReturnType;
+import com.fehead.initialize.response.AuthenticationReturnType;
 import com.fehead.initialize.service.TelValidateCodeService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -72,9 +72,9 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 
             //发送成功
 
-            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setStatus(HttpStatus.OK.value());
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString( CommonReturnType.creat("发送成功")));
+            response.getWriter().write(objectMapper.writeValueAsString( AuthenticationReturnType.create("发送成功",HttpStatus.OK.value())));
 
         }
 

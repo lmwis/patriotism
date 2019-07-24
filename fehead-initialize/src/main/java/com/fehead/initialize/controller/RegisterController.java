@@ -107,7 +107,7 @@ public class RegisterController extends BaseController {
         registerService.send(telphone);
 
 
-        return CommonReturnType.creat(telphone);
+        return CommonReturnType.create(telphone);
     }
 
     /**
@@ -133,7 +133,7 @@ public class RegisterController extends BaseController {
             registerService.registerByTelphone(telphoneInRequest, password);
         }
 
-        return CommonReturnType.creat(null);
+        return CommonReturnType.create(null);
     }
 
 }

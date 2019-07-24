@@ -67,6 +67,6 @@ public class BrowserSecurityController extends BaseController {
                 logger.info("跳转页面为：" + securityProperties.getBrowser().getLoginPage());
             }
         }
-        return CommonReturnType.creat("访问的服务需要身份认证，请引导用户到登录页");
+        return CommonReturnType.create("访问的服务需要身份认证，请引导用户到登录页");
     }
 }

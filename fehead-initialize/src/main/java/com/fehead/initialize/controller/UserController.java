@@ -76,7 +76,7 @@ public class UserController extends BaseController {
         userModel.setEncrptPassword(passwordEncoder.encode(password));
         userService.register(userModel);
 
-        return CommonReturnType.creat(null);
+        return CommonReturnType.create(null);
     }
     // 用户电子邮件注册接口
     @RequestMapping(value = "/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
@@ -92,7 +92,7 @@ public class UserController extends BaseController {
         userModel.setEncrptPassword(passwordEncoder.encode(password));
         userService.register(userModel);
 
-        return CommonReturnType.creat(null);
+        return CommonReturnType.create(null);
     }
 
     // 加密密码
@@ -120,7 +120,7 @@ public class UserController extends BaseController {
         System.out.println("telphone=" + telphone + "&otp=" + otpCode);
 
 
-        return CommonReturnType.creat(randomInt);
+        return CommonReturnType.create(randomInt);
     }
 
 
@@ -136,7 +136,7 @@ public class UserController extends BaseController {
 
         // 将核心模型转化为供UI使用的viewobject
         UserVO userVO = convertFromModel(userModel);
-        return CommonReturnType.creat(userVO);
+        return CommonReturnType.create(userVO);
     }
 
     private UserVO convertFromModel(UserModel userModel) {

@@ -54,6 +54,6 @@ public class BaseController {
             System.out.println(responseData);
         }
 
-        return CommonReturnType.creat(responseData,"fail");
+        return CommonReturnType.create(responseData,"fail");
     }
 }

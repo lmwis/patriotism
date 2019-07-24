@@ -1,9 +1,7 @@
-package com.fehead.initialize.login;
+package com.fehead.initialize.login.validate.code;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fehead.initialize.error.SmsValidateException;
-import com.fehead.initialize.login.validate.code.ValidateFailureHandler;
-import com.fehead.initialize.login.validate.code.ValidateSuccessHandler;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.TelValidateCodeService;
 import org.apache.commons.lang3.StringUtils;

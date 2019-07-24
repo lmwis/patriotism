@@ -32,8 +32,18 @@ public class BrowserProperties {
 
     private String telParameter = "tel";
 
+    private String codeParameter = "code";
+
     public String getTelParameter() {
         return telParameter;
+    }
+
+    public String getCodeParameter() {
+        return codeParameter;
+    }
+
+    public void setCodeParameter(String codeParameter) {
+        this.codeParameter = codeParameter;
     }
 
     public void setTelParameter(String telParameter) {

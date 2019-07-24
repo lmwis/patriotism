@@ -1,6 +1,6 @@
-package com.fehead.initialize.suport;
+package com.fehead.initialize.config;
 
-import com.fehead.initialize.login.TelValidateCodeFilter;
+import com.fehead.initialize.login.validate.code.TelValidateCodeFilter;
 import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.login.validate.code.ValidateFailureHandler;
 import com.fehead.initialize.login.validate.code.ValidateSuccessHandler;
@@ -97,7 +97,17 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
                         securityProperties.getBrowser().getLoginPage(),
-                        "/register/sendSms", "/register/register", "/email/send").permitAll()
+                        "/register/sendSms", "/register/register","/swagger-ui.html"
+                        , "/email/send").permitAll()
+                // swagger start
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/configuration/ui").permitAll()
+                .antMatchers("/configuration/security").permitAll()
+                // swagger end
                 .anyRequest()
                 .authenticated()
                 .and()

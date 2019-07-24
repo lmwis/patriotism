@@ -43,7 +43,10 @@ public class FeheadAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString( AuthenticationReturnType.create(exception.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR.value())));
+            response.getWriter().write(objectMapper
+                    .writeValueAsString( AuthenticationReturnType
+                            .create(exception.getMessage()
+                                    ,HttpStatus.INTERNAL_SERVER_ERROR.value())));
         }else{
             super.onAuthenticationFailure(request,response,exception);
         }

@@ -1,8 +1,8 @@
-package com.fehead.initialize.login.compoment;
+package com.fehead.initialize.login.tel.code.compoment;
 
-import com.fehead.initialize.login.authentication.TelUserDetailService;
-import com.fehead.initialize.login.authentication.TelValidateCodeAuthenticationFilter;
-import com.fehead.initialize.login.authentication.TelValidateCodeAuthenticationProvider;
+import com.fehead.initialize.login.tel.code.authentication.TelUserDetailService;
+import com.fehead.initialize.login.tel.code.authentication.TelValidateCodeAuthenticationFilter;
+import com.fehead.initialize.login.tel.code.authentication.TelValidateCodeAuthenticationProvider;
 import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.beans.BeansException;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * chu shi hua
+ * 初始化短信验证码登陆方式的过滤器
  * @author lmwis on 2019-07-23 16:11
  */
 
@@ -66,6 +66,8 @@ public class FeheadLoginSecurityConfigPostProcessor implements BeanPostProcessor
             //初始化filter
             TelValidateCodeAuthenticationFilter telValidateCodeAuthenticationFilter = new TelValidateCodeAuthenticationFilter(securityProperties.getBrowser().getOtpLoginUrl());
 
+            telValidateCodeAuthenticationFilter.setTelParameter(securityProperties.getBrowser().getTelParameter());
+            telValidateCodeAuthenticationFilter.setCodeParameter(securityProperties.getBrowser().getCodeParameter());
             telValidateCodeAuthenticationFilter.setSuccessHandler(feheadAuthenticationSuccessHandler);
             telValidateCodeAuthenticationFilter.setFailureHandler(feheadAuthenticationFailureHandler);
 

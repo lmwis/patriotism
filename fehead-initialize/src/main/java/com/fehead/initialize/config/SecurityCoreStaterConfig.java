@@ -1,4 +1,4 @@
-package com.fehead.initialize.suport;
+package com.fehead.initialize.config;
 
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

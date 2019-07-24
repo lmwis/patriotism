@@ -1,8 +1,8 @@
-package com.fehead.initialize.component;
+package com.fehead.initialize.login;
 
 import com.fehead.initialize.dao.UserDOMapper;
 import com.fehead.initialize.dao.UserPasswordDOMapper;
-import com.fehead.initialize.login.authentication.TelUserDetailService;
+import com.fehead.initialize.login.tel.code.authentication.TelUserDetailService;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.model.ValidateCode;
@@ -16,9 +16,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 /**
@@ -44,15 +41,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyUserDetailsService implements UserDetailsService, TelUserDetailService {
-
-    @Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
-
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserPasswordDOMapper userPasswordDOMapper;

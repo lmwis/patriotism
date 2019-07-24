@@ -2,6 +2,8 @@ package com.fehead.initialize.suport;
 
 import com.fehead.initialize.login.TelValidateCodeFilter;
 import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
+import com.fehead.initialize.login.validate.code.ValidateFailureHandler;
+import com.fehead.initialize.login.validate.code.ValidateSuccessHandler;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.TelValidateCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler feheadAuthenticationFailureHandler;
 
+    @Autowired
+    private ValidateFailureHandler validateFailureHandler;
+
+    @Autowired
+    private ValidateSuccessHandler validateSuccessHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -67,8 +75,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         filter.setSecurityProperties(securityProperties);
         filter.setTelValidateCodeService(getApplicationContext().getBean(TelValidateCodeService.class));
-        filter.setFeheadAuthenticationFailureHandler(feheadAuthenticationFailureHandler);
-        filter.setFeheadAuthenticationSuccessHandler(feheadAuthenticationSuccessHandler);
+        filter.setValidateFailureHandler(validateFailureHandler);
+        filter.setValidateSuccessHandler(validateSuccessHandler);
 
 
         http

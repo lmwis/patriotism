@@ -2,9 +2,7 @@ package com.fehead.initialize.component;
 
 import com.fehead.initialize.dao.UserDOMapper;
 import com.fehead.initialize.dao.UserPasswordDOMapper;
-import com.fehead.initialize.error.BusinessException;
-import com.fehead.initialize.error.EmBusinessError;
-import com.fehead.initialize.login.TelUserDetailService;
+import com.fehead.initialize.login.authentication.TelUserDetailService;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.model.ValidateCode;

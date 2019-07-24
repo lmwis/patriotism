@@ -27,6 +27,7 @@ public enum EmBusinessError implements CommonError {
     PARAMETER_VALIDATION_ERROR(10001, "参数不合法"),
     LOGIN_ERROR(10002, "登录异常"),
     TEL_NOT_BE_NULL(10003,"手机号不能为空"),
+    NOLY_ACCEPT_APPLICATION_HEADER(10004,"只接受application/json"),
 
     // 20000 开头为用户信息相关错误定义
     USER_NOT_EXIST(20001, "用户不存在"),
@@ -43,7 +44,12 @@ public enum EmBusinessError implements CommonError {
     EMAIL_TO_EMPTY(40002, "收件人为空"),
     EMAIL_TITLE_EMPTY(40003, "邮件标题为空"),
     EMAIL_TEMPLATE_NOT_EXIST(40004, "HTML邮件不存在"),
-    EMAIL_SEND_FAILURE(40005, "发送失败");
+    EMAIL_SEND_FAILURE(40005, "发送失败"),
+
+    // 90000 开头为用户认证相关错误
+    SERVICE_REQUIRE_AUTHENTICATION(90001,"访问的服务需要身份认证"),
+    SERVICE_REQUIRE_ROLE_ADMIN(90002,"访问服务需要管理员权限")
+
     ;
 
     private EmBusinessError(int errCode, String errMsg) {

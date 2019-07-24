@@ -1,7 +1,9 @@
 package com.fehead.initialize.controller;
 
+import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
-import com.fehead.initialize.response.CommonReturnType;
+import com.fehead.initialize.response.AuthenticationReturnType;
+import com.fehead.initialize.response.FeheadResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,7 @@ public class BrowserSecurityController extends BaseController {
 
     @RequestMapping(value = "/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public CommonReturnType requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public FeheadResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
@@ -67,6 +69,8 @@ public class BrowserSecurityController extends BaseController {
                 logger.info("跳转页面为：" + securityProperties.getBrowser().getLoginPage());
             }
         }
-        return CommonReturnType.create("访问的服务需要身份认证，请引导用户到登录页");
+        return AuthenticationReturnType.create(EmBusinessError
+                .SERVICE_REQUIRE_AUTHENTICATION.getErrorMsg()
+                ,HttpStatus.FORBIDDEN.value());
     }
 }

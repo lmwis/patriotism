@@ -1,4 +1,4 @@
-package com.fehead.initialize.login;
+package com.fehead.initialize.login.authentication;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 /**

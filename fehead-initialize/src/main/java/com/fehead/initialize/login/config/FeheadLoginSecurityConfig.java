@@ -1,6 +1,6 @@
 package com.fehead.initialize.login.config;
 
-import com.fehead.initialize.login.TelValidateCodeAuthenticationFilter;
+import com.fehead.initialize.login.authentication.TelValidateCodeAuthenticationFilter;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;

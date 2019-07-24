@@ -102,6 +102,8 @@ public class TelValidateCodeServiceImpl implements TelValidateCodeService {
         if (userDOMapper.selectByTelphone(telphone) == null) {
             logger.info("用户不存在");
             result = false;
+
+            throw new SmsValidateException(EmBusinessError.USER_NOT_EXIST);
         }
 
         // 检查验证码在60秒内是否已经发送

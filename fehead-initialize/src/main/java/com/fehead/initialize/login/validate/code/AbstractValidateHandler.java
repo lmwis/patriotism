@@ -38,7 +38,7 @@ public class AbstractValidateHandler {
             //返回不支持的信息
             response.getWriter().write(objectMapper
                     .writeValueAsString( AuthenticationReturnType
-                            .create(EmBusinessError.NOLY_ACCEPT_APPLICATION_HEADER
+                            .create(EmBusinessError.ONLY_ACCEPT_APPLICATION_HEADER
                                     ,HttpStatus.INTERNAL_SERVER_ERROR.value())));
         }
 

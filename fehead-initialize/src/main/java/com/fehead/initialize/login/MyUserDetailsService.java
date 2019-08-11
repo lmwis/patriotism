@@ -69,6 +69,8 @@ public class MyUserDetailsService implements UserDetailsService, TelUserDetailSe
         logger.info("登录用户名：" + username);
         String password = "";
 
+        // 根据SpringSecurity的设计理念，登录认证时无需解释过多信息给用户
+        // 进入数据库中校验用户名密码存在的过程出现一处问题，都处理为“用户名密码不匹配”的信息
         if (CheckEmailAndTelphoneUtil.checkEmail(username)) {
             password = userPasswordDOMapper.selectByUserId(userDOMapper.selectByEmail(username).getId()).getEncrptPassword();
         } else if (CheckEmailAndTelphoneUtil.checkTelphone(username)) {
@@ -80,9 +82,7 @@ public class MyUserDetailsService implements UserDetailsService, TelUserDetailSe
             throw new UsernameNotFoundException("用户不存在");
         }
 
-
 //        String password = userPasswordDOMapper.selectByUserId(userDOMapper.selectByTelphone(username).getId()).getEncrptPassword();
-
 
         return new User(username, password,
                 true, true, true, true,
@@ -113,7 +113,6 @@ public class MyUserDetailsService implements UserDetailsService, TelUserDetailSe
         } else {
             password =((ValidateCode)redisService.get(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + tel)).getCode();
         }
-
 
         return new User(tel, password,
                 true, true, true, true,

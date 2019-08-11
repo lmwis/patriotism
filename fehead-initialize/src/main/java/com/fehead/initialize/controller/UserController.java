@@ -81,8 +81,7 @@ public class UserController extends BaseController {
     // 用户电子邮件注册接口
     @RequestMapping(value = "/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     public CommonReturnType register(@RequestParam(name = "email") String email,
-                                     @RequestParam(name = "name") String name,
-                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                     @RequestParam(name = "password") String password) throws BusinessException {
 
         // 用户注册流程
         UserModel userModel = new UserModel();

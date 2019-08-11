@@ -96,9 +96,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage(),
-                        "/register/sendSms", "/register/register","/swagger-ui.html"
-                        , "/email/send").permitAll()
+                        securityProperties.getBrowser().getLoginPage(),"/swagger-ui.html"
+                        , "/email/send","/email_validate.html").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
@@ -108,6 +107,10 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/configuration/ui").permitAll()
                 .antMatchers("/configuration/security").permitAll()
                 // swagger end
+                //所有注册相关接口对外开放
+                .antMatchers("/register/**").permitAll()
+                .antMatchers("/sms/**").permitAll()
+                .antMatchers("/test").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

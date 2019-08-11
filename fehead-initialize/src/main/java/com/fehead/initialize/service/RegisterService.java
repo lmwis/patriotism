@@ -27,7 +27,7 @@ public interface RegisterService {
 
     public boolean check(String telphone) throws BusinessException;
 
-    public void send(String telphone);
+    public void send4Register(String telphone);
 
     public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException;
 

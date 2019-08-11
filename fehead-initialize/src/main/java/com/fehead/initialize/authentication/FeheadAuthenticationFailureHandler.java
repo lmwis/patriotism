@@ -50,7 +50,5 @@ public class FeheadAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         }else{
             super.onAuthenticationFailure(request,response,exception);
         }
-
-
     }
 }

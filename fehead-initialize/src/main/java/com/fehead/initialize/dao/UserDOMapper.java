@@ -18,4 +18,5 @@ public interface UserDOMapper {
     UserDO selectByTelphone(String telphone);
 
     UserDO selectByEmail(String email);
+
 }

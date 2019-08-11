@@ -1,7 +1,5 @@
 package com.fehead.initialize.controller;
 
-import com.fehead.initialize.utils.CheckEmailAndTelphoneUtil;
-import com.fehead.initialize.utils.SmsUtil;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
@@ -9,7 +7,8 @@ import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.RegisterService;
 import com.fehead.initialize.service.UserService;
-import com.fehead.initialize.service.model.ValidateCode;
+import com.fehead.initialize.utils.CheckEmailAndTelphoneUtil;
+import com.fehead.initialize.utils.SmsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,6 @@ public class RegisterController extends BaseController {
 
     public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
 
-
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @Autowired
@@ -84,31 +82,32 @@ public class RegisterController extends BaseController {
      * @throws IOException
      * @throws BusinessException
      */
-    @PostMapping("/sendSms")
-    public CommonReturnType sendOtp(HttpServletRequest request, HttpServletResponse response) throws IOException, BusinessException {
-        String telphone = request.getParameter("telphone");
-
-        // 检查手机号是否合法
-        if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
-        }
-
-        // 检查验证码在60秒内是否已经发送
-        if (registerService.check(telphone)) {
-            ValidateCode code = (ValidateCode) redisService.get(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphone);
-            if (!code.isExpired(60)) {
-                logger.info("验证码已发送");
-                throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
-            } else {
-                redisService.remove(telphone);
-            }
-        }
-
-        registerService.send(telphone);
-
-
-        return CommonReturnType.create(telphone);
-    }
+//    @PostMapping("/sendSms")
+//    public CommonReturnType sendOtp(HttpServletRequest request, HttpServletResponse response) throws IOException, BusinessException {
+//        String telphone = request.getParameter("telphone");
+//
+//        // 检查手机号是否合法
+//        if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
+//            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
+//        }
+//
+//        // 检查验证码在60秒内是否已经发送
+//        if (registerService.check(telphone)) {
+//            ValidateCode code = (ValidateCode) redisService.get(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphone);
+//            if (!code.isExpired(60)) {
+//                logger.info("验证码已发送");
+//                throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
+//            } else {
+//                //移除原验证码
+//                redisService.remove(telphone);
+//            }
+//        }
+//        //重新发送
+//        registerService.send(telphone);
+//
+//
+//        return CommonReturnType.create(telphone);
+//    }
 
     /**
      * 用户注册
@@ -119,10 +118,11 @@ public class RegisterController extends BaseController {
      * @throws BusinessException
      */
     @PostMapping("/register")
-    public CommonReturnType register(HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessException {
-        String telphoneInRequest = request.getParameter("telphone");
-        String codeInRequest = request.getParameter("smsCode");
-        String password = request.getParameter("password");
+    public CommonReturnType register(String telphone,String smsCode,String password,
+                                     HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessException {
+        String telphoneInRequest = telphone;
+        String codeInRequest = smsCode;
+//        String password = request.getParameter("password");
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphoneInRequest)) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
         }

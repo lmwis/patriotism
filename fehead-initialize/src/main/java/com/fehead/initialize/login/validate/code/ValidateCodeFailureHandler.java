@@ -1,10 +1,10 @@
 package com.fehead.initialize.login.validate.code;
 
+import com.fehead.initialize.error.SmsValidateException;
 import com.fehead.initialize.properties.LoginType;
 import com.fehead.initialize.response.AuthenticationReturnType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
@@ -32,13 +32,15 @@ public class ValidateCodeFailureHandler extends AbstractValidateHandler implemen
         logger.info(exception.getMessage());
         logger.info("发送失败");
 
+        SmsValidateException exp = (SmsValidateException)exception;
+
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
-            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setStatus(exp.getErrorCode());
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper
                     .writeValueAsString( AuthenticationReturnType
                             .create(exception.getMessage()
-                                    , HttpStatus.INTERNAL_SERVER_ERROR.value())));
+                                    , exp.getErrorCode())));
         }else{
             //返回不支持的信息
             super.onNotSupport(request,response);

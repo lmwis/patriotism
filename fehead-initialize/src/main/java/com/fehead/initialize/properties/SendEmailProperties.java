@@ -25,11 +25,21 @@ public class SendEmailProperties {
 
     private String fromAddress;
 
+    private String emailValidatePreKeyInRedis="fehead-patriotism-email-validate-";
+
     public String getFromAddress() {
         return fromAddress;
     }
 
     public void setFromAddress(String formAddress) {
         this.fromAddress = formAddress;
+    }
+
+    public String getEmailValidatePreKeyInRedis() {
+        return emailValidatePreKeyInRedis;
+    }
+
+    public void setEmailValidatePreKeyInRedis(String emailValidatePreKeyInRedis) {
+        this.emailValidatePreKeyInRedis = emailValidatePreKeyInRedis;
     }
 }

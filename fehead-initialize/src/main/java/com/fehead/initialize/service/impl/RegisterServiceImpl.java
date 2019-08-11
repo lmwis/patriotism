@@ -65,7 +65,7 @@ public class RegisterServiceImpl implements RegisterService {
     public boolean check(String telphone) throws BusinessException {
 
         boolean result = false;
-        // 检查验证码在60秒内是否已经发送
+        // 检查验证码是否存在于redis中
         if (redisService.exists(telphone)) {
             result = true;
         }
@@ -74,10 +74,11 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void send(String telphone) {
+    public void send4Register(String telphone) {
         Map<String, String> paramMap = new HashMap<>();
         ValidateCode smsCode = CreateCodeUtil.createCode(telphone, 6);
         paramMap.put("code", smsCode.getCode());
+        //选择注册的信息模板
         String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
         logger.info("验证码：" + smsCode.getCode());
         smsCode.encode(passwordEncoder);

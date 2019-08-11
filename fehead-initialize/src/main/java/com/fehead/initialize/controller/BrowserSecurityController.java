@@ -69,6 +69,7 @@ public class BrowserSecurityController extends BaseController {
                 logger.info("跳转页面为：" + securityProperties.getBrowser().getLoginPage());
             }
         }
+
         return AuthenticationReturnType.create(EmBusinessError
                 .SERVICE_REQUIRE_AUTHENTICATION.getErrorMsg()
                 ,HttpStatus.FORBIDDEN.value());

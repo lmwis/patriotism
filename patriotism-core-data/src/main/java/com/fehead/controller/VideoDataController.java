@@ -15,7 +15,7 @@ public class VideoDataController {
 
 
     @GetMapping("/lists")
-    public FeheadResponse videoLists(Page){
+    public FeheadResponse videoLists(){
 
 
 

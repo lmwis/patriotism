@@ -2,7 +2,6 @@
 
 server:
   port: 8093
-  context-path: /api/v1
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 

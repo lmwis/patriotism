@@ -48,6 +48,9 @@ public enum EmBusinessError implements CommonError {
     EMAIL_SEND_FAILURE(40005, "发送失败"),
     EMAIL_ALREADY_SEND(40006, "邮件已发送"),
 
+    // 50000 开头为数据资源相关错误
+    DATA_RESOURCES_NOT_EXIST(50001,"资源不存在"),
+
     // 90000 开头为用户认证相关错误
     SERVICE_REQUIRE_AUTHENTICATION(90001,"访问的服务需要身份认证"),
     SERVICE_REQUIRE_ROLE_ADMIN(90002,"访问服务需要管理员权限")

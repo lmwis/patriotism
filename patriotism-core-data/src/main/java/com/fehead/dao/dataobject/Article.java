@@ -6,20 +6,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 /**
- * @author lmwis on 2019-08-11 20:09
+ * @author lmwis on 2019-08-12 09:12
  */
 
-@TableName("video_info")
-public class Video {
+@TableName("article_info")
+public class Article {
 
     @TableId("id")
-    private int videoId;
+    private int articleId;
 
     private String title;
 
     private String des;
-
-    private String videoPath;
 
     private String imageUrl;
 
@@ -27,20 +25,15 @@ public class Video {
 
     private Date datetime;
 
-    public String getVideoPath() {
-        return videoPath;
+    //据说64的jvm中 string能存2G文本
+    private String context;
+
+    public int getArticleId() {
+        return articleId;
     }
 
-    public void setVideoPath(String videoPath) {
-        this.videoPath = videoPath;
-    }
-
-    public int getVideoId() {
-        return videoId;
-    }
-
-    public void setVideoId(int videoId) {
-        this.videoId = videoId;
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
     }
 
     public String getTitle() {
@@ -81,5 +74,13 @@ public class Video {
 
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
     }
 }

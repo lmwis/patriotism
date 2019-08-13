@@ -1,9 +1,9 @@
 package com.fehead.initialize.login.tel.code.compoment;
 
+import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.login.tel.code.authentication.TelUserDetailService;
 import com.fehead.initialize.login.tel.code.authentication.TelValidateCodeAuthenticationFilter;
 import com.fehead.initialize.login.tel.code.authentication.TelValidateCodeAuthenticationProvider;
-import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.properties.SecurityProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.List;
  * @author lmwis on 2019-07-23 16:11
  */
 
-@Component
+@Component("feheadLoginSecurityConfigPostProcessor")
 public class FeheadLoginSecurityConfigPostProcessor implements BeanPostProcessor {
 
     @Autowired

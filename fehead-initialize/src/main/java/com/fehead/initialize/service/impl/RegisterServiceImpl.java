@@ -1,7 +1,5 @@
 package com.fehead.initialize.service.impl;
 
-import com.fehead.initialize.utils.CreateCodeUtil;
-import com.fehead.initialize.utils.SmsUtil;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.properties.SecurityProperties;
@@ -10,15 +8,13 @@ import com.fehead.initialize.service.RegisterService;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
 import com.fehead.initialize.service.model.ValidateCode;
+import com.fehead.initialize.utils.SmsUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 写代码 敲快乐
@@ -61,31 +57,6 @@ public class RegisterServiceImpl implements RegisterService {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Override
-    public boolean check(String telphone) throws BusinessException {
-
-        boolean result = false;
-        // 检查验证码在60秒内是否已经发送
-        if (redisService.exists(telphone)) {
-            result = true;
-        }
-
-        return result;
-    }
-
-    @Override
-    public void send(String telphone) {
-        Map<String, String> paramMap = new HashMap<>();
-        ValidateCode smsCode = CreateCodeUtil.createCode(telphone, 6);
-        paramMap.put("code", smsCode.getCode());
-        String modelName = securityProperties.getSmsProperties().getSmsModel().get(1).getName();
-        logger.info("验证码：" + smsCode.getCode());
-        smsCode.encode(passwordEncoder);
-        logger.info("encode:" + smsCode.getCode());
-        redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
-        logger.info(smsCode.getCode());
-//        smsUtil.sendSms(modelName, paramMap, telphone);
-    }
 
     @Override
     public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException {
@@ -96,6 +67,14 @@ public class RegisterServiceImpl implements RegisterService {
         userService.register(userModel);
     }
 
+    @Override
+    public void registerByEmail(String email, String password) throws BusinessException {
+        UserModel userModel = new UserModel();
+        userModel.setEmail(email);
+        userModel.setRegisterMode("byEmail");
+        userModel.setEncrptPassword(passwordEncoder.encode(password));
+        userService.register(userModel);
+    }
 
 
     public boolean registerValidate(String telphoneInRequest, String codeInRequest) throws BusinessException {

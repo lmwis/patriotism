@@ -25,11 +25,9 @@ import com.fehead.initialize.error.BusinessException;
  */
 public interface RegisterService {
 
-    public boolean check(String telphone) throws BusinessException;
-
-    public void send(String telphone);
-
     public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException;
+
+    public void registerByEmail(String email, String password) throws BusinessException;
 
     public boolean registerValidate(String telphoneInRequest, String codeInRequest) throws BusinessException;
 }

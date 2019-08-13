@@ -15,6 +15,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.Map;
 
 /**
  * 写代码 敲快乐
@@ -54,12 +55,12 @@ public class SendEmailUtil {
     /**
      * 发送邮件
      * @param toAddress 接收人的邮箱地址
-     * @param uri uri变量的值
+     * @param params 参数变量的值
      * @param subject 邮件标题
      * @param templateName HTML的名字（不含.html）
      * @throws MessagingException
      */
-    public void sendEmail(String toAddress, String uri, String subject, String templateName) throws MessagingException, BusinessException {
+    public void sendEmail(String toAddress, Map<String,String> params, String subject, String templateName) throws MessagingException, BusinessException {
 
         if (StringUtils.isEmpty(toAddress)) {
             logger.info("收件人地址为空");
@@ -73,8 +74,13 @@ public class SendEmailUtil {
             logger.info("HTML邮件不存在");
             throw new BusinessException(EmBusinessError.EMAIL_TEMPLATE_NOT_EXIST);
         }
+
         Context context = new Context();
-        context.setVariable("uri", uri);
+        params.forEach((k,v) -> {
+            context.setVariable(k,v);
+            context.setVariable(k,v);
+        });
+
         String emailContent = "";
         try {
             emailContent = templateEngine.process(templateName, context);
@@ -88,11 +94,13 @@ public class SendEmailUtil {
         String fromAddress = securityProperties.getSendEmailProperties().getFromAddress();
         helper.setFrom(fromAddress);
         helper.setTo(toAddress);
+        helper.setCc(fromAddress);
         helper.setSubject(subject);
         helper.setText(emailContent, true);
         logger.info("FROM " + fromAddress + " TO " + toAddress);
         logger.info("TITLE: " + subject);
         try {
+            // 调用api发送邮件
             javaMailSender.send(message);
         } catch (Exception e) {
             logger.info("发送失败: " + e.getMessage());

@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -41,7 +40,7 @@ import java.util.Random;
  * @author Nightnessss 2019/7/8 14:50
  */
 @RestController("user")
-@RequestMapping("/user")
+@RequestMapping("/api/v1.0/user")
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
 
@@ -81,8 +80,7 @@ public class UserController extends BaseController {
     // 用户电子邮件注册接口
     @RequestMapping(value = "/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     public CommonReturnType register(@RequestParam(name = "email") String email,
-                                     @RequestParam(name = "name") String name,
-                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                     @RequestParam(name = "password") String password) throws BusinessException {
 
         // 用户注册流程
         UserModel userModel = new UserModel();
@@ -116,8 +114,8 @@ public class UserController extends BaseController {
         String otpCode = String.valueOf(randomInt);
 
         // 将opt验证码与对应的手机号关联
-        sessionStrategy.setAttribute(new ServletWebRequest(httpServletRequest), RegisterController.SESSION_KEY, otpCode);
-        System.out.println("telphone=" + telphone + "&otp=" + otpCode);
+//        sessionStrategy.setAttribute(new ServletWebRequest(httpServletRequest), RegisterController.SESSION_KEY, otpCode);
+//        System.out.println("telphone=" + telphone + "&otp=" + otpCode);
 
 
         return CommonReturnType.create(randomInt);

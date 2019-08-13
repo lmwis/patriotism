@@ -9,6 +9,8 @@ import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -40,6 +42,8 @@ import javax.transaction.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 
+    Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private UserDOMapper userDOMapper;
 
@@ -65,12 +69,15 @@ public class UserServiceImpl implements UserService {
     public void register(UserModel userModel) throws BusinessException {
         // 将userModel转为dataobject存入数据库
         if (userModel == null) {
+            logger.info("userModel为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
-        if (StringUtils.isEmpty(userModel.getTelphone())) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        if (StringUtils.isEmpty(userModel.getTelphone()) && StringUtils.isEmpty(userModel.getEmail())) {
+            logger.info("手机号或邮箱为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号或邮箱为空");
         }
         if (StringUtils.isEmpty(userModel.getEncrptPassword())) {
+            logger.info("密码不能为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
         }
         // userModel -> userDO
@@ -78,7 +85,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDOMapper.insertSelective(userDO);
         } catch (DuplicateKeyException ex) {
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号已被注册");
+            logger.info("手机号或邮箱已被注册");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号或邮箱已被注册");
         }
 
         userModel.setId(userDO.getId());
@@ -86,8 +94,8 @@ public class UserServiceImpl implements UserService {
         // userModel -> userPasswordDO
         UserPasswordDO userPasswordDO = convertPasswordFromModel(userModel);
         userPasswordDOMapper.insertSelective(userPasswordDO);
+        logger.info("注册成功！");
 
-        return;
     }
 
     @Override

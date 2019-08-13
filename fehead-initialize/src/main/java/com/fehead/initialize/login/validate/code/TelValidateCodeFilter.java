@@ -1,13 +1,10 @@
 package com.fehead.initialize.login.validate.code;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fehead.initialize.error.SmsValidateException;
 import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.TelValidateCodeService;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -48,30 +45,30 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 
         logger.info("请求的URL："+url);
 
-        if(StringUtils.equals(url,securityProperties.getBrowser().getSendOtpCode())){
-
-            ServletWebRequest servletWebRequest = new ServletWebRequest(request);
-
-            String tel =servletWebRequest.getParameter(securityProperties.getBrowser().getTelParameter());
-
-
-            logger.info("请求的手机号为："+tel);
-
-            try {
-                if (telValidateCodeService.check(tel)) {
-                    telValidateCodeService.send(tel);
-                }
-            } catch (SmsValidateException e) {
-                validateFailureHandler.onValidateFailure(request,response,e);
-                return;
-            }
-
-            //发送成功
-            validateSuccessHandler.onValidateSuccess(request,response);
-
-            return;
-
-        }
+//        if(StringUtils.equals(url,securityProperties.getBrowser().getSendOtpCode())){
+//
+//            ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+//
+//            String tel =servletWebRequest.getParameter(securityProperties.getBrowser().getTelParameter());
+//
+//
+//            logger.info("请求的手机号为："+tel);
+//
+//            try {
+//                if (telValidateCodeService.check(tel)) {
+//                    telValidateCodeService.send(tel);
+//                }
+//            } catch (SmsValidateException e) {
+//                validateFailureHandler.onValidateFailure(request,response,e);
+//                return;
+//            }
+//
+//            //发送成功
+//            validateSuccessHandler.onValidateSuccess(request,response);
+//
+//            return;
+//
+//        }
 
 
         filterChain.doFilter(request,response);

@@ -6,12 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fehead-social" />
+        <module name="patriotism-coredata" />
         <module name="fehead-initialize" />
+        <module name="fehead-social" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="fehead-logger" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

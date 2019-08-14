@@ -1,5 +1,9 @@
 package com.fehead.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fehead.controller.vo.VideoDetailInfo;
+import com.fehead.controller.vo.VideoListDisplayInfo;
+import com.fehead.error.BusinessException;
 import com.fehead.response.CommonReturnType;
 import com.fehead.response.FeheadResponse;
 import com.fehead.service.VideoDataService;
@@ -22,23 +26,36 @@ public class VideoDataController {
     @Autowired
     VideoDataService videoDataService;
 
+//    @GetMapping("/lists/all")
+//    public FeheadResponse videoAll() {
+//
+//        return CommonReturnType.create(videoDataService.selectAllVideo());
+//    }
+
     @GetMapping("/lists")
     public FeheadResponse videoLists(@PageableDefault(size = 10) Pageable pageable){
 
         System.out.println(ReflectionToStringBuilder.toString(pageable));
-
-
-        return CommonReturnType.create(videoDataService.selectVideoListsPageable(pageable));
+        VideoListDisplayInfo videoListDisplayInfo = videoDataService.selectVideoListsPageable(pageable);
+        System.out.println(videoListDisplayInfo);
+        return CommonReturnType.create(videoListDisplayInfo);
     }
 
 
     @GetMapping("/info/{id}")
-    public FeheadResponse videoInfoById(@PathVariable("id")Integer id){
+    @JsonView(VideoDetailInfo.VideoTypeView.class)
+    public FeheadResponse videoInfoById(@PathVariable("id")Integer id) throws BusinessException {
 
+        VideoDetailInfo videoDetailInfo = videoDataService.findVideoModelById(id);
 
+//        return CommonReturnType.create(videoDataService.findVideoModelById(id));
+        return videoDetailInfo;
+    }
 
+    @GetMapping("/info/{id}/comment")
+    public FeheadResponse videoComment(@PathVariable("id")Integer id) {
 
-        return CommonReturnType.create("nu");
+        return CommonReturnType.create(null);
     }
 
 }

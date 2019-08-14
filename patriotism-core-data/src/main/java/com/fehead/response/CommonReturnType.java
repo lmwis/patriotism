@@ -21,11 +21,12 @@ package com.fehead.response;
  *
  * @author Nightnessss 2019/7/8 16:07
  */
-public class CommonReturnType extends FeheadResponse{
+public class CommonReturnType implements FeheadResponse{
 
     // 返回请求处理结果
     private String status;
-
+    // 返回数据
+    Object data = null;
 
     public static CommonReturnType create(Object result) {
         return CommonReturnType.create(result, "success");

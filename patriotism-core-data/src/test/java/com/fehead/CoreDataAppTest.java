@@ -1,7 +1,5 @@
 package com.fehead;
 
-import static org.junit.Assert.assertTrue;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -18,7 +16,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,6 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test for simple CoreDataApp.
@@ -87,8 +86,17 @@ public class CoreDataAppTest
     public void whenFindVideoListsPageableSuccess() throws Exception {
         String result = mockMvc.perform(
                 MockMvcRequestBuilders.get(urlPre+"/data/video/lists")
-                .param("page","3")
-                .param("size","2"))
+                .param("page","0")
+                .param("size","10"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
+
+    @Test
+    public void whenFindVideoInfoSuccess() throws Exception {
+        String result = mockMvc.perform(
+                MockMvcRequestBuilders.get(urlPre+"/data/video/info/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);

@@ -5,11 +5,12 @@ package com.fehead.response;
  *
  * @author lmwis on 2019-07-24 12:19
  */
-public class AuthenticationReturnType extends FeheadResponse{
+public class AuthenticationReturnType implements FeheadResponse{
 
     //返回状态码
     Integer code;
-
+    // 返回数据
+    Object data = null;
 
     public static AuthenticationReturnType create(Object result,Integer code){
         AuthenticationReturnType authenticationReturnType = new AuthenticationReturnType();

@@ -36,7 +36,7 @@ public class VideoDataServiceImpl implements VideoDataService {
     TagMapper tagMapper;
 
     @Override
-    public VideoDetailInfo findVideoModelById(Integer id) throws BusinessException {
+    public VideoDetailInfo selectVideoModelById(Integer id) throws BusinessException {
 
         if(id==0){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);

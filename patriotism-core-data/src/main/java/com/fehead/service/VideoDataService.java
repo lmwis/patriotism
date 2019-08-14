@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
  */
 public interface VideoDataService {
 
-    public VideoDetailInfo findVideoModelById(Integer id) throws BusinessException;
+    public VideoDetailInfo selectVideoModelById(Integer id) throws BusinessException;
 
     public VideoDisplayInfo findVideoDisplayInfoById(Integer id) throws BusinessException;
 

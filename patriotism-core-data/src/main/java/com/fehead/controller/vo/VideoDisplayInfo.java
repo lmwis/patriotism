@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ *
+ * 视频数据项展示信息
+ *
  * @author lmwis on 2019-08-12 09:50
  */
 public class VideoDisplayInfo {

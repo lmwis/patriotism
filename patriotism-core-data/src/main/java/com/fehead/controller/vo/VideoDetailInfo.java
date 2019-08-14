@@ -6,6 +6,11 @@ import com.fehead.response.FeheadResponse;
 import java.util.Date;
 
 /**
+ *
+ * 视频详情
+ *  extend VideoDisplayInfo
+ *  implements FeheadResponse
+ *
  * 写代码 敲快乐
  * だからよ...止まるんじゃねぇぞ
  * ▏n

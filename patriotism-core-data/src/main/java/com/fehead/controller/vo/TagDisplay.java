@@ -1,6 +1,7 @@
 package com.fehead.controller.vo;
 
 /**
+ * 标签项展示
  * @author lmwis on 2019-08-12 16:08
  */
 public class TagDisplay {

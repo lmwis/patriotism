@@ -3,6 +3,7 @@ package com.fehead.controller.vo;
 import java.util.List;
 
 /**
+ * 首页列表视频类型数据项展示
  * @author lmwis on 2019-08-12 15:59
  */
 

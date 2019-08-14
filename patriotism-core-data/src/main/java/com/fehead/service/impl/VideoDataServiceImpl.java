@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fehead.controller.vo.TagDisplay;
+import com.fehead.controller.vo.VideoDetailInfo;
 import com.fehead.controller.vo.VideoDisplayInfo;
 import com.fehead.controller.vo.VideoListDisplayInfo;
 import com.fehead.dao.TagMapper;
@@ -14,7 +15,7 @@ import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.inherent.DataType;
 import com.fehead.service.VideoDataService;
-import com.fehead.service.model.VideoModel;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class VideoDataServiceImpl implements VideoDataService {
     TagMapper tagMapper;
 
     @Override
-    public VideoModel findVideoMoudleById(Integer id) throws BusinessException {
+    public VideoDetailInfo findVideoModelById(Integer id) throws BusinessException {
 
         if(id==0){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
@@ -45,11 +46,20 @@ public class VideoDataServiceImpl implements VideoDataService {
 
         Video video = videoMapper.selectById(id);
 
+
         if(video==null){//资源不存在
             throw new BusinessException(EmBusinessError.DATA_RESOURCES_NOT_EXIST);
         }
 
-        return null;
+        VideoDisplayInfo videoDisplayInfo = convertFromVideo(video);
+
+        VideoDetailInfo videoDetailInfo = new VideoDetailInfo();
+
+        BeanUtils.copyProperties(videoDisplayInfo, videoDetailInfo);
+
+        videoDetailInfo.setVideo_url(video.getVideoPath());
+
+        return videoDetailInfo;
 
     }
 
@@ -96,6 +106,33 @@ public class VideoDataServiceImpl implements VideoDataService {
         return lists;
     }
 
+//    @Override
+//    public VideoListDisplayInfo selectAllVideo() {
+//
+//        VideoListDisplayInfo lists = new VideoListDisplayInfo();
+//
+//        List<VideoDisplayInfo> videoDisplayInfos = new ArrayList<>();
+//
+//        videoMapper.selectList(null).forEach(re ->{
+//            // 获取标签信息
+//            List<Tag> tags = tagMapper.selectDataTagsByActualId(re.getVideoId());
+//            List<TagDisplay> tagDisplays = convertFromTag(tags);
+//
+//            VideoDisplayInfo videoDisplayInfo = convertFromVideo(re);
+//            videoDisplayInfo.setVideo_tags(tagDisplays);
+//
+//            videoDisplayInfos.add(videoDisplayInfo);
+//        });
+//        // 最终封装
+//        lists.setVideo_lists(videoDisplayInfos);
+//        lists.setPage(0);
+//        lists.setType_code(DataType.DATA_VIDEO.getCode());
+//        lists.setType_str(DataType.DATA_VIDEO.getStr());
+//
+//
+//        return lists;
+//    }
+
     /**
      * 将数据库的Video对象转换为表现层展示对象
      * @param video
@@ -118,6 +155,8 @@ public class VideoDataServiceImpl implements VideoDataService {
         return videoDisplayInfo;
 
     }
+
+
 
     /**
      * 将数据库Tag对象转换为表现层展示对象

@@ -5,13 +5,15 @@ import java.util.List;
 /**
  * @author lmwis on 2019-08-12 15:59
  */
-public class VideoListDisplayInfo {
+
+public class VideoListDisplayInfo{
 
     private int page;
 
     private int type_code;
 
     private String type_str;
+
 
     private List<VideoDisplayInfo> video_lists;
 
@@ -47,3 +49,4 @@ public class VideoListDisplayInfo {
         this.video_lists = video_lists;
     }
 }
+

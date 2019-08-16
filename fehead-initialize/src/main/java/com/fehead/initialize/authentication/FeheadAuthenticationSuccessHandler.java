@@ -45,7 +45,7 @@ public class FeheadAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
         redisService.remove(securityProperties.getSmsProperties().getLoginPreKeyInRedis() +
                 ((UserDetails)authentication.getPrincipal()).getUsername());
-        //如果为JSON模式，则返回JSON
+        // 如果为JSON模式，则返回JSON
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(authentication));

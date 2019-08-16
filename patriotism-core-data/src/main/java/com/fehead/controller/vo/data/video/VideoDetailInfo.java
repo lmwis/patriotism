@@ -1,4 +1,4 @@
-package com.fehead.controller.vo;
+package com.fehead.controller.vo.data.video;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fehead.response.FeheadResponse;

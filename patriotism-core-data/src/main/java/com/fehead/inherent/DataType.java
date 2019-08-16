@@ -5,13 +5,16 @@ package com.fehead.inherent;
  */
 public enum DataType {
 
-    DATA_VIDEO(102,"视频"),
-    DATA_ARTICLE(101,"文章");
+    DATA_ARTICLE(1,101,"文章"),
+    DATA_VIDEO(2,102,"视频");
 
+
+    private int id;
     private int code;
     private String str;
 
-    DataType(int code, String str) {
+    DataType(int id,int code, String str) {
+        this.id = id;
         this.code = code;
         this.str = str;
     }
@@ -30,5 +33,13 @@ public enum DataType {
 
     public void setStr(String str) {
         this.str = str;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -50,6 +50,7 @@ public enum EmBusinessError implements CommonError {
 
     // 50000 开头为数据资源相关错误
     DATA_RESOURCES_NOT_EXIST(50001,"资源不存在"),
+    DATA_RESOURCES_TYPE_WRONG(50002,"资源类型错误"),
 
     // 90000 开头为用户认证相关错误
     SERVICE_REQUIRE_AUTHENTICATION(90001,"访问的服务需要身份认证"),

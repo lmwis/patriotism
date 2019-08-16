@@ -3,6 +3,8 @@ package com.fehead.dao.dataobject;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.util.Date;
+
 /**
  * @author lmwis
  * @description:
@@ -23,6 +25,8 @@ public class Comment {
     private String content;
 
     private int likeNum;
+
+    private Date datetime;
 
     public int getId() {
         return id;
@@ -62,5 +66,13 @@ public class Comment {
 
     public void setLikeNum(int likeNum) {
         this.likeNum = likeNum;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
     }
 }

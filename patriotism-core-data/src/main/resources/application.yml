@@ -10,7 +10,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 #    &autoReconnect=true&failOverReadOnly=false
-    url: jdbc:mysql://10.111.144.242:3306/patriotism?useSSL=false
+    url: jdbc:mysql://10.111.144.242:3306/patriotism?useSSL=false&useUnicode=true&characterEncoding=utf-8
     username: root
     password: mysqladmin
     name: patriotism

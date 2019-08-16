@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fehead.controller.vo.TagDisplay;
-import com.fehead.controller.vo.VideoDetailInfo;
-import com.fehead.controller.vo.VideoDisplayInfo;
-import com.fehead.controller.vo.VideoListDisplayInfo;
+import com.fehead.controller.vo.data.video.VideoDetailInfo;
+import com.fehead.controller.vo.data.video.VideoDisplayInfo;
+import com.fehead.controller.vo.data.video.VideoListDisplayInfo;
 import com.fehead.dao.TagMapper;
 import com.fehead.dao.VideoMapper;
 import com.fehead.dao.dataobject.Tag;
@@ -27,7 +27,7 @@ import java.util.List;
  * @author lmwis on 2019-08-12 09:42
  */
 @Service
-public class VideoDataServiceImpl implements VideoDataService {
+public class VideoDataServiceImpl extends BaseDataService implements VideoDataService{
 
     @Autowired
     VideoMapper videoMapper;
@@ -35,6 +35,12 @@ public class VideoDataServiceImpl implements VideoDataService {
     @Autowired
     TagMapper tagMapper;
 
+    /**
+     * 查询详细video信息
+     * @param id
+     * @return
+     * @throws BusinessException
+     */
     @Override
     public VideoDetailInfo selectVideoModelById(Integer id) throws BusinessException {
 
@@ -68,6 +74,12 @@ public class VideoDataServiceImpl implements VideoDataService {
         return null;
     }
 
+    /**
+     * 查询video列表展示
+     *  物理分页
+     * @param pageable
+     * @return
+     */
     @Override
     public VideoListDisplayInfo selectVideoListsPageable(Pageable pageable) {
 
@@ -87,7 +99,7 @@ public class VideoDataServiceImpl implements VideoDataService {
         List<VideoDisplayInfo> videoDisplayInfos = new ArrayList<>();
         videoIPage.getRecords().forEach(re->{
             // 获取标签信息
-            List<Tag> tags = tagMapper.selectDataTagsByActualId(re.getVideoId());
+            List<Tag> tags = tagMapper.selectDataTagsByActualIdAndTypeId(re.getVideoId(),DataType.DATA_VIDEO.getId());
             List<TagDisplay> tagDisplays = convertFromTag(tags);
 
             VideoDisplayInfo videoDisplayInfo = convertFromVideo(re);
@@ -157,27 +169,4 @@ public class VideoDataServiceImpl implements VideoDataService {
     }
 
 
-
-    /**
-     * 将数据库Tag对象转换为表现层展示对象
-     * @param tag
-     * @return
-     */
-    private List<TagDisplay> convertFromTag(List<Tag> tag){
-        if (tag==null||tag.size()==0) return null;
-
-        List<TagDisplay> tags = new ArrayList<>();
-
-        for (Tag t : tag) {
-            TagDisplay tagDisplay = new TagDisplay();
-            tagDisplay.setTag_code(t.getCode());
-            tagDisplay.setTag_str(t.getStr());
-
-            tags.add(tagDisplay);
-        }
-
-
-        return tags;
-
-    }
 }

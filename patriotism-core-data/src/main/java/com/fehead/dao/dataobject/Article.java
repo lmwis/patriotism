@@ -2,6 +2,7 @@ package com.fehead.dao.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fehead.dao.Data;
 
 import java.util.Date;
 
@@ -10,20 +11,11 @@ import java.util.Date;
  */
 
 @TableName("article_info")
-public class Article {
+public class Article extends Data {
 
     @TableId("id")
     private int articleId;
 
-    private String title;
-
-    private String des;
-
-    private String imageUrl;
-
-    private String author;
-
-    private Date datetime;
 
     //据说64的jvm中 string能存2G文本
     private String context;
@@ -34,46 +26,6 @@ public class Article {
 
     public void setArticleId(int articleId) {
         this.articleId = articleId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDes() {
-        return des;
-    }
-
-    public void setDes(String des) {
-        this.des = des;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Date getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
     }
 
     public String getContext() {

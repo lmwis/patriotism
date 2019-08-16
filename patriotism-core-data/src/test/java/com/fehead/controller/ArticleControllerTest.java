@@ -13,11 +13,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * @author lmwis on 2019-08-14 19:35
+ * @author lmwis
+ * @description:
+ * @date 2019-08-16 16:09
+ * @Version 1.0
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VideoControllerTest {
+public class ArticleControllerTest {
 
     @Autowired
     WebApplicationContext applicationContext;
@@ -37,42 +40,27 @@ public class VideoControllerTest {
      * @throws Exception
      */
     @Test
-    public void whenFindVideoListsPageableSuccess() throws Exception {
+    public void whenFindArticleListsPageableSuccess() throws Exception {
         String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/lists")
-                        .param("page","3")
-                        .param("size","2"))
+                MockMvcRequestBuilders.get(urlPre+"/data/article/lists")
+                        .param("page","1")
+                        .param("size","1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);
     }
 
     /**
-     * 按照id请求video
+     * 获取article详细信息
      * @throws Exception
      */
     @Test
-    public void whenFindVideoInfoSuccess() throws Exception {
+    public void whenFindArticleDetailInfoSuccess() throws Exception {
         String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/info/1"))
+                MockMvcRequestBuilders.get(urlPre+"/data/article/info/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
-    }
 
-    /**
-     * 按id请求video的评论信息
-     *  内存分页
-     * @throws Exception
-     */
-    @Test
-    public void whenFindVideoCommentsPageableSuccess() throws Exception {
-        String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/info/1/comment")
-                .param("size","2")
-                .param("page","1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
         System.out.println(result);
     }
 }

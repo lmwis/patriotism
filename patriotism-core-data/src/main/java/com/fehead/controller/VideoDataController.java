@@ -1,8 +1,8 @@
 package com.fehead.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fehead.controller.vo.VideoDetailInfo;
-import com.fehead.controller.vo.VideoListDisplayInfo;
+import com.fehead.controller.vo.data.video.VideoDetailInfo;
+import com.fehead.controller.vo.data.video.VideoListDisplayInfo;
 import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.response.CommonReturnType;
@@ -44,7 +44,7 @@ public class VideoDataController {
      * @return
      */
     @GetMapping("/lists")
-    public FeheadResponse videoLists(@PageableDefault(size = 10) Pageable pageable){
+    public FeheadResponse videoList(@PageableDefault(size = 10) Pageable pageable){
 
         System.out.println(ReflectionToStringBuilder.toString(pageable));
         VideoListDisplayInfo videoListDisplayInfo = videoDataService.selectVideoListsPageable(pageable);
@@ -75,6 +75,7 @@ public class VideoDataController {
 
     /**
      * 根据id请求video的评论信息
+     *  手动内存分页
      * @param id actual id
      * @param pageable
      * @return
@@ -87,7 +88,7 @@ public class VideoDataController {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;
         }
 
-        return CommonReturnType.create(commentService.selectCommentByActualId(id,pageable));
+        return CommonReturnType.create(commentService.selectVideoCommentByActualId(id,pageable));
     }
 
 }

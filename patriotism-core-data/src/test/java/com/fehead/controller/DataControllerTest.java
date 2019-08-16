@@ -13,11 +13,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * @author lmwis on 2019-08-14 19:35
+ * @author lmwis
+ * @description:
+ * @date 2019-08-16 15:26
+ * @Version 1.0
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VideoControllerTest {
+public class DataControllerTest {
 
     @Autowired
     WebApplicationContext applicationContext;
@@ -37,10 +40,10 @@ public class VideoControllerTest {
      * @throws Exception
      */
     @Test
-    public void whenFindVideoListsPageableSuccess() throws Exception {
+    public void whenFindArticleListsPageableSuccess() throws Exception {
         String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/lists")
-                        .param("page","3")
+                MockMvcRequestBuilders.get(urlPre+"/data/lists")
+                        .param("page","5")
                         .param("size","2"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
@@ -48,31 +51,32 @@ public class VideoControllerTest {
     }
 
     /**
-     * 按照id请求video
+     * 进行评论
      * @throws Exception
      */
     @Test
-    public void whenFindVideoInfoSuccess() throws Exception {
-        String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/info/1"))
+    public void whenDoCommentByDataIdSuccess() throws Exception {
+        String result = mockMvc.perform(MockMvcRequestBuilders
+                .post(urlPre+"/data/info/1/comment")
+                .param("user_id","14")
+                .param("comment_content","新创建的评论"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(result);
+    }
+
+    /**
+     * 根据dataId获取该数据类型
+     * @throws Exception
+     */
+    @Test
+    public void whenFindTypeByDataIdSuccess() throws Exception {
+        String result = mockMvc.perform(MockMvcRequestBuilders
+                .get(urlPre+"/data/info/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);
     }
 
-    /**
-     * 按id请求video的评论信息
-     *  内存分页
-     * @throws Exception
-     */
-    @Test
-    public void whenFindVideoCommentsPageableSuccess() throws Exception {
-        String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/video/info/1/comment")
-                .param("size","2")
-                .param("page","1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
-    }
 }

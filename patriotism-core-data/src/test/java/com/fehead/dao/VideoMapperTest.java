@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fehead.dao.dataobject.Comment;
 import com.fehead.dao.dataobject.Tag;
 import com.fehead.dao.dataobject.Video;
+import com.fehead.inherent.DataType;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -75,11 +76,11 @@ public class VideoMapperTest {
 
 
     /**
-     * 通过实际id数据项查询所包含标签
+     * 通过实际id数据和dataType id项查询所包含标签
      */
     @Test
     public void whenSelectByMuliTables(){
-        List<Tag> tags = tagMapper.selectDataTagsByActualId(1);
+        List<Tag> tags = tagMapper.selectDataTagsByActualIdAndTypeId(1,2);
         Assert.assertEquals(tags.size(),2);
         tags.forEach(k->{
             System.out.println(new ReflectionToStringBuilder(k));
@@ -102,7 +103,7 @@ public class VideoMapperTest {
     }
 
     /**
-     * 评论查询分页
+     * video评论查询分页
      */
     @Test
     public void whenSelectCommentsPageable(){
@@ -114,15 +115,8 @@ public class VideoMapperTest {
         // 默认按照创建时间进行排序，无修改必要
 //        queryWrapper.orderByDesc("datetime");
 
-        queryWrapper.eq("data_id","").inSql("data_id","select" +
-                " id from data_collect where actual_id="+id);
-
-        // 分页设置
-        Page<Comment> page = new Page<>(pageable.getPageNumber(),pageable.getPageSize());
-        // 分页结果
-        IPage<Comment> commentIPage = commentMapper.selectPage(page, queryWrapper);
-        commentIPage.getRecords().forEach(k->{
-            System.out.println(new ReflectionToStringBuilder(k));
-        });
+       commentMapper.selectDataCommentsByActualIdAndTypeId(id, DataType.DATA_VIDEO.getId()).forEach(k->{
+           System.out.println(new ReflectionToStringBuilder(k));
+       });
     }
 }

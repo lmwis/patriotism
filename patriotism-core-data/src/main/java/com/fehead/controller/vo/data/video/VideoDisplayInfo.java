@@ -1,4 +1,6 @@
-package com.fehead.controller.vo;
+package com.fehead.controller.vo.data.video;
+
+import com.fehead.controller.vo.TagDisplay;
 
 import java.util.Date;
 import java.util.List;

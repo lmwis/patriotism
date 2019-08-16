@@ -1,7 +1,9 @@
 package com.fehead.service;
 
 import com.fehead.controller.vo.CommentDisplayInfo;
+import com.fehead.controller.vo.UserDisplayInfo;
 import com.fehead.error.BusinessException;
+import com.fehead.inherent.DataType;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -14,5 +16,11 @@ import java.util.List;
  */
 public interface CommentService {
 
-    List<CommentDisplayInfo> selectCommentByActualId(Integer id, Pageable pageable) throws BusinessException;
+    List<CommentDisplayInfo> selectCommentByActualIdAndDataType(Integer id, Pageable pageable, DataType dataType) throws BusinessException;
+
+    List<CommentDisplayInfo> selectVideoCommentByActualId(Integer id, Pageable pageable) throws BusinessException;
+
+    List<CommentDisplayInfo> selectArticleCommentByActualId(Integer id, Pageable pageable) throws BusinessException;
+
+    UserDisplayInfo addCommentByDataId(int dataId, CommentDisplayInfo commentDisplayInfo) throws BusinessException;
 }

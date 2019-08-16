@@ -11,6 +11,10 @@ public class UserDO {
 
     private String thirdPartyId;
 
+    private String avatar;
+
+    private String displayName;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +53,21 @@ public class UserDO {
 
     public void setThirdPartyId(String thirdPartyId) {
         this.thirdPartyId = thirdPartyId == null ? null : thirdPartyId.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName == null ? null : displayName.trim();
     }
 }

@@ -49,6 +49,10 @@ public class SmsControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
+    /**
+     * 测试发送手机验证码
+     * @throws Exception
+     */
     @Test
     public void sendSms() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1.0/sys/sms/send")
@@ -60,11 +64,15 @@ public class SmsControllerTest {
         System.out.println(result);
     }
 
+    /**
+     * 验证手机验证码是否正确
+     * @throws Exception
+     */
     @Test
     public void validateSms() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/api/v1.0/sys/sms/validate")
                 .param("tel", "17772726977")
-                .param("code", "893145")
+                .param("code", "655268")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();

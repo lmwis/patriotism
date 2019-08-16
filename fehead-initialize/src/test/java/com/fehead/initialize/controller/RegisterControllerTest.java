@@ -55,9 +55,10 @@ public class RegisterControllerTest {
     @Test
     public void registerByTelphone() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1.0/user/register/tel")
-                .param("tel", "17772726977")
+                .param("tel", "17777777777")
                 .param("password", "123456")
-                .param("sms_key", "$2a$10$ztF/Pj2THdzmPy26KMeKEesAYV9sY8x8milMTAOxJixoCIL112kmC")
+                .param("sms_key", "$2a$10$boK..UGoh6RrcUECgR/eFeyICjq64M1lmAc6zH1sr0nUPwkFf9AgS")
+                .param("display_name", "二蛋")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();

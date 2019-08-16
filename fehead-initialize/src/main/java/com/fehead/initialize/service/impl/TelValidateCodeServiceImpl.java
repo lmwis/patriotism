@@ -72,7 +72,7 @@ public class TelValidateCodeServiceImpl implements TelValidateCodeService {
         logger.info(securityProperties.getSmsProperties().getSmsModel().get(0).getDes());
 
         smsCode.encode(passwordEncoder);
-        redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
+        redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(30*60));
         logger.info(smsCode.getCode());
 
         logger.info("此处模拟发送短信");

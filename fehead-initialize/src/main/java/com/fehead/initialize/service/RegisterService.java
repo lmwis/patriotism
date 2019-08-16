@@ -25,7 +25,7 @@ import com.fehead.initialize.error.BusinessException;
  */
 public interface RegisterService {
 
-    public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException;
+    public void registerByTelphone(String telphoneInRequest, String password, String displayName) throws BusinessException;
 
     public void registerByEmail(String email, String password) throws BusinessException;
 

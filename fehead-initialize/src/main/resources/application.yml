@@ -68,7 +68,7 @@ security:
 fehead:
   initialize:
     browser:
-      telParameter: tele
+      telParameter: tel
       sendOtpCode: /send/otpCode
       formLoginUrl: /api/v1.0/user/login/tel
       otpLoginUrl: /api/v1.0/user/login/sms
@@ -83,5 +83,7 @@ fehead:
       smsNumber: 6
     sendEmailProperties:
       fromAddress: 1948730080@qq.com
+
+
 
 

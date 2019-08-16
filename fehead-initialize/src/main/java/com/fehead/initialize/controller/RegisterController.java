@@ -68,8 +68,13 @@ public class RegisterController extends BaseController {
     @PostMapping("/tel")
     public FeheadResponse register(HttpServletRequest request, HttpServletResponse response) throws ServletRequestBindingException, BusinessException {
         String telphoneInRequest = request.getParameter("tel");
+        logger.info("PARAM tel:" + telphoneInRequest);
         String smsKey = request.getParameter("sms_key");
+        logger.info("PARAM sms_key:" + smsKey);
         String password = request.getParameter("password");
+        logger.info("PARAM password:" + password);
+        String displayName = request.getParameter("display_name");
+        logger.info("PARAM display_name:" + displayName);
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphoneInRequest)) {
             logger.info("手机号不合法");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号不合法");
@@ -78,10 +83,14 @@ public class RegisterController extends BaseController {
             logger.info("密码为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码为空");
         }
+        if (displayName.isEmpty()) {
+            logger.info("昵称为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "昵称为空");
+        }
         if (redisService.exists("sms_key_" + telphoneInRequest)) {
             if (redisService.get("sms_key_" + telphoneInRequest).equals(smsKey)) {
                 redisService.remove("sms_key_" + telphoneInRequest);
-                registerService.registerByTelphone(telphoneInRequest, password);
+                registerService.registerByTelphone(telphoneInRequest, password, displayName);
             } else {
                 logger.info("操作不合法");
                 throw new BusinessException(EmBusinessError.OPERATION_ILLEGAL);
@@ -91,8 +100,7 @@ public class RegisterController extends BaseController {
             throw new BusinessException(EmBusinessError.OPERATION_ILLEGAL);
         }
 
-        logger.info("用户： " + telphoneInRequest);
-        return CommonReturnType.create(null);
+        return CommonReturnType.create("注册成功");
     }
 
     @PostMapping("/email")

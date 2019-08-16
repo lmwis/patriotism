@@ -109,7 +109,7 @@ public class MailController extends BaseController {
         if (eMailService.validateEmailCode(address,code)) {
             smsKey = passwordEncoder.encode(address);
             logger.info("密钥：" + smsKey);
-            redisService.set("sms_key_"+ address, smsKey, new Long(300));
+            redisService.set("sms_key_"+ address, smsKey, new Long(30*60));
         } else {
             logger.info("验证码不匹配");
             throw new BusinessException(EmBusinessError.SMS_ILLEGAL);

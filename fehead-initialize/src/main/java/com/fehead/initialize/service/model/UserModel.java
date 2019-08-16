@@ -27,6 +27,9 @@ public class UserModel {
     private String email;
     private String registerMode;
     private String thirdPartyId;
+    private String avatar;
+    private String displayName;
+
 
     private String encrptPassword;
 
@@ -68,6 +71,22 @@ public class UserModel {
 
     public void setThirdPartyId(String thirdPartyId) {
         this.thirdPartyId = thirdPartyId;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getEncrptPassword() {

@@ -84,6 +84,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
+                // 添加自己配置的CORSFilter
+                .addFilterBefore(new CORSFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
 //                .apply(feheadWebSecurityConfig)
 //                .and()
@@ -101,6 +103,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1.0/sys/email/send",
                         "/api/v1.0/sys/email/validate",
                         "/api/v1.0/sys/sms/send",
+                        "/api/v1.0/sys/sms/validate",
+                        "/api/v1.0/user/register/tel",
                         "/email_validate.html").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").permitAll()
@@ -114,6 +118,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 //所有注册相关接口对外开放
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/sms/**").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

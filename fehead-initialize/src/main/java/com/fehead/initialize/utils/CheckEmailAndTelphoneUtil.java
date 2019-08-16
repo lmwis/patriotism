@@ -58,7 +58,6 @@ public class CheckEmailAndTelphoneUtil {
             Matcher matcher = regex.matcher(Telphone);
             flag = matcher.matches();
         } catch (Exception e) {
-            e.printStackTrace();
             flag = false;
 
         }

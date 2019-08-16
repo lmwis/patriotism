@@ -25,7 +25,7 @@ import com.fehead.initialize.error.BusinessException;
  */
 public interface SmsService {
 
-    public boolean check(String telphone) throws BusinessException;
+    public boolean check(String key) throws BusinessException;
 
     public void send(String telphone, Integer modelId) throws BusinessException;
 }

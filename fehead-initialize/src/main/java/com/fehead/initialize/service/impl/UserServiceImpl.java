@@ -80,6 +80,10 @@ public class UserServiceImpl implements UserService {
             logger.info("密码不能为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
         }
+        if (StringUtils.isEmpty(userModel.getDisplayName())) {
+            logger.info("昵称不能为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "昵称不能为空");
+        }
         // userModel -> userDO
         UserDO userDO = convertFromModel(userModel);
         try {

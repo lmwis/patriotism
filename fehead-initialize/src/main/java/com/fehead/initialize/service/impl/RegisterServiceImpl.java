@@ -59,11 +59,12 @@ public class RegisterServiceImpl implements RegisterService {
 
 
     @Override
-    public void registerByTelphone(String telphoneInRequest, String password) throws BusinessException {
+    public void registerByTelphone(String telphoneInRequest, String password, String displayName) throws BusinessException {
         UserModel userModel = new UserModel();
         userModel.setTelphone(telphoneInRequest);
         userModel.setRegisterMode("byTelphone");
         userModel.setEncrptPassword(passwordEncoder.encode(password));
+        userModel.setDisplayName(displayName);
         userService.register(userModel);
     }
 
@@ -105,7 +106,7 @@ public class RegisterServiceImpl implements RegisterService {
             throw new BusinessException(EmBusinessError.SMS_ILLEGAL);
         }
 
-        redisService.remove(telphoneInRequest);
+        redisService.remove(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphoneInRequest);
 
 
         return true;

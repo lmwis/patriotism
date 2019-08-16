@@ -48,6 +48,10 @@ public class LoginControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
+    /**
+     * 通过手机验证码登录
+     * @throws Exception
+     */
     @Test
     public void loginBySms() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/loginByOtp")

@@ -52,11 +52,11 @@ public class SmsServiceImpl implements SmsService {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public boolean check(String telphone) throws BusinessException {
+    public boolean check(String key) throws BusinessException {
 
         boolean result = false;
         // 检查验证码在60秒内是否已经发送
-        if (redisService.exists(telphone)) {
+        if (redisService.exists(key)) {
             result = true;
         }
 
@@ -84,10 +84,10 @@ public class SmsServiceImpl implements SmsService {
 //                String key = passwordEncoder.encode(telphone);
 //                logger.info("sms_key: " + key);
 //                redisService.set("sms_key_" + telphone, key, new Long(300));
-                redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
+                redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(30*60));
                 break;
             case 1:
-                redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(300));
+                redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(30*60));
                 break;
             default:
                 break;

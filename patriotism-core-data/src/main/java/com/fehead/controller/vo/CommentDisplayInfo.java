@@ -1,5 +1,7 @@
 package com.fehead.controller.vo;
 
+import java.util.Date;
+
 /**
  * @author lmwis
  * @description:
@@ -15,6 +17,8 @@ public class CommentDisplayInfo {
     private String user_name;
 
     private String comment_content;
+
+    private Date datetime;
 
     private int like_num;
 
@@ -48,6 +52,14 @@ public class CommentDisplayInfo {
 
     public void setComment_content(String comment_content) {
         this.comment_content = comment_content;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
     }
 
     public int getLike_num() {

@@ -8,13 +8,11 @@ import com.fehead.error.EmBusinessError;
 import com.fehead.response.CommonReturnType;
 import com.fehead.response.FeheadResponse;
 import com.fehead.service.ArticleDataService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author lmwis
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1/data/article")
+@CrossOrigin("*")
 public class ArticleController extends BaseController {
 
     @Autowired
@@ -54,13 +53,13 @@ public class ArticleController extends BaseController {
      */
     @GetMapping("/info/{id}")
     @JsonView(ArticleDetailInfo.ArticleTypeView.class)
-    public FeheadResponse videoInfoById(@PathVariable("id")Integer id) throws BusinessException {
+    public FeheadResponse videoInfoById(@PathVariable("id")String id) throws BusinessException {
 
-        if(id==0){
+        if(id.equals(0)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;
         }
 
-        ArticleDetailInfo articleDetailInfo = articleDataService.selectArticleModelById(id);
+        ArticleDetailInfo    articleDetailInfo = articleDataService.selectArticleModelById(new Integer(id));
 
 //        return CommonReturnType.create(videoDataService.findVideoModelById(id));
         return articleDetailInfo;

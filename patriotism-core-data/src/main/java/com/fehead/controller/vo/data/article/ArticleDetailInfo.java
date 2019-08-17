@@ -1,7 +1,6 @@
 package com.fehead.controller.vo.data.article;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fehead.controller.vo.data.video.VideoDisplayInfo;
 import com.fehead.response.FeheadResponse;
 
 import java.util.Date;

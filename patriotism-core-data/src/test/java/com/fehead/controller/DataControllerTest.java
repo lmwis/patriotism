@@ -73,7 +73,22 @@ public class DataControllerTest {
     @Test
     public void whenFindTypeByDataIdSuccess() throws Exception {
         String result = mockMvc.perform(MockMvcRequestBuilders
-                .get(urlPre+"/data/info/1"))
+                .get(urlPre+"/data/info/2"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
+
+
+    /**
+     * 根据comment_id和user_id进行点赞或取消
+     * @throws Exception
+     */
+    @Test
+    public void whenLikeCommentSuccess() throws Exception {
+        String result = mockMvc.perform(MockMvcRequestBuilders
+                .put(urlPre+"/data/info/2/comment")
+                .param("user_id", "2"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
         System.out.println(result);

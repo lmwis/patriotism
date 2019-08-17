@@ -2,6 +2,7 @@ package com.fehead.service;
 
 import com.fehead.controller.vo.CommentDisplayInfo;
 import com.fehead.controller.vo.UserDisplayInfo;
+import com.fehead.dao.dataobject.IfLike;
 import com.fehead.error.BusinessException;
 import com.fehead.inherent.DataType;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +23,9 @@ public interface CommentService {
 
     List<CommentDisplayInfo> selectArticleCommentByActualId(Integer id, Pageable pageable) throws BusinessException;
 
+    List<CommentDisplayInfo> selectCommentByDataId(Integer id, Pageable pageable) throws BusinessException;
+
     UserDisplayInfo addCommentByDataId(int dataId, CommentDisplayInfo commentDisplayInfo) throws BusinessException;
+
+    IfLike clickLike(int userId, int commentId) throws BusinessException;
 }

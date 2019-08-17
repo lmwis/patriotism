@@ -10,6 +10,8 @@ public class DataTypeInfo {
 
     private int id;
 
+    private int actual_id;
+
     private int type_code;
 
     private String type_str;
@@ -36,5 +38,13 @@ public class DataTypeInfo {
 
     public void setType_str(String type_str) {
         this.type_str = type_str;
+    }
+
+    public int getActual_id() {
+        return actual_id;
+    }
+
+    public void setActual_id(int actual_id) {
+        this.actual_id = actual_id;
     }
 }

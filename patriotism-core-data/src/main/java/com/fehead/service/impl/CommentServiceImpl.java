@@ -4,15 +4,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fehead.controller.vo.CommentDisplayInfo;
 import com.fehead.controller.vo.UserDisplayInfo;
 import com.fehead.dao.CommentMapper;
+import com.fehead.dao.IfLikeMapper;
 import com.fehead.dao.dataobject.Data;
 import com.fehead.dao.DataMapper;
 import com.fehead.dao.UserMapper;
 import com.fehead.dao.dataobject.Comment;
+import com.fehead.dao.dataobject.IfLike;
 import com.fehead.dao.dataobject.User;
 import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.inherent.DataType;
 import com.fehead.service.CommentService;
+import com.fehead.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -39,6 +42,21 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     DataMapper dataMapper;
 
+    @Autowired
+    IfLikeMapper LIfLikeMapper;
+
+    @Autowired
+    DataServiceImpl dataService;
+
+    /**
+     * 通过dataId和typeId获取评论信息
+     *  内存分页
+     * @param id
+     * @param pageable
+     * @param dataType
+     * @return
+     * @throws BusinessException
+     */
     @Override
     public List<CommentDisplayInfo> selectCommentByActualIdAndDataType(Integer id, Pageable pageable,DataType dataType) throws BusinessException {
 
@@ -72,6 +90,7 @@ public class CommentServiceImpl implements CommentService {
             commentDisplayInfo.setUser_avatar(user.getAvatar());
             commentDisplayInfo.setUser_id(user.getId());
             commentDisplayInfo.setUser_name(user.getDisplayName());
+            commentDisplayInfo.setDatetime(k.getDatetime());
             commentDisplayInfoList.add(commentDisplayInfo);
         });
 
@@ -89,6 +108,14 @@ public class CommentServiceImpl implements CommentService {
     public List<CommentDisplayInfo> selectArticleCommentByActualId(Integer id, Pageable pageable) throws BusinessException {
 
         return this.selectCommentByActualIdAndDataType(id,pageable,DataType.DATA_ARTICLE);
+    }
+
+    @Override
+    public List<CommentDisplayInfo> selectCommentByDataId(Integer id, Pageable pageable) throws BusinessException {
+
+        Data data = dataMapper.selectById(id);
+
+        return this.selectCommentByActualIdAndDataType(data.getActualId(),pageable,dataService.getType(data.getTypeId()));
     }
 
     /**
@@ -123,6 +150,53 @@ public class CommentServiceImpl implements CommentService {
         User user = userMapper.selectById(commentDisplayInfo.getUser_id());
 
         return convertFromDO(user);
+
+    }
+
+    @Override
+    public IfLike clickLike(int userId, int commentId) throws BusinessException {
+
+//
+//        try {
+//            comment = commentMapper.selectById(commentId);
+//        } catch (Exception e) {
+//            throw new BusinessException(EmBusinessError.DATA_RESOURCES_NOT_EXIST, "Comment selectById error");
+//        }
+
+        IfLike ifLike = new IfLike();
+
+
+        ifLike = LIfLikeMapper.selectLikeByUserIdAndCommentId(userId, commentId);
+
+        if (ifLike == null) {
+//            ifLike.setUserId(userId);
+//            ifLike.setCommentId(commentId);
+//            ifLike.setIsLike(1);
+//            ifLike.setUpdateTime(new Date());
+            ifLike = new IfLike(userId, commentId, 0, new Date());
+            LIfLikeMapper.insert(ifLike);
+        }
+        if (ifLike.getIsLike() == 0) {
+            try {
+                commentMapper.like(commentId);
+                LIfLikeMapper.good(userId, commentId);
+            } catch (Exception e) {
+                throw new BusinessException(EmBusinessError.DATARESOURCE_CONNECT_FAILURE);
+            }
+
+        } else if (ifLike.getIsLike() == 1) {
+            try {
+                commentMapper.dislike(commentId);
+                LIfLikeMapper.cancel(userId, commentId);
+            } catch (Exception e) {
+                throw new BusinessException(EmBusinessError.DATARESOURCE_CONNECT_FAILURE);
+            }
+
+        } else {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+
+        return ifLike;
 
     }
 

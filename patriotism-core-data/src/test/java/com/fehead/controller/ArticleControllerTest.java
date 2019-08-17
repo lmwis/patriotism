@@ -57,7 +57,7 @@ public class ArticleControllerTest {
     @Test
     public void whenFindArticleDetailInfoSuccess() throws Exception {
         String result = mockMvc.perform(
-                MockMvcRequestBuilders.get(urlPre+"/data/article/info/1"))
+                MockMvcRequestBuilders.get(urlPre+"/data/article/info/4"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
 

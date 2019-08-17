@@ -52,6 +52,11 @@ public class DataServiceImpl extends BaseDataService implements DataService {
     @Autowired
     ArticleMapper articleMapper;
 
+    /**
+     * 根据id获取信息
+     * @param dataId
+     * @return
+     */
     @Override
     public DataTypeInfo selectDataTypeInfoById(int dataId) {
 
@@ -60,6 +65,13 @@ public class DataServiceImpl extends BaseDataService implements DataService {
         return dataTypeInfo;
     }
 
+    /**
+     * 查询dataList信息
+     *  物理分页
+     * @param pageable
+     * @return
+     * @throws BusinessException
+     */
     @Override
     public DataListDisplayInfo selectDataListsPageable(Pageable pageable) throws BusinessException {
 
@@ -115,7 +127,7 @@ public class DataServiceImpl extends BaseDataService implements DataService {
      * @return
      * @throws BusinessException
      */
-    private DataType getType(int typeId) throws BusinessException {
+    protected DataType getType(int typeId) throws BusinessException {
 
         if( typeId ==0) return null;
 

@@ -7,6 +7,7 @@ import com.fehead.dao.dataobject.Data;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.type.JdbcType;
 
 /**
@@ -19,6 +20,7 @@ public interface DataMapper extends BaseMapper<Data> {
 
     @Results(value = {
             @Result(id = true,column="id",property = "id"),
+            @Result(column="actual_id",property = "actual_id"),
             @Result(column = "code",property = "type_code"),
             @Result(column = "str",property = "type_str")}
     )

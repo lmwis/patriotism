@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fehead.dao.dataobject.Comment;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -20,4 +21,15 @@ public interface CommentMapper extends BaseMapper<Comment> {
             "data_id=(select id from data_collect " +
             "where actual_id=#{id} and type_id=#{typeId}) order by datetime desc")
     public List<Comment> selectDataCommentsByActualIdAndTypeId(@Param("id") int id, @Param("typeId")int typeId);
+
+    @Update("update comment_info " +
+            "set like_num=like_num+1 " +
+            "where id=#{id}")
+    public void like(@Param("id") int id);
+
+    @Update("update comment_info " +
+            "set like_num=like_num-1 " +
+            "where id=#{id}")
+    public void dislike(@Param("id") int id);
+
 }

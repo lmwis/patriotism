@@ -3,6 +3,9 @@ package com.fehead.controller;
 import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.response.CommonReturnType;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,6 +39,8 @@ import java.util.Map;
  */
 public class BaseController {
 
+    Logger logger = LoggerFactory.getLogger(BaseController.class);
+
     public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";
 
     // 定义exceptionHandler来解决controller层中未被吸收的exception
@@ -48,15 +53,16 @@ public class BaseController {
             BusinessException businessException = (BusinessException)ex;
             responseData.put("errorCode", businessException.getErrorCode());
             responseData.put("errorMsg", businessException.getErrorMsg());
-            System.out.println(responseData);
+
+            logger.info(new ReflectionToStringBuilder(responseData).toString());
         } else if(ex instanceof DataAccessException){ //数据库连接错误
             responseData.put("errorCode", EmBusinessError.DATARESOURCE_CONNECT_FAILURE.getErrorCode());
             responseData.put("errorMsg", EmBusinessError.DATARESOURCE_CONNECT_FAILURE.getErrorMsg());
-            System.out.println(responseData);
+            logger.info(new ReflectionToStringBuilder(responseData).toString());
         }else{
             responseData.put("errorCode", EmBusinessError.UNKNOWN_ERROR.getErrorCode());
             responseData.put("errorMsg", EmBusinessError.UNKNOWN_ERROR.getErrorMsg());
-            System.out.println(responseData);
+            logger.info(new ReflectionToStringBuilder(responseData).toString());
         }
 
         return CommonReturnType.create(responseData,"fail");

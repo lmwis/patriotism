@@ -28,7 +28,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/data/")
-public class DataController {
+@CrossOrigin("*")
+public class DataController extends BaseController {
 
     @Autowired
     CommentService commentService;
@@ -80,5 +81,35 @@ public class DataController {
         DataListDisplayInfo dataListDisplayInfo = dataService.selectDataListsPageable(pageable);
 
         return CommonReturnType.create(dataListDisplayInfo);
+    }
+
+    /**
+     * 用户对评论点赞或取消点赞
+     * @param id
+     * @param userId
+     * @return
+     * @throws BusinessException
+     */
+    @PutMapping("/info/{id}/comment")
+    public FeheadResponse likeComment(@PathVariable int id
+            ,@RequestParam("user_id")int userId) throws BusinessException {
+
+
+        commentService.clickLike(userId, id);
+        return CommonReturnType.create("success");
+    }
+
+    /**
+     * 获取评论分页列表
+     * @param id
+     * @param pageable
+     * @return
+     * @throws BusinessException
+     */
+    @GetMapping("/info/{id}/comment")
+    public FeheadResponse commentList(@PathVariable int id
+            ,@PageableDefault(size = 6,page = 1) Pageable pageable) throws BusinessException {
+
+        return CommonReturnType.create(commentService.selectCommentByDataId(id,pageable));
     }
 }

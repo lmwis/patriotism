@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -98,7 +97,7 @@ public class MailController extends BaseController {
     }
 
     //我觉得此时安全性并不是很重要所以选择了速度快的get请求
-    @PutMapping("/validate")
+    @PostMapping("/validate")
     public FeheadResponse validateEmailCode(String address,String code) throws BusinessException {
 
         String smsKey = "";

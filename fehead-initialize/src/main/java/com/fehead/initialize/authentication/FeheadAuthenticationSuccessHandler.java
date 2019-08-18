@@ -3,7 +3,6 @@ package com.fehead.initialize.authentication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fehead.initialize.properties.LoginType;
 import com.fehead.initialize.properties.SecurityProperties;
-
 import com.fehead.initialize.service.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +48,7 @@ public class FeheadAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(authentication));
+            return;
         }else{//否则为页面模式，进行页面跳转
             super.onAuthenticationSuccess(request,response,authentication);
         }

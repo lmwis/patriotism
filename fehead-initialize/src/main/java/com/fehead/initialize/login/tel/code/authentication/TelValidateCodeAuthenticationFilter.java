@@ -121,8 +121,12 @@ public class TelValidateCodeAuthenticationFilter
         return successHandler;
     }
 
+    /**
+     * 设置给父类的handler，因为调用链中会调用父类中的handler
+     * @param successHandler
+     */
     public void setSuccessHandler(AuthenticationSuccessHandler successHandler) {
-        this.successHandler = successHandler;
+        super.setAuthenticationSuccessHandler(successHandler);
     }
 
     @Override
@@ -131,18 +135,22 @@ public class TelValidateCodeAuthenticationFilter
     }
 
     public void setFailureHandler(AuthenticationFailureHandler failureHandler) {
-        this.failureHandler = failureHandler;
+        super.setAuthenticationFailureHandler(failureHandler);
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         super.successfulAuthentication(request, response, chain, authResult);
-        successHandler.onAuthenticationSuccess(request, response, authResult);
+        // 如果手动调用则会与父类的handler起冲突，被父类默认的
+        // SavedRequestAwareAuthenticationSuccessHandler重定向
+        // 从而产生302错误
+//        successHandler.onAuthenticationSuccess(request, response, authResult);
     }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         super.unsuccessfulAuthentication(request, response, failed);
-        failureHandler.onAuthenticationFailure(request, response, failed);
+        // 同上
+//        failureHandler.onAuthenticationFailure(request, response, failed);
     }
 }

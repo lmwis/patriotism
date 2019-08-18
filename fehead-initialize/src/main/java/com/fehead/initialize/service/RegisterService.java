@@ -27,7 +27,7 @@ public interface RegisterService {
 
     public void registerByTelphone(String telphoneInRequest, String password, String displayName) throws BusinessException;
 
-    public void registerByEmail(String email, String password) throws BusinessException;
+    public void registerByEmail(String email, String password,String displayName) throws BusinessException;
 
     public boolean registerValidate(String telphoneInRequest, String codeInRequest) throws BusinessException;
 }

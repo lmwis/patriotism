@@ -108,6 +108,7 @@ public class RegisterController extends BaseController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String smsKey = request.getParameter("sms_key");
+        String displayName = request.getParameter("display_name");
 
         if (!CheckEmailAndTelphoneUtil.checkEmail(email)) {
             logger.info("邮箱不合法");
@@ -117,10 +118,16 @@ public class RegisterController extends BaseController {
             logger.info("密码为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码为空");
         }
+        if (displayName.isEmpty()) {
+            logger.info("昵称为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "昵称为空");
+        }
+
+
         if (redisService.exists("sms_key_" + email)) {
             if (redisService.get("sms_key_" + email).equals(smsKey)) {
                 redisService.remove("sms_key_" + email);
-                registerService.registerByEmail(email, password);
+                registerService.registerByEmail(email, password,displayName);
             } else {
                 logger.info("操作不合法");
                 throw new BusinessException(EmBusinessError.OPERATION_ILLEGAL);

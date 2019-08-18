@@ -69,8 +69,9 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void registerByEmail(String email, String password) throws BusinessException {
+    public void registerByEmail(String email, String password,String display) throws BusinessException {
         UserModel userModel = new UserModel();
+        userModel.setDisplayName(display);
         userModel.setEmail(email);
         userModel.setRegisterMode("byEmail");
         userModel.setEncrptPassword(passwordEncoder.encode(password));

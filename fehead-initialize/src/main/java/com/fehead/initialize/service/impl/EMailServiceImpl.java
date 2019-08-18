@@ -29,7 +29,7 @@ public class EMailServiceImpl implements EMailService {
     private static final String EMAIL_VALIDATE_PARAM_ADDRESS_KEY ="your_email";
     private static final String EMAIL_VALIDATE_PARAM_CODE_KEY ="code";
 
-    private static final String EMAIL_VALIDATE_TITLE ="THIS IS A TEST EMAIL";
+    private static final String EMAIL_VALIDATE_TITLE ="爱之国-爱国主义教育平台";
     private static final String EMAIL_VALIDATE_TEMPLATE_NAME ="email";
 
     private String addressParameter = EMAIL_VALIDATE_PARAM_ADDRESS_KEY;

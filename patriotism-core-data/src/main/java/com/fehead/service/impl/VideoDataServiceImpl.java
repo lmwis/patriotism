@@ -3,6 +3,7 @@ package com.fehead.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fehead.controller.BaseController;
 import com.fehead.controller.vo.TagDisplay;
 import com.fehead.controller.vo.data.video.VideoDetailInfo;
 import com.fehead.controller.vo.data.video.VideoDisplayInfo;
@@ -15,6 +16,8 @@ import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.inherent.DataType;
 import com.fehead.service.VideoDataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +31,8 @@ import java.util.List;
  */
 @Service
 public class VideoDataServiceImpl extends BaseDataService implements VideoDataService{
+
+    Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
     VideoMapper videoMapper;
@@ -50,7 +55,14 @@ public class VideoDataServiceImpl extends BaseDataService implements VideoDataSe
 
         //从数据库获取所需资源
 
-        Video video = videoMapper.selectById(id);
+        Video video = new Video();
+        try {
+            video = videoMapper.selectById(id);
+        } catch (Exception e) {
+            logger.info("video查找失败");
+            throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+        }
+
 
 
         if(video==null){//资源不存在

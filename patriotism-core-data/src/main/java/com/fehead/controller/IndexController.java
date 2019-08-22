@@ -36,16 +36,16 @@ public class IndexController {
      * @return
      * @throws BusinessException
      */
-    @GetMapping("/lists")
-    public FeheadResponse lists(@PageableDefault(size = 10) Pageable pageable) throws BusinessException {
-
-        if(pageable==null){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
-        }
-
-        DataListDisplayInfo listDisplayInfo = dataService.selectDataListsPageable(pageable);
-        System.out.println(listDisplayInfo);
-        return CommonReturnType.create(listDisplayInfo);
-    }
+//    @GetMapping("/lists")
+//    public FeheadResponse lists(@PageableDefault(size = 10) Pageable pageable) throws BusinessException {
+//
+//        if(pageable==null){
+//            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+//        }
+//
+//        DataListDisplayInfo listDisplayInfo = dataService.selectDataListsPageable(pageable);
+//        System.out.println(listDisplayInfo);
+//        return CommonReturnType.create(listDisplayInfo);
+//    }
 
 }

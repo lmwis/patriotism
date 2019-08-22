@@ -5,7 +5,9 @@ import com.fehead.controller.vo.data.DataDisplayInfo;
 import com.fehead.controller.vo.data.DataListDisplayInfo;
 import com.fehead.controller.vo.data.DataTypeInfo;
 import com.fehead.dao.DataMapper;
+import com.fehead.dao.dataobject.IfLike;
 import com.fehead.error.BusinessException;
+import com.fehead.error.EmBusinessError;
 import com.fehead.response.CommonReturnType;
 import com.fehead.response.FeheadResponse;
 import com.fehead.service.CommentService;
@@ -28,7 +30,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/data/")
-@CrossOrigin("*")
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class DataController extends BaseController {
 
     @Autowired
@@ -52,6 +54,15 @@ public class DataController extends BaseController {
             ,@RequestParam("comment_content") String content
             ,@RequestParam(value = "like_num",required = false,defaultValue = "0")int likeNum) throws BusinessException {
 
+        logger.info("PARAM id:" + id);
+        logger.info("PARAM userId:" + userId);
+        logger.info("PARAM content:" + content);
+        logger.info("PARAM likeNum:" + likeNum);
+        if (content.isEmpty()) {
+            logger.info("content为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+
         CommentDisplayInfo commentDisplayInfo = new CommentDisplayInfo();
         commentDisplayInfo.setUser_id(userId);
         commentDisplayInfo.setLike_num(likeNum);
@@ -69,6 +80,8 @@ public class DataController extends BaseController {
     @GetMapping("/info/{id}")
     public FeheadResponse findDataType(@PathVariable int id){
 
+        logger.info("PARAM id:" + id);
+
         DataTypeInfo dataTypeInfo = dataService.selectDataTypeInfoById(id);
 
         return CommonReturnType.create(dataTypeInfo);
@@ -78,6 +91,12 @@ public class DataController extends BaseController {
     @GetMapping("/lists")
     public FeheadResponse dataList(@PageableDefault(size = 10) Pageable pageable) throws BusinessException {
 
+        logger.info("PARAM pageable:" + pageable);
+
+        if (pageable == null) {
+            logger.info("pageable为null");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
         DataListDisplayInfo dataListDisplayInfo = dataService.selectDataListsPageable(pageable);
 
         return CommonReturnType.create(dataListDisplayInfo);
@@ -90,13 +109,17 @@ public class DataController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @PutMapping("/info/{id}/comment")
+    @PutMapping("/info/{id}/comment/{comment_id}")
     public FeheadResponse likeComment(@PathVariable int id
-            ,@RequestParam("user_id")int userId) throws BusinessException {
+            , @PathVariable("comment_id") int commentId
+            , @RequestParam("user_id")int userId) throws BusinessException {
 
+        logger.info("PARAM id:" + id);
+        logger.info("PARAM comment_id:" + commentId);
+        logger.info("PARAM user_id:" + userId);
 
-        commentService.clickLike(userId, id);
-        return CommonReturnType.create("success");
+        IfLike like = commentService.clickLike(userId, commentId);
+        return CommonReturnType.create(like);
     }
 
     /**
@@ -108,8 +131,17 @@ public class DataController extends BaseController {
      */
     @GetMapping("/info/{id}/comment")
     public FeheadResponse commentList(@PathVariable int id
-            ,@PageableDefault(size = 6,page = 1) Pageable pageable) throws BusinessException {
+            ,@PageableDefault(size = 6,page = 1) Pageable pageable,
+                                      @RequestParam("user_id") int userId) throws BusinessException {
 
-        return CommonReturnType.create(commentService.selectCommentByDataId(id,pageable));
+        logger.info("PARAM id:" + id);
+        logger.info("PARAM pageable:" + pageable);
+        logger.info("PARAM user_id:" + userId);
+
+        if (pageable == null) {
+            logger.info("pageable为null");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        return CommonReturnType.create(commentService.selectCommentByDataId(id, userId, pageable));
     }
 }

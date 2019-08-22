@@ -1,6 +1,7 @@
 package com.fehead.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.fehead.controller.BaseController;
 import com.fehead.controller.vo.CommentDisplayInfo;
 import com.fehead.controller.vo.UserDisplayInfo;
 import com.fehead.dao.CommentMapper;
@@ -16,6 +17,8 @@ import com.fehead.error.EmBusinessError;
 import com.fehead.inherent.DataType;
 import com.fehead.service.CommentService;
 import com.fehead.service.DataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,6 +35,7 @@ import java.util.List;
  */
 @Service
 public class CommentServiceImpl implements CommentService {
+    Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
     CommentMapper commentMapper;
@@ -48,6 +52,9 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     DataServiceImpl dataService;
 
+    @Autowired
+    IfLikeMapper ifLikeMapper;
+
     /**
      * 通过dataId和typeId获取评论信息
      *  内存分页
@@ -58,7 +65,7 @@ public class CommentServiceImpl implements CommentService {
      * @throws BusinessException
      */
     @Override
-    public List<CommentDisplayInfo> selectCommentByActualIdAndDataType(Integer id, Pageable pageable,DataType dataType) throws BusinessException {
+    public List<CommentDisplayInfo> selectCommentByActualIdAndDataType(Integer userId, Integer id, Pageable pageable,DataType dataType) throws BusinessException {
 
         if(id==0){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
@@ -68,7 +75,14 @@ public class CommentServiceImpl implements CommentService {
         // 默认按照创建时间进行排序，无修改必要
         queryWrapper.orderByDesc("datetime");
 
-        List<Comment> comments = commentMapper.selectDataCommentsByActualIdAndTypeId(id,dataType.getId());
+        List<Comment> comments = new ArrayList<>();
+        try {
+            comments = commentMapper.selectDataCommentsByActualIdAndTypeId(id,dataType.getId());
+        } catch (Exception e) {
+            logger.info("comments查找失败");
+            throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+        }
+
 
         // 手动内存分页
         List<Comment> targetComments = convertToPage(comments, pageable);
@@ -83,14 +97,45 @@ public class CommentServiceImpl implements CommentService {
         targetComments.forEach(k->{
             CommentDisplayInfo commentDisplayInfo = new CommentDisplayInfo();
 
-            User user = userMapper.selectById(k.getUserId());
+            User user = new User();
+            try {
+                user = userMapper.selectById(k.getUserId());
+            } catch (Exception e) {
+                logger.info("user查找失败");
+                try {
+                    throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+                } catch (BusinessException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
+
+            commentDisplayInfo.setId(k.getId());
             commentDisplayInfo.setComment_content(k.getContent());
             commentDisplayInfo.setLike_num(k.getLikeNum());
             commentDisplayInfo.setUser_avatar(user.getAvatar());
             commentDisplayInfo.setUser_id(user.getId());
             commentDisplayInfo.setUser_name(user.getDisplayName());
             commentDisplayInfo.setDatetime(k.getDatetime());
+            int comment_id  = k.getId();
+            IfLike like = new IfLike();
+            try {
+                like = ifLikeMapper.selectLikeByUserIdAndCommentId(userId, comment_id);
+            } catch (Exception e) {
+                logger.info("like查找失败");
+                try {
+                    throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+                } catch (BusinessException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            if (like == null) {
+                commentDisplayInfo.setLike(0);
+            } else {
+                commentDisplayInfo.setLike(like.getIsLike());
+            }
+
             commentDisplayInfoList.add(commentDisplayInfo);
         });
 
@@ -98,24 +143,24 @@ public class CommentServiceImpl implements CommentService {
         return commentDisplayInfoList;
     }
 
+//    @Override
+//    public List<CommentDisplayInfo> selectVideoCommentByActualId(Integer id, Pageable pageable) throws BusinessException {
+//
+//        return this.selectCommentByActualIdAndDataType(id,pageable,DataType.DATA_VIDEO);
+//    }
+//
+//    @Override
+//    public List<CommentDisplayInfo> selectArticleCommentByActualId(Integer id, Pageable pageable) throws BusinessException {
+//
+//        return this.selectCommentByActualIdAndDataType(id,pageable,DataType.DATA_ARTICLE);
+//    }
+
     @Override
-    public List<CommentDisplayInfo> selectVideoCommentByActualId(Integer id, Pageable pageable) throws BusinessException {
-
-        return this.selectCommentByActualIdAndDataType(id,pageable,DataType.DATA_VIDEO);
-    }
-
-    @Override
-    public List<CommentDisplayInfo> selectArticleCommentByActualId(Integer id, Pageable pageable) throws BusinessException {
-
-        return this.selectCommentByActualIdAndDataType(id,pageable,DataType.DATA_ARTICLE);
-    }
-
-    @Override
-    public List<CommentDisplayInfo> selectCommentByDataId(Integer id, Pageable pageable) throws BusinessException {
+    public List<CommentDisplayInfo> selectCommentByDataId(Integer id, Integer userId, Pageable pageable) throws BusinessException {
 
         Data data = dataMapper.selectById(id);
 
-        return this.selectCommentByActualIdAndDataType(data.getActualId(),pageable,dataService.getType(data.getTypeId()));
+        return this.selectCommentByActualIdAndDataType(userId, data.getActualId(),pageable,dataService.getType(data.getTypeId()));
     }
 
     /**
@@ -134,7 +179,15 @@ public class CommentServiceImpl implements CommentService {
         // 验证数据存在性
         Data data = dataMapper.selectById(dataId);
         if(data==null){
+            logger.info("资源不存在");
             throw new BusinessException(EmBusinessError.DATA_RESOURCES_NOT_EXIST);
+        }
+
+        User user = userMapper.selectById(commentDisplayInfo.getUser_id());
+
+        if(user==null||user.getId()<=0){
+            logger.info("用户不存在");
+            throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
         }
 
         // 数据封装
@@ -147,12 +200,19 @@ public class CommentServiceImpl implements CommentService {
 
         int insert = commentMapper.insert(comment);
 
-        User user = userMapper.selectById(commentDisplayInfo.getUser_id());
+
 
         return convertFromDO(user);
 
     }
 
+    /**
+     * 点击赞，若已赞则取消，若未赞则赞
+     * @param userId
+     * @param commentId
+     * @return
+     * @throws BusinessException
+     */
     @Override
     public IfLike clickLike(int userId, int commentId) throws BusinessException {
 
@@ -174,7 +234,14 @@ public class CommentServiceImpl implements CommentService {
 //            ifLike.setIsLike(1);
 //            ifLike.setUpdateTime(new Date());
             ifLike = new IfLike(userId, commentId, 0, new Date());
-            LIfLikeMapper.insert(ifLike);
+
+            try {
+                LIfLikeMapper.insert(ifLike);
+            } catch (Exception e) {
+                logger.info("ifLike插入失败");
+                throw new BusinessException(EmBusinessError.DATA_INSERT_ERROR);
+            }
+
         }
         if (ifLike.getIsLike() == 0) {
             try {

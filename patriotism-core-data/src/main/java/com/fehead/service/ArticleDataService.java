@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
  * @Version 1.0
  */
 public interface ArticleDataService {
-    public ArticleListDisplayInfo selectVideoListsPageable(Pageable pageable);
+    public ArticleListDisplayInfo selectVideoListsPageable(Pageable pageable) throws BusinessException;
 
     ArticleDetailInfo selectArticleModelById(Integer id) throws BusinessException;
 }

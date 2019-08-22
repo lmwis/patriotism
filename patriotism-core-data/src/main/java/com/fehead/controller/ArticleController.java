@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/v1/data/article")
-@CrossOrigin("*")
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class ArticleController extends BaseController {
 
     @Autowired
@@ -37,6 +37,8 @@ public class ArticleController extends BaseController {
      */
     @GetMapping("/lists")
     public FeheadResponse articleList(@PageableDefault(size = 10) Pageable pageable) throws BusinessException {
+
+        logger.info("PARAM pageable:" + pageable);
 
         if(pageable==null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
@@ -54,6 +56,8 @@ public class ArticleController extends BaseController {
     @GetMapping("/info/{id}")
     @JsonView(ArticleDetailInfo.ArticleTypeView.class)
     public FeheadResponse videoInfoById(@PathVariable("id")String id) throws BusinessException {
+
+        logger.info("PARAM id:" + id);
 
         if(id.equals(0)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;

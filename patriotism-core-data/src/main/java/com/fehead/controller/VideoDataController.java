@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("/api/v1/data/video")
 @RestController
-@CrossOrigin("*")
-public class VideoDataController {
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
+public class VideoDataController extends BaseController {
 
     @Autowired
     VideoDataService videoDataService;
@@ -42,8 +42,14 @@ public class VideoDataController {
      * @return
      */
     @GetMapping("/lists")
-    public FeheadResponse videoList(@PageableDefault(size = 10) Pageable pageable){
+    public FeheadResponse videoList(@PageableDefault(size = 10) Pageable pageable) throws BusinessException {
 
+        logger.info("PARAM pageable:" + pageable);
+
+        if (pageable == null) {
+            logger.info("pageable为null");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
         System.out.println(ReflectionToStringBuilder.toString(pageable));
         VideoListDisplayInfo videoListDisplayInfo = videoDataService.selectVideoListsPageable(pageable);
         System.out.println(videoListDisplayInfo);
@@ -61,7 +67,10 @@ public class VideoDataController {
     @JsonView(VideoDetailInfo.VideoTypeView.class)
     public FeheadResponse videoInfoById(@PathVariable("id")Integer id) throws BusinessException {
 
+        logger.info("PARAM id:" + id);
+
         if(id==0){
+            logger.info("id为0");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;
         }
 
@@ -79,14 +88,14 @@ public class VideoDataController {
      * @return
      * @throws BusinessException
      */
-    @GetMapping("/info/{id}/comment")
-    public FeheadResponse videoComment(@PathVariable("id")Integer id,@PageableDefault(size = 6,page = 1) Pageable pageable) throws BusinessException {
-
-        if(id==0){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;
-        }
-
-        return CommonReturnType.create(commentService.selectVideoCommentByActualId(id,pageable));
-    }
+//    @GetMapping("/info/{id}/comment")
+//    public FeheadResponse videoComment(@PathVariable("id")Integer id,@PageableDefault(size = 6,page = 1) Pageable pageable) throws BusinessException {
+//
+//        if(id==0){
+//            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR) ;
+//        }
+//
+//        return CommonReturnType.create(commentService.selectVideoCommentByActualId(id,pageable));
+//    }
 
 }

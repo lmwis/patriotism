@@ -9,6 +9,7 @@ import java.util.Date;
  * @Version 1.0
  */
 public class CommentDisplayInfo {
+    private int id;
 
     private int user_id;
 
@@ -20,7 +21,18 @@ public class CommentDisplayInfo {
 
     private Date datetime;
 
-    private int like_num;
+    private int like_num = 0;
+
+    // 1已点赞，0未点赞
+    private int like = 0;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -68,5 +80,13 @@ public class CommentDisplayInfo {
 
     public void setLike_num(int like_num) {
         this.like_num = like_num;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 }

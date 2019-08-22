@@ -94,4 +94,18 @@ public class DataControllerTest {
         System.out.println(result);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void whenCommentListSuccess() throws Exception {
+        String result = mockMvc.perform(MockMvcRequestBuilders
+                .get(urlPre+"/data/info/1/comment")
+                .param("user_id", "25"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        System.out.println(result);
+    }
+
 }

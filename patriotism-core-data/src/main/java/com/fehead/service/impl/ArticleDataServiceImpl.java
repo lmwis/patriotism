@@ -3,6 +3,7 @@ package com.fehead.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fehead.controller.BaseController;
 import com.fehead.controller.vo.*;
 import com.fehead.controller.vo.data.article.ArticleDetailInfo;
 import com.fehead.controller.vo.data.article.ArticleDisplayInfo;
@@ -18,11 +19,15 @@ import com.fehead.error.BusinessException;
 import com.fehead.error.EmBusinessError;
 import com.fehead.inherent.DataType;
 import com.fehead.service.ArticleDataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialArray;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +39,8 @@ import java.util.List;
  */
 @Service
 public class ArticleDataServiceImpl extends BaseDataService implements ArticleDataService {
+
+    Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
     ArticleMapper articleMapper;
@@ -48,7 +55,7 @@ public class ArticleDataServiceImpl extends BaseDataService implements ArticleDa
      * @return
      */
     @Override
-    public ArticleListDisplayInfo selectVideoListsPageable(Pageable pageable) {
+    public ArticleListDisplayInfo selectVideoListsPageable(Pageable pageable) throws BusinessException {
         if (pageable==null) return null;
 
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
@@ -58,14 +65,32 @@ public class ArticleDataServiceImpl extends BaseDataService implements ArticleDa
         // 分页设置
         Page<Article> page = new Page<>(pageable.getPageNumber(),pageable.getPageSize());
         // 分页结果
-        IPage<Article> articleIPage = articleMapper.selectPage(page, wrapper);
+        IPage<Article> articleIPage;
+        try {
+            articleIPage = articleMapper.selectPage(page, wrapper);
+        } catch (Exception e) {
+            logger.info("articlePage查找失败");
+            throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+        }
 
         ArticleListDisplayInfo lists = new ArticleListDisplayInfo();
 
         List<ArticleDisplayInfo> articleDisplayInfos = new ArrayList<>();
         articleIPage.getRecords().forEach(re->{
             // 获取标签信息
-            List<Tag> tags = tagMapper.selectDataTagsByActualIdAndTypeId(re.getArticleId(),DataType.DATA_ARTICLE.getId());
+
+            List<Tag> tags = new ArrayList<>();
+            try {
+                tags = tagMapper.selectDataTagsByActualIdAndTypeId(re.getArticleId(),DataType.DATA_ARTICLE.getId());
+            } catch (Exception e) {
+                logger.info("tags查找失败");
+                try {
+                    throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+                } catch (BusinessException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
             List<TagDisplay> tagDisplays = convertFromTag(tags);
 
             ArticleDisplayInfo articleDisplayInfo = convertFromArticle(re);
@@ -99,8 +124,14 @@ public class ArticleDataServiceImpl extends BaseDataService implements ArticleDa
         }
 
         //从数据库获取所需资源
+        Article article = new Article();
+        try {
+            article = articleMapper.selectById(id);
+        } catch (Exception e) {
+            logger.info("article查找失败");
+            throw new BusinessException(EmBusinessError.DATA_SELECT_ERROR);
+        }
 
-        Article article = articleMapper.selectById(id);
 
 
         if(article==null){//资源不存在
@@ -111,7 +142,13 @@ public class ArticleDataServiceImpl extends BaseDataService implements ArticleDa
 
         ArticleDetailInfo articleDetailInfo = new ArticleDetailInfo();
 
-        BeanUtils.copyProperties(articleDisplayInfo, articleDetailInfo);
+        try {
+            BeanUtils.copyProperties(articleDisplayInfo, articleDetailInfo);
+        } catch (Exception e) {
+            logger.info("copyProperties失败");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+
 
         articleDetailInfo.setArticle_content(article.getContext());
 

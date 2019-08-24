@@ -9,13 +9,16 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>fehead-social</module>
+        <module>fehead-browser</module>
+        <module>fehead-initialize</module>
         <module>patriotism-core-data</module>
     </modules>
 
-    <properties>
-        <securrty.version>1.0-SNAPSHOT</securrty.version>
-    </properties>
     <packaging>pom</packaging>
+
+    <properties>
+        <patriotism-version>1.0-SNAPSHOT</patriotism-version>
+    </properties>
 
 
     <dependencyManagement>

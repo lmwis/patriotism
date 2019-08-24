@@ -1,0 +1,19 @@
+
+spring:
+  datasource:
+    password: mysqladmin
+    username: root
+    url: jdbc:mysql://192.168.0.123:3306/test?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+  session:
+    store-type: none
+
+fehead:
+  social:
+    qq:
+      app-id: 101730546
+      app-secret: c6141dd5c185988dc582497ec721b62f
+      providerId: callback.do
+    filterProcessorUrl: /qqLogin
+server:
+  port: 8070

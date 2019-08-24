@@ -1,7 +1,7 @@
 package com.fehead;
 
-import com.fehead.dao.ArticleMapper;
-import com.fehead.dao.dataobject.Article;
+import com.fehead.coredata.dao.ArticleMapper;
+import com.fehead.coredata.dao.dataobject.Article;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,9 +4,12 @@ import com.fehead.initialize.controller.viewobject.UserVO;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.response.CommonReturnType;
+import com.fehead.initialize.response.FeheadResponse;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,6 +46,8 @@ import java.util.Random;
 @RequestMapping("/api/v1.0/user")
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserService userService;
@@ -134,6 +139,20 @@ public class UserController extends BaseController {
 
         // 将核心模型转化为供UI使用的viewobject
         UserVO userVO = convertFromModel(userModel);
+        return CommonReturnType.create(userVO);
+    }
+
+    @PostMapping("/user")
+    public FeheadResponse getUserByUsername(@RequestParam("username") String username) throws BusinessException {
+
+        logger.info("PARAM username: " + username);
+        if (username.isEmpty()) {
+            logger.info("用户名为空");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "用户名为空");
+        }
+        UserVO userVO = userService.getUserByUsername(username);
+        logger.info("用户id: " + userVO.getId());
+
         return CommonReturnType.create(userVO);
     }
 

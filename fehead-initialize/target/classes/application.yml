@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8080
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
@@ -7,9 +7,9 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.0.123:3306/patriotism?useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/patriotism?useSSL=false
     username: root
-    password: mysqladmin
+    password: 1948730080
     name: patriotism
     #连接池配置
     type: org.apache.commons.dbcp2.BasicDataSource
@@ -24,9 +24,10 @@ spring:
     #redis配置
   redis:
     database: 1
-    host: 192.168.0.122
+#    host: 192.168.0.122
+    host: 127.0.0.1
     port: 6379
-    password: redis
+#    password: redis
     pool:
       max-active: 8   # 最大连接数
       max-wait: 1     # 最大阻塞等待时间
@@ -34,10 +35,25 @@ spring:
       min-idle: 0     # 最小空闲连接
     timeout: 0        # 连接超时时间
   mail:
-    host: smtp.163.com
-    username: nightnessss@163.com
-    password: W1948730080
+    host: smtp.qq.com
+    username: 1948730080@qq.com
+    password: sbhoosygebheecfg
     default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+#          starttls:
+#            enable: true
+#            required: true
+          auth: true
+          ssl:
+            enbale: true
+          socketFactory:
+            fallback: false
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+
+
   thymeleaf:
     mode: LEGACYHTML5
     encoding: UTF-8
@@ -47,13 +63,15 @@ security:
   basic:
     enabled: true
 
+
+
 fehead:
   initialize:
     browser:
       telParameter: tel
       sendOtpCode: /send/otpCode
-      formLoginUrl: /loginByForm
-      otpLoginUrl: /loginByOtp
+      formLoginUrl: /api/v1.0/user/login/tel
+      otpLoginUrl: /api/v1.0/user/login/sms
     smsProperties:
       appKey: LTAIqwxU8y65KvAg
       secret: 8UwBxCvhl9vpTR1IEv4LNiHrxvNTo5
@@ -64,7 +82,8 @@ fehead:
         - {name: SMS_171117329, des: 登录}
       smsNumber: 6
     sendEmailProperties:
-      fromAddress: nightnessss@163.com
+      fromAddress: 1948730080@qq.com
+
 
 
 

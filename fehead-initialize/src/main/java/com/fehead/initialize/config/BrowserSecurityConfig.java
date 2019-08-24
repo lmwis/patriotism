@@ -106,6 +106,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1.0/sys/sms/validate",
                         "/api/v1.0/user/register/**",
                         "/api/v1.0/user/login/email",
+                        "/api/v1.0/user/user",
                         "/email_validate.html").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").permitAll()

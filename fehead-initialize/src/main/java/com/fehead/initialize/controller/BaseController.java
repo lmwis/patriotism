@@ -48,7 +48,7 @@ public class BaseController {
             BusinessException businessException = (BusinessException)ex;
             responseData.put("errorCode", businessException.getErrorCode());
             responseData.put("errorMsg", businessException.getErrorMsg());
-            System.out.println(responseData);
+            System.out.println("EXCEPTION: " + responseData.get("errorCode") + " " + responseData.get("errorMsg"));
         } else if(ex instanceof DataAccessException){ //数据库连接错误
             responseData.put("errorCode", EmBusinessError.DATARESOURCE_CONNECT_FAILURE.getErrorCode());
             responseData.put("errorMsg", EmBusinessError.DATARESOURCE_CONNECT_FAILURE.getErrorMsg());

@@ -1,6 +1,7 @@
 package com.fehead.initialize.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+import com.fehead.initialize.controller.viewobject.UserVO;
 import com.fehead.initialize.dao.UserDOMapper;
 import com.fehead.initialize.dao.UserPasswordDOMapper;
 import com.fehead.initialize.dataobject.UserDO;
@@ -9,6 +10,7 @@ import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
+import com.fehead.initialize.utils.CheckEmailAndTelphoneUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -132,6 +134,28 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public UserVO getUserByUsername(String username) throws BusinessException {
+        UserDO userDO = new UserDO();
+        if (CheckEmailAndTelphoneUtil.checkTelphone(username)) {
+            userDO = userDOMapper.selectByTelphone(username);
+        } else if (CheckEmailAndTelphoneUtil.checkEmail(username)) {
+            userDO = userDOMapper.selectByEmail(username);
+        } else {
+            logger.info("用户名不合法");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "用户名不合法");
+        }
+
+        if (userDO == null) {
+            logger.info("用户不存在");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "用户不存在");
+        }
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(userDO, userVO);
+
+        return userVO;
     }
 
     private UserPasswordDO convertPasswordFromModel(UserModel userModel) {

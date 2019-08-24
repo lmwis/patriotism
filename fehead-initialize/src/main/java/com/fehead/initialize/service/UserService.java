@@ -1,5 +1,6 @@
 package com.fehead.initialize.service;
 
+import com.fehead.initialize.controller.viewobject.UserVO;
 import com.fehead.initialize.dataobject.UserDO;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.service.model.UserModel;
@@ -35,4 +36,6 @@ public interface UserService {
     public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException;
 
     UserDO getUserByTel(String tel);
+
+    public UserVO getUserByUsername(String username) throws BusinessException;
 }

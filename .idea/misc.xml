@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../../../GitHub/patriotism-fehead-coredata/fehead-social" />
     <file type="web" url="file://$PROJECT_DIR$/fehead-initialize" />
     <file type="web" url="file://$PROJECT_DIR$/fehead-social" />
   </component>
@@ -10,7 +11,16 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/fehead-initialize/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../GitHub/patriotism-fehead-coredata/pom.xml" />
+        <option value="$PROJECT_DIR$/patriotism-core-data/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../../../GitHub/patriotism-fehead-coredata/fehead-social/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../GitHub/patriotism-fehead-coredata/patriotism-core-data/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../GitHub/patriotism-fehead-coredata/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">

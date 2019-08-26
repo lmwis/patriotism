@@ -1,0 +1,41 @@
+
+
+server:
+  port: 8080
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    &autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://10.111.144.242:3306/patriotism?useSSL=false
+    username: root
+    password: mysqladmin
+    name: patriotism
+    #连接池配置
+#    type: com.alibaba.druid.pool.DruidDataSource
+
+#    druid:
+#      max-active: 20
+#      initial-size: 1
+#      max-wait: 60000
+#      min-idle: 1
+#      time-between-enviction-runs-millis: 60000
+
+    #redis配置
+  redis:
+    database: 1
+#    host:
+    port: 6379
+#    password: redis
+    pool:
+      max-active: 30   # 最大连接数
+      max-wait: 100     # 最大阻塞等待时间
+      max-idle: 20     # 最大空闲连接
+      min-idle: 10     # 最小空闲连接
+    timeout: 0        # 连接超时时间
+    host: 10.111.144.242
+
+

@@ -1,7 +1,6 @@
 package com.fehead.initialize.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 
 /**
@@ -34,6 +33,8 @@ public class SecurityProperties {
 
     private SendEmailProperties sendEmailProperties = new SendEmailProperties();
 
+    private TimeProperties timeProperties = new TimeProperties();
+
     public SmsProperties getSmsProperties() {
         return smsProperties;
     }
@@ -56,5 +57,13 @@ public class SecurityProperties {
 
     public void setSendEmailProperties(SendEmailProperties sendEmailProperties) {
         this.sendEmailProperties = sendEmailProperties;
+    }
+
+    public TimeProperties getTimeProperties() {
+        return timeProperties;
+    }
+
+    public void setTimeProperties(TimeProperties timeProperties) {
+        this.timeProperties = timeProperties;
     }
 }

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -150,8 +151,11 @@ public class UserController extends BaseController {
             logger.info("用户名为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "用户名为空");
         }
-        UserVO userVO = userService.getUserByUsername(username);
-        logger.info("用户id: " + userVO.getId());
+        UserVO userVO = null;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals(username)){
+            userVO = userService.getUserByUsername(username);
+            logger.info("用户id: " + userVO.getId());
+        }
 
         return CommonReturnType.create(userVO);
     }

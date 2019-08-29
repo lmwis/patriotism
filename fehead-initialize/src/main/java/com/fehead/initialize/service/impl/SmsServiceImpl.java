@@ -7,6 +7,7 @@ import com.fehead.initialize.service.RedisService;
 import com.fehead.initialize.service.SmsService;
 import com.fehead.initialize.service.model.ValidateCode;
 import com.fehead.initialize.utils.CreateCodeUtil;
+import com.fehead.initialize.utils.SmsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,9 @@ public class SmsServiceImpl implements SmsService {
     @Autowired
     private RedisService redisService;
 
+    @Autowired
+    private SmsUtil smsUtil;
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -84,14 +88,14 @@ public class SmsServiceImpl implements SmsService {
 //                String key = passwordEncoder.encode(telphone);
 //                logger.info("sms_key: " + key);
 //                redisService.set("sms_key_" + telphone, key, new Long(300));
-                redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(30*60));
+                redisService.set(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(securityProperties.getTimeProperties().getSmsExpiredTime()));
                 break;
             case 1:
-                redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(30*60));
+                redisService.set(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + smsCode.getTelphone(), smsCode, new Long(securityProperties.getTimeProperties().getSmsExpiredTime()));
                 break;
             default:
                 break;
         }
-//        smsUtil.sendSms(modelName, paramMap, telphone);
+        smsUtil.sendSms(modelName, paramMap, telphone);
     }
 }

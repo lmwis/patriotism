@@ -65,7 +65,10 @@ public class SmsController extends BaseController{
         String telphone = request.getParameter("tel");
         logger.info("手机号：" + telphone);
         String action = request.getParameter("action");
-
+        if (action.isEmpty()) {
+            logger.info("action为空");
+            throw new BusinessException(EmBusinessError.OPERATION_ILLEGAL, "action异常");
+        }
         // 检查手机号是否合法
         if (!CheckEmailAndTelphoneUtil.checkTelphone(telphone)) {
             logger.info("手机号不合法");
@@ -77,7 +80,7 @@ public class SmsController extends BaseController{
         if (action.equals(SmsAction.REGISTER.actionStr)) {
             if (smsService.check(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphone)) {
                 ValidateCode code = (ValidateCode) redisService.get(securityProperties.getSmsProperties().getRegisterPreKeyInRedis() + telphone);
-                if (!code.isExpired(60)) {
+                if (!code.isExpired(securityProperties.getTimeProperties().getSmsResendTime())) {
                     logger.info("验证码已发送");
                     throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
                 } else {
@@ -87,7 +90,7 @@ public class SmsController extends BaseController{
         } else if (action.equals(SmsAction.LOGIN.actionStr)) {
             if (smsService.check(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + telphone)) {
                 ValidateCode code = (ValidateCode) redisService.get(securityProperties.getSmsProperties().getLoginPreKeyInRedis() + telphone);
-                if (!code.isExpired(60)) {
+                if (!code.isExpired(securityProperties.getTimeProperties().getSmsResendTime())) {
                     logger.info("验证码已发送");
                     throw new BusinessException(EmBusinessError.SMS_ALREADY_SEND);
                 } else {
@@ -138,7 +141,7 @@ public class SmsController extends BaseController{
         if (registerService.registerValidate(telphoneInRequest, codeInRequest)) {
             smsKey = passwordEncoder.encode(telphoneInRequest);
             logger.info("密钥：" + smsKey);
-            redisService.set("sms_key_"+ telphoneInRequest, smsKey, new Long(30*60));
+            redisService.set("sms_key_"+ telphoneInRequest, smsKey, new Long(securityProperties.getTimeProperties().getSmsKeyExpiredTime()));
         }
 
         return CommonReturnType.create(smsKey);

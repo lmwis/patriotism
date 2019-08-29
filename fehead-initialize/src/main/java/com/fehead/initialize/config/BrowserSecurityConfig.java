@@ -1,5 +1,6 @@
 package com.fehead.initialize.config;
 
+import com.fehead.initialize.authentication.JWTAuthenticationFilter;
 import com.fehead.initialize.login.validate.code.TelValidateCodeFilter;
 import com.fehead.initialize.login.config.FeheadLoginSecurityConfig;
 import com.fehead.initialize.login.validate.code.ValidateFailureHandler;
@@ -85,6 +86,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .addFilterBefore(telValidateCodeAuthenticationFilter,UsernamePasswordAuthenticationFilter.class)
 //                .authenticationProvider(telValidateCodeAuthenticationProvider)
                 // 添加自己配置的CORSFilter
+                .addFilterBefore(new JWTAuthenticationFilter(authenticationManager()),UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new CORSFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(filter,UsernamePasswordAuthenticationFilter.class)
 //                .apply(feheadWebSecurityConfig)
@@ -104,10 +106,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1.0/sys/email/validate",
                         "/api/v1.0/sys/sms/send",
                         "/api/v1.0/sys/sms/validate",
+                        "/api/v1.0/user/login/tel",
                         "/api/v1.0/user/register/**",
                         "/api/v1.0/user/login/email",
                         "/api/v1.0/user/user",
-                        "/email_validate.html").permitAll()
+                        "/email_validate.html",
+                        "/api/v1/static/slideShow").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
@@ -123,6 +127,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .cors()
                 .and()
                 .csrf().disable();
     }

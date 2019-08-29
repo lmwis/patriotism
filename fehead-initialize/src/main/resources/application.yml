@@ -1,15 +1,15 @@
 server:
   port: 8080
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapping/*.xml
 
 
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/patriotism?useSSL=false
+    url: jdbc:mysql://47.92.198.120:3306/patriotism?useSSL=false&useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 1948730080
+    password: fehead123
     name: patriotism
     #连接池配置
     type: org.apache.commons.dbcp2.BasicDataSource
@@ -25,9 +25,9 @@ spring:
   redis:
     database: 1
 #    host: 192.168.0.122
-    host: 127.0.0.1
+    host: 47.92.198.120
     port: 6379
-#    password: redis
+    password: fehead123
     pool:
       max-active: 8   # 最大连接数
       max-wait: 1     # 最大阻塞等待时间
@@ -83,6 +83,13 @@ fehead:
       smsNumber: 6
     sendEmailProperties:
       fromAddress: 1948730080@qq.com
+    timeProperties:
+      smsExpiredTime: 1800
+      smsResendTime: 60
+      emailExpiredTime: 1800
+      emailResendTime: 60
+      smsKeyExpiredTime: 21600
+
 
 
 

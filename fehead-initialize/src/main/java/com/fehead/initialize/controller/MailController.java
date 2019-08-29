@@ -3,6 +3,7 @@ package com.fehead.initialize.controller;
 import com.fehead.initialize.authentication.FeheadAuthenticationFailureHandler;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
+import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.response.AuthenticationReturnType;
 import com.fehead.initialize.response.CommonReturnType;
 import com.fehead.initialize.response.FeheadResponse;
@@ -55,6 +56,8 @@ public class MailController extends BaseController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private RedisService redisService;
+    @Autowired
+    private SecurityProperties securityProperties;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -108,7 +111,7 @@ public class MailController extends BaseController {
         if (eMailService.validateEmailCode(address,code)) {
             smsKey = passwordEncoder.encode(address);
             logger.info("密钥：" + smsKey);
-            redisService.set("sms_key_"+ address, smsKey, new Long(30*60));
+            redisService.set("sms_key_"+ address, smsKey, new Long(securityProperties.getTimeProperties().getSmsKeyExpiredTime()));
         } else {
             logger.info("验证码不匹配");
             throw new BusinessException(EmBusinessError.SMS_ILLEGAL);

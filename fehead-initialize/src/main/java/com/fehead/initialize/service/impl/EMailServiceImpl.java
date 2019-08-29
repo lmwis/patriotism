@@ -36,9 +36,9 @@ public class EMailServiceImpl implements EMailService {
     private String codeParameter = EMAIL_VALIDATE_PARAM_CODE_KEY;
 
     //校验邮件过期时间
-    private Integer emailExpiredTime = 21600;
+//    private Integer emailExpiredTime = 21600;
     //邮件能重复发送最小间隔
-    private Integer emailTime = 60;
+//    private Integer emailTime = 60;
 
     @Autowired
     private SendEmailUtil sendEmailUtil;
@@ -58,7 +58,7 @@ public class EMailServiceImpl implements EMailService {
         String key = securityProperties.getSendEmailProperties().getEmailValidatePreKeyInRedis().concat(toAddress);
         //先判断是否已经发送过了
         if(redisService.exists(key)){
-            if(!((ValidateCode)redisService.get(key)).isExpired(emailTime)){//是否能重复发送
+            if(!((ValidateCode)redisService.get(key)).isExpired(securityProperties.getTimeProperties().getEmailResendTime())){//是否能重复发送
                 logger.info("邮件已发送");
                 throw new BusinessException(EmBusinessError.EMAIL_ALREADY_SEND);
             }else{
@@ -76,7 +76,7 @@ public class EMailServiceImpl implements EMailService {
         //未抛异常表示发送成功
         //写入redis
         //超时时间为6个小时
-        redisService.set(key, emailCode, new Long(emailExpiredTime));
+        redisService.set(key, emailCode, new Long(securityProperties.getTimeProperties().getEmailExpiredTime()));
 
     }
 

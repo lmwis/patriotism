@@ -8,7 +8,8 @@
     <artifactId>patriotism-root</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>fehead-social</module>
+        <module>fehead-initialize</module>
+<!--        <module>fehead-social</module>-->
         <module>patriotism-core-data</module>
     </modules>
 

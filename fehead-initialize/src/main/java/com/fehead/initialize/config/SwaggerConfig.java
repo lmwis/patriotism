@@ -1,16 +1,16 @@
 package com.fehead.initialize.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author lmwis on 2019-07-24 16:20
  */
 @Configuration
-//@EnableSwagger2
-@EnableWebMvc
+@EnableSwagger2
+//@EnableWebMvc
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
     @Override

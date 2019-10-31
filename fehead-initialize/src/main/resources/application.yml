@@ -1,0 +1,49 @@
+server:
+  port: 8181
+mybatis-plus:
+  mapper-locations: classpath:mapping/*.xml
+
+
+spring:
+  profiles:
+    active: enc
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
+
+security:
+  basic:
+    enabled: true
+
+
+
+fehead:
+  initialize:
+    browser:
+      telParameter: tel
+      sendOtpCode: /send/otpCode
+      formLoginUrl: /api/v1.0/user/login/tel
+      otpLoginUrl: /api/v1.0/user/login/sms
+    smsProperties:
+      appKey: LTAIqwxU8y65KvAg
+      secret: 8UwBxCvhl9vpTR1IEv4LNiHrxvNTo5
+      regionId: cn-hangzhou
+      signName: 堆栈科技
+      smsModel:
+        - {name: SMS_171112301, des: 注册}
+        - {name: SMS_171117329, des: 登录}
+      smsNumber: 6
+    sendEmailProperties:
+      fromAddress: 1948730080@qq.com
+    timeProperties:
+      smsExpiredTime: 1800
+      smsResendTime: 60
+      emailExpiredTime: 1800
+      emailResendTime: 60
+      smsKeyExpiredTime: 21600
+
+
+
+
+

@@ -1,3 +1,4 @@
+
 package com.fehead.initialize.utils;
 
 import com.fehead.initialize.error.BusinessException;

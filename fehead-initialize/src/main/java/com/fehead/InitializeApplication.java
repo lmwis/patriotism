@@ -14,7 +14,9 @@ import org.springframework.web.filter.CorsFilter;
  *
  */
 @SpringBootApplication
+
 @MapperScan({"com.fehead.initialize.dao","com.fehead.coredata.dao"})
+
 public class InitializeApplication
 {
     public static void main( String[] args ) {

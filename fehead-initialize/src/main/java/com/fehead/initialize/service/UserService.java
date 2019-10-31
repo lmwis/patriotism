@@ -1,6 +1,9 @@
 package com.fehead.initialize.service;
 
+<<<<<<< HEAD
 import com.fehead.initialize.controller.viewobject.UserVO;
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
 import com.fehead.initialize.dataobject.UserDO;
 import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.service.model.UserModel;
@@ -30,6 +33,7 @@ public interface UserService {
 
     public UserModel getUserById(Integer id);
 
+<<<<<<< HEAD
     public UserModel getUserByThirdPartyid(String thirdPartyId);
 
     public int addInfo(UserModel userModel);
@@ -44,4 +48,12 @@ public interface UserService {
     UserDO getUserByTel(String tel);
 
     public UserVO getUserByUsername(String username) throws BusinessException;
+=======
+    // 用户注册
+    public void register(UserModel userModel) throws BusinessException;
+
+    public UserModel validateLogin(String telphone, String encrptPassword) throws BusinessException;
+
+    UserDO getUserByTel(String tel);
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
 }

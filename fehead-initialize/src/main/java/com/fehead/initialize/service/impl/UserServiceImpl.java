@@ -1,7 +1,10 @@
 package com.fehead.initialize.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+<<<<<<< HEAD
 import com.fehead.initialize.controller.viewobject.UserVO;
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
 import com.fehead.initialize.dao.UserDOMapper;
 import com.fehead.initialize.dao.UserPasswordDOMapper;
 import com.fehead.initialize.dataobject.UserDO;
@@ -10,9 +13,12 @@ import com.fehead.initialize.error.BusinessException;
 import com.fehead.initialize.error.EmBusinessError;
 import com.fehead.initialize.service.UserService;
 import com.fehead.initialize.service.model.UserModel;
+<<<<<<< HEAD
 import com.fehead.initialize.utils.CheckEmailAndTelphoneUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -44,8 +50,11 @@ import javax.transaction.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 
+<<<<<<< HEAD
     Logger logger = LoggerFactory.getLogger(getClass());
 
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     @Autowired
     private UserDOMapper userDOMapper;
 
@@ -66,6 +75,7 @@ public class UserServiceImpl implements UserService {
         return userModel;
     }
 
+<<<<<<< HEAD
     /**
      * 通过第三方id查用户
      * @param thirdPartyId
@@ -94,11 +104,14 @@ public class UserServiceImpl implements UserService {
         return id;
     }
 
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     @Override
     @Transactional
     public void register(UserModel userModel) throws BusinessException {
         // 将userModel转为dataobject存入数据库
         if (userModel == null) {
+<<<<<<< HEAD
             logger.info("userModel为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
@@ -114,13 +127,27 @@ public class UserServiceImpl implements UserService {
             logger.info("昵称不能为空");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "昵称不能为空");
         }
+=======
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        if (StringUtils.isEmpty(userModel.getTelphone())) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        if (StringUtils.isEmpty(userModel.getEncrptPassword())) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
+        }
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
         // userModel -> userDO
         UserDO userDO = convertFromModel(userModel);
         try {
             userDOMapper.insertSelective(userDO);
         } catch (DuplicateKeyException ex) {
+<<<<<<< HEAD
             logger.info("手机号或邮箱已被注册");
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号或邮箱已被注册");
+=======
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "手机号已被注册");
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
         }
 
         userModel.setId(userDO.getId());
@@ -128,6 +155,7 @@ public class UserServiceImpl implements UserService {
         // userModel -> userPasswordDO
         UserPasswordDO userPasswordDO = convertPasswordFromModel(userModel);
         userPasswordDOMapper.insertSelective(userPasswordDO);
+<<<<<<< HEAD
         logger.info("注册成功！");
 
     }
@@ -146,6 +174,10 @@ public class UserServiceImpl implements UserService {
         int id = userDOMapper.insertSelective(userDO);
 
         return userDO.getId();
+=======
+
+        return;
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     }
 
     @Override
@@ -180,6 +212,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+<<<<<<< HEAD
     @Override
     public UserVO getUserByUsername(String username) throws BusinessException {
         UserDO userDO = new UserDO();
@@ -202,6 +235,8 @@ public class UserServiceImpl implements UserService {
         return userVO;
     }
 
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     private UserPasswordDO convertPasswordFromModel(UserModel userModel) {
         if (userModel == null) {
             return null;

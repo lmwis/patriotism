@@ -5,6 +5,7 @@ import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.TelValidateCodeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -69,6 +70,7 @@ public class TelValidateCodeFilter extends OncePerRequestFilter {
 //            return;
 //
 //        }
+
 
 
         filterChain.doFilter(request,response);

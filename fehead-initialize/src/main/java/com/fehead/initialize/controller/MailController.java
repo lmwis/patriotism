@@ -1,3 +1,4 @@
+
 package com.fehead.initialize.controller;
 
 import com.fehead.initialize.authentication.FeheadAuthenticationFailureHandler;
@@ -120,5 +121,3 @@ public class MailController extends BaseController {
     }
 
 }
-
-

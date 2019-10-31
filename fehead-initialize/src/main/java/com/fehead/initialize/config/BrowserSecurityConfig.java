@@ -1,3 +1,4 @@
+
 package com.fehead.initialize.config;
 
 import com.fehead.initialize.authentication.JWTAuthenticationFilter;

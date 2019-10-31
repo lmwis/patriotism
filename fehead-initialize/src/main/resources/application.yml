@@ -1,12 +1,65 @@
+<<<<<<< HEAD
 server:
   port: 8181
 mybatis-plus:
+=======
+
+
+server:
+  port: 8092
+#  context-path: /api/v1
+mybatis:
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
   mapper-locations: classpath:mapping/*.xml
 
 
 spring:
+<<<<<<< HEAD
   profiles:
     active: enc
+=======
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    &autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://localhost:3306/patriotism?useSSL=false
+    username: root
+    password: mysqladmin
+    name: patriotism
+    #连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#    druid:
+#      max-active: 20
+#      initial-size: 1
+#      max-wait: 60000
+#      min-idle: 1
+#      time-between-enviction-runs-millis: 60000
+
+    #redis配置
+  redis:
+    database: 1
+#    host:
+    port: 6379
+#    password: redis
+    pool:
+      max-active: 30   # 最大连接数
+      max-wait: 100     # 最大阻塞等待时间
+      max-idle: 20     # 最大空闲连接
+      min-idle: 10     # 最小空闲连接
+    timeout: 0        # 连接超时时间
+    host: 127.0.0.1
+  mail:
+    host: smtp.163.com
+    username: nightnessss@163.com
+    password: W1948730080
+    default-encoding: UTF-8
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
   thymeleaf:
     mode: LEGACYHTML5
     encoding: UTF-8
@@ -21,10 +74,17 @@ security:
 fehead:
   initialize:
     browser:
+<<<<<<< HEAD
       telParameter: tel
       sendOtpCode: /send/otpCode
       formLoginUrl: /api/v1.0/user/login/tel
       otpLoginUrl: /api/v1.0/user/login/sms
+=======
+      telParameter: tele
+      sendOtpCode: /send/otpCode
+      formLoginUrl: /loginByForm
+      otpLoginUrl: /loginByOtp
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     smsProperties:
       appKey: LTAIqwxU8y65KvAg
       secret: 8UwBxCvhl9vpTR1IEv4LNiHrxvNTo5
@@ -35,6 +95,7 @@ fehead:
         - {name: SMS_171117329, des: 登录}
       smsNumber: 6
     sendEmailProperties:
+<<<<<<< HEAD
       fromAddress: 1948730080@qq.com
     timeProperties:
       smsExpiredTime: 1800
@@ -44,6 +105,9 @@ fehead:
       smsKeyExpiredTime: 21600
 
 
+=======
+      fromAddress: nightnessss@163.com
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
 
 
 

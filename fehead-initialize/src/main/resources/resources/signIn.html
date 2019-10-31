@@ -48,7 +48,11 @@
             $.ajax({
                 type:"POST",
                 contentType:"application/x-www-form-urlencoded",
+<<<<<<< HEAD
                 url:"http://localhost:8080/register/sendSms",
+=======
+                url:"http://localhost:8090/register/sendSms",
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
                 data:{
                     telphone: telphone
                 },
@@ -57,7 +61,11 @@
                     if (data.status == "success") {
                         alert("otp已经发送到您的手机上，请注意查收");
                     } else {
+<<<<<<< HEAD
                         alert("otp发送失败，原因：" + data.data.errMsg);
+=======
+                        alert("otp发送失败，原因：" + data.data.errorMsg);
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
                     }
                 },
                 fail:function (error) {

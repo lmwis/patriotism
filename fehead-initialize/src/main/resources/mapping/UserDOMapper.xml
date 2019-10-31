@@ -7,11 +7,17 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="register_mode" jdbcType="VARCHAR" property="registerMode" />
     <result column="third_party_id" jdbcType="CHAR" property="thirdPartyId" />
+<<<<<<< HEAD
     <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     <result column="display_name" jdbcType="VARCHAR" property="displayName" />
   </resultMap>
   <sql id="Base_Column_List">
     id, telphone, email, register_mode, third_party_id, avatar, display_name
+=======
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, telphone, email, register_mode, third_party_id
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -31,6 +37,7 @@
     from user_info
     where email = #{email,jdbcType=VARCHAR}
   </select>
+<<<<<<< HEAD
   <delete id="deleteByThirdPartyId" parameterType="java.lang.String">
     delete from user_info
     where third_party_id = #{thirdPartyId,jdbcType=VARCHAR}
@@ -41,10 +48,13 @@
     from user_info
     where third_party_id = #{thirdPartyId,jdbcType=VARCHAR}
   </select>
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
+<<<<<<< HEAD
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.fehead.initialize.dataobject.UserDO">
     insert into user_info (id, telphone, email, 
       register_mode, third_party_id, avatar, 
@@ -54,6 +64,15 @@
       #{displayName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.fehead.initialize.dataobject.UserDO">
+=======
+  <insert id="insert" parameterType="com.fehead.initialize.dataobject.UserDO">
+    insert into user_info (id, telphone, email, 
+      register_mode, third_party_id)
+    values (#{id,jdbcType=INTEGER}, #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{registerMode,jdbcType=VARCHAR}, #{thirdPartyId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fehead.initialize.dataobject.UserDO" keyProperty="id" useGeneratedKeys="true">
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -71,12 +90,15 @@
       <if test="thirdPartyId != null">
         third_party_id,
       </if>
+<<<<<<< HEAD
       <if test="avatar != null">
         avatar,
       </if>
       <if test="displayName != null">
         display_name,
       </if>
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -94,12 +116,15 @@
       <if test="thirdPartyId != null">
         #{thirdPartyId,jdbcType=CHAR},
       </if>
+<<<<<<< HEAD
       <if test="avatar != null">
         #{avatar,jdbcType=VARCHAR},
       </if>
       <if test="displayName != null">
         #{displayName,jdbcType=VARCHAR},
       </if>
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.fehead.initialize.dataobject.UserDO">
@@ -117,12 +142,15 @@
       <if test="thirdPartyId != null">
         third_party_id = #{thirdPartyId,jdbcType=CHAR},
       </if>
+<<<<<<< HEAD
       <if test="avatar != null">
         avatar = #{avatar,jdbcType=VARCHAR},
       </if>
       <if test="displayName != null">
         display_name = #{displayName,jdbcType=VARCHAR},
       </if>
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -131,9 +159,13 @@
     set telphone = #{telphone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       register_mode = #{registerMode,jdbcType=VARCHAR},
+<<<<<<< HEAD
       third_party_id = #{thirdPartyId,jdbcType=CHAR},
       avatar = #{avatar,jdbcType=VARCHAR},
       display_name = #{displayName,jdbcType=VARCHAR}
+=======
+      third_party_id = #{thirdPartyId,jdbcType=CHAR}
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

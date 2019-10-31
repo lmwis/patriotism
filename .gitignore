@@ -1,7 +1,9 @@
 .idea
 fehead-initialize/target
 fehead-social/target
+
 patriotism-coredata/target
 fehead-initialize/src/main/resources/application-enc.yml
 patriotism-coredata/src/main/resources/application.yml
 patriotism-coredata/src/main/resources/mybatis-generator.xml
+

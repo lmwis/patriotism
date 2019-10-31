@@ -3,6 +3,7 @@ package com.fehead.initialize.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
+
 /**
  * 写代码 敲快乐
  * だからよ...止まるんじゃねぇぞ
@@ -58,6 +59,7 @@ public class SecurityProperties {
     public void setSendEmailProperties(SendEmailProperties sendEmailProperties) {
         this.sendEmailProperties = sendEmailProperties;
     }
+
 
     public TimeProperties getTimeProperties() {
         return timeProperties;

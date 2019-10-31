@@ -1,3 +1,4 @@
+
 package com.fehead.initialize.service.model;
 
 /**

@@ -54,7 +54,6 @@ public class UserDO {
     public void setThirdPartyId(String thirdPartyId) {
         this.thirdPartyId = thirdPartyId == null ? null : thirdPartyId.trim();
     }
-
     public String getAvatar() {
         return avatar;
     }

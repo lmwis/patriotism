@@ -23,6 +23,7 @@ package com.fehead.initialize.controller.viewobject;
  */
 public class UserVO {
     private Integer id;
+
     private String telphone;
     private String email;
     private String registerMode;
@@ -84,5 +85,6 @@ public class UserVO {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+
     }
 }

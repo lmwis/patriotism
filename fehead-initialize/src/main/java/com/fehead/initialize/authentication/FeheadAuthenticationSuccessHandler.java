@@ -6,6 +6,7 @@ import com.fehead.initialize.properties.SecurityProperties;
 import com.fehead.initialize.service.RedisService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+
 
 /**
  * @author lmwis on 2019-07-16 10:52
@@ -50,6 +52,7 @@ public class FeheadAuthenticationSuccessHandler extends SavedRequestAwareAuthent
                 .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000))
                 .signWith(SignatureAlgorithm.HS512, "MyJwtSecret")
                 .compact();
+
         redisService.remove(securityProperties.getSmsProperties().getLoginPreKeyInRedis() +
                 ((UserDetails)authentication.getPrincipal()).getUsername());
         //如果为JSON模式，则返回JSON

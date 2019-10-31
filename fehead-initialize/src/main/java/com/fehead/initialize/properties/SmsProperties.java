@@ -29,7 +29,10 @@ public class SmsProperties {
 
     private String loginPreKeyInRedis="fehead-patriotism-sms-login-";
     private String registerPreKeyInRedis="fehead-patriotism-sms-register-";
+<<<<<<< HEAD
     private String resetPreKeyInRedis="fehead-patriotism-sms-reset-";
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     private String appKey;
     private String secret;
     private String regionId;
@@ -37,6 +40,7 @@ public class SmsProperties {
     private List<SmsModel> smsModel;
     private Integer smsNumber;
 
+<<<<<<< HEAD
     public String getResetPreKeyInRedis() {
         return resetPreKeyInRedis;
     }
@@ -45,6 +49,8 @@ public class SmsProperties {
         this.resetPreKeyInRedis = resetPreKeyInRedis;
     }
 
+=======
+>>>>>>> 6241bafc948d42dfafed63292dd74c355a70d486
     public String getLoginPreKeyInRedis() {
         return loginPreKeyInRedis;
     }
